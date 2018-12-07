@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { StyleSheet, ScrollView, Vibration, AsyncStorage, Alert } from "react-native";
 import { createStackNavigator, NavigationActions } from "react-navigation";
+import ResetPasswordContainer from "./containers/ResetPasswordContainner";
+import ChangePasswordContainer from "./containers/ChangePasswordContainer";
 import LoginContainer from "./containers/LoginContainer";
 import VideoCallContainer from "./containers/VideoCallContainer";
 import StartScreenContainer from "./containers/StartScreenContainer";
@@ -251,14 +253,57 @@ export const RootStack = createStackNavigator(
       },
       screen: WaitingBooking
     },
+    ResetPassword: {
+      screen: ResetPasswordContainer,
+      navigationOptions: {
+        title: 'Reset Password',
+        headerBackTitle: null
+      }
+    },
+    ChangePassword: {
+      screen: ChangePasswordContainer,
+      navigationOptions: {
+        title: 'Change Password',
+        headerBackTitle: null
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 
   },
   {
-    initialRouteName: ScreenName.Screen_StartScreen
+    initialRouteName: ScreenName.Screen_ChangePassword
     //initialRouteName: ScreenName.Screen_Appointment
     //initialRouteName: "ScheduleManager"
     //initialRouteName: "WaitingBooking"
+
+
+
+
+
+
+
+
+
+
+
+
     
   }
 );

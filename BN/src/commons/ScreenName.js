@@ -10,6 +10,8 @@ export default {
     Screen_Profile: "Profile",
     Screen_Main: "Main",
     Screen_ExamiSchedule: "Schedule",
+    Screen_ResetPassword:"ResetPassword",
+    Screen_ChangePassword:"ChangePassword"
     
  
 };

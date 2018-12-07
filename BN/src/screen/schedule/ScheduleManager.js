@@ -11,7 +11,7 @@ import { SafeAreaView } from "react-navigation";
 import styles from "./ScheduleManagerStyle";
 import HeaderComponent from "../main/HeaderComponent";
 import ItemScheduleManager from "./ItemScheduleManager";
-import DialogConfirm from "../../components/DialogConfirm";
+// import DialogConfirm from "../../components/DialogConfirm";
 import ConfirmDialog from '../../components/ConfirmDialog';
 import DialogLoading from "../../components/DialogLoading";
 import { Translate } from "../../utils/Language";
@@ -122,6 +122,7 @@ export default class ScheduleManager extends Component {
             textOk={Translate(DefineKey.DialogWarning_text_ok)}
             visible={this.state.confirmdialogvisible}
         />      
+       
         </View>
       </SafeAreaView>
     );

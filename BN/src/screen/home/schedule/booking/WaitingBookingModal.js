@@ -68,7 +68,6 @@ export default class ConsultantModal extends Component {
       this.setState({ warningdialogvisible: false });
   }
 
-
 getImage() {
   // const base64Icon = "data:image/png;base64," + this.props.image;
   // return this.props.image === ""

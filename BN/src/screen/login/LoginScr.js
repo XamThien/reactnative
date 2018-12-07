@@ -17,7 +17,6 @@ import DialogLoading from "../../components/DialogLoading";
 // import DialogWarning from "../../components/DialogWarning";
 import WarningDialog from '../../components/WarningDialog';
 
-
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -186,7 +185,7 @@ export default class Login extends Component {
                             onOk={this.onWarningOk.bind()}
                             textOk={Translate(DefineKey.DialogWarning_text_ok)}
                             visible={this.state.warningdialogvisible}
-                        />      
+                        />                   
                     </View>
                 </TouchableWithoutFeedback>
 

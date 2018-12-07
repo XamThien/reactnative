@@ -304,7 +304,7 @@ export default class Register extends Component {
                             onOk={this.onWarningOk.bind()}
                             textOk={Translate(DefineKey.DialogWarning_text_ok)}
                             visible={this.state.warningdialogvisible}
-                        />             
+                        />    
             </View>
           </TouchableWithoutFeedback>
       </SafeAreaView>

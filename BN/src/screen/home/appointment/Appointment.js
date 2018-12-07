@@ -68,6 +68,7 @@ export default class Appointment extends Component {
         this._onPressShowAddNewMemberModal = this._onPressShowAddNewMemberModal.bind(this);
         this.onOpenDialogWarning = this.onOpenDialogWarning.bind(this);
         this.onWarningOk = this.onWarningOk.bind(this);
+
     }
 
     componentDidMount = () => {
