@@ -162,6 +162,24 @@ export default {
   Notifycation_doctor_decline_call_02: " đã từ chối lịch hẹn khám videocall của bạn vào lúc ",
   Notifycation_doctor_decline_call_03: " , ngày ",
 
-  
+  RESET_PASSWORD_SUCCSESS_TEXT:"Yêu cầu reset mật khẩu thành công. Chúng tôi đã gửi mật khẩu mới vào mail của bạn. Vui lòng kiểm tra để đăng nhập.",
+  RESET_PASSWORD_FALSE_TEXT:"Yêu cầu reset mật khẩu không thành công.",
+  RESET_PASSWORD_FORM_TITLE: "Reset mật khẩu",
+  RESET_PASSWORD_FORM_CONTENT: "Nếu bạn không nhớ mật khẩu của bạn. Hãy nhập email của bạn vào ô bên dưới và nhấn nút. Chúng tôi sẽ tạo một mật khẩu mới cho bạn:",
+  RESET_PASSWORD_FORM_BUTTON: "Gửi",
+  RESET_PASSWORD_EMAIL_ERROR:"Email không hợp lệ.",
+  ERROR_CONNECT:"Lỗi kết nối.",
+
+  CHANGE_PASSWORD_SUCCSESS_TEXT:"Dổi mật khẩu thành công.",
+  CHANGE_PASSWORD_FALSE_TEXT:"Dổi mật khẩu không thành công.",
+  CHANGE_PASSWORD_FORM_TITLE: "Dổi mật khẩu",
+  CHANGE_PASSWORD_FORM_BUTTON: "Lưu mật khẩu",
+  CHANGE_PASSWORD_FORM_TITLE_OLD_PASSWORD: "Mật khẩu cũ",
+  CHANGE_PASSWORD_FORM_TITLE_NEW_PASSWORD: "Mật khẩu mới",
+  CHANGE_PASSWORD_FORM_TITLE_CONFIRM_PASSWORD: "Nhập lại mật khẩu",
+  CHANGE_PASSWORD_ERROR_OLD_PASSWORD:"Mật khẩu cũ không đúng",
+  CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD:"Nhập mật khẩu mới không khớp",
+  CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL:"Yêu cầu nhập đủ các trường",
+  CHANGE_PASSWORD_ERROR_PASSWORD:"Sai mật khẩu",
  
 };

@@ -1,0 +1,36 @@
+import {
+    CHANGE_PASSWORD_DO_CHANGE,
+    CHANGE_PASSWORD_SUCCESS,
+    CHANGE_PASSWORD_FAIL,
+    CHANGE_PASSWORD_DO_RESET
+} from "../actions/ActionType";
+  //Saga effects
+import { put, takeLatest } from 'redux-saga/effects';
+import { Api } from './Api';
+import Constants from "../commons/Constants";
+import { AsyncStorage } from "react-native";
+import {Translate} from "../utils/Language"
+import DefineKey from "../config/language/DefineKey";
+
+function* doChangePassword(action) {
+    try {
+        yield put({ type: CHANGE_PASSWORD_DO_RESET, hasError: false , lastError: undefined});
+        const response = yield Api.doChangePasswordApi(action.newPassword);
+        if (response != null) {
+            let sucsess =  Translate(DefineKey.CHANGE_PASSWORD_SUCCSESS_TEXT);
+            yield put({ type: CHANGE_PASSWORD_SUCCESS, hasError: false , lastError: "", messageSuccess: sucsess});
+        } else {
+            let error =  Translate(DefineKey.CHANGE_PASSWORD_FALSE_TEXT)
+            yield put({ type: CHANGE_PASSWORD_FAIL, lastError: error, hasError: true });
+        }
+    } catch (error) {
+        let errorText =  Translate(DefineKey.ERROR_CONNECT)
+        yield put({ type: CHANGE_PASSWORD_FAIL, lastError: errorText, hasError: true  });
+    }
+
+}
+export function* watchDoChangePassword() { 
+    yield takeLatest(CHANGE_PASSWORD_DO_CHANGE, doChangePassword );
+}
+
+

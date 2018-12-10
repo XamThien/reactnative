@@ -11,6 +11,8 @@ import {resultLoginReducer} from "./LoginReducer";
 import {resultRegisterReducer} from "./RegisterReducer";
 import {scheduleManagerReducer} from "./ScheduleManagerReducer";
 import {listenerVideocallReducers} from "./VideoCallReducer";
+import {resultResetPasswordReducer} from "./ResetPasswordReducer";
+import { resultChangePasswordReducer } from "./ChangePasswordReducer";
 
 const allReducers = combineReducers({
     specializedReducers,
@@ -24,6 +26,8 @@ const allReducers = combineReducers({
     resultRegisterReducer,
     scheduleManagerReducer,
     listenerVideocallReducers,
+    resultResetPasswordReducer,
+    resultChangePasswordReducer,
 
 });
 export default allReducers;

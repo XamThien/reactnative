@@ -1,22 +1,22 @@
 import { connect } from "react-redux";
 import ChangePasswordScr from "../screen/changePassword/ChangePasswordScr";
-// import {
-//     doLoginUserName,
-// } from "../actions/LoginAction";
+import {
+    doChangePassword,
+} from "../actions/ChangePasswordAction";
 
 const mapStateToProps = (state) => {
     return {
-        hasError: state.resultLoginReducer.hasError,
-        lastError: state.resultLoginReducer.lastError,
-        showLoading: state.resultLoginReducer.isLoading
-        // userProfile: state.resultLoginReducer.userProfile
+        hasError: state.resultChangePasswordReducer.hasError,
+        lastError: state.resultChangePasswordReducer.lastError,
+        showLoading: state.resultChangePasswordReducer.isLoading,
+        messageSuccess: state.resultChangePasswordReducer.messageSuccess
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {    
-        doResetPassword: (userID, newPassword) => {                        
-            // dispatch(doLoginUserName(userData));
+        doChangePassWord: (newPassword) => {                        
+            dispatch(doChangePassword(newPassword));
         },
     };
 }

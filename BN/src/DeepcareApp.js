@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, ScrollView, Vibration, AsyncStorage, Alert } from "react-native";
 import { createStackNavigator, NavigationActions } from "react-navigation";
-import ResetPasswordContainer from "./containers/ResetPasswordContainner";
-import ChangePasswordContainer from "./containers/ChangePasswordContainer";
 import LoginContainer from "./containers/LoginContainer";
 import VideoCallContainer from "./containers/VideoCallContainer";
 import StartScreenContainer from "./containers/StartScreenContainer";
@@ -12,6 +10,13 @@ import RegisterContainer from "./containers/RegisterContainer";
 import HomePages from "./navigation/HomeNavigationTabs";
 import AppointmentContainer from "./containers/AppointmentContainer";
 import ProfileContainer from "./containers/ProfileContainer";
+import ResetPasswordContainer from "./containers/ResetPasswordContainner";
+import ChangePasswordContainer from "./containers/ChangePasswordContainer";
+
+
+
+
+
 import Main from './screen/main/Main';
 import ScheduleManager from './screen/schedule/ScheduleManager';
 import WaitingBooking from "./screen/home/schedule/booking/WaitingBookingModal";
@@ -273,37 +278,14 @@ export const RootStack = createStackNavigator(
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
+    
   },
   {
-    initialRouteName: ScreenName.Screen_ChangePassword
+    // initialRouteName: ScreenName.Screen_StartScreen
     //initialRouteName: ScreenName.Screen_Appointment
     //initialRouteName: "ScheduleManager"
     //initialRouteName: "WaitingBooking"
-
-
-
-
-
-
-
-
-
-
-
-
+    initialRouteName: ScreenName.Screen_ChangePassword
     
   }
 );

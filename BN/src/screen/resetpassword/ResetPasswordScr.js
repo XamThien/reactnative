@@ -9,7 +9,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Dimensions,
-  Button
+  Button,
+  ImageBackground
 } from "react-native";
 import styles from "./ResetPasswordStyle";
 import ScreenName from "../../commons/ScreenName";
@@ -29,7 +30,8 @@ export default class ResetPassword extends Component {
 
       errTitle: "",
       errContent: "",
-      emailinput: ""
+      email_input: "",
+      redirect:false
     };
     this.onOpenDialogWarning = this.onOpenDialogWarning.bind(this);
     this.onWarningOk = this.onWarningOk.bind(this);
@@ -37,34 +39,15 @@ export default class ResetPassword extends Component {
 
   onPressReset() {
     Keyboard.dismiss();
-    let email = this.state.emailinput;
+    let email = this.state.email_input;
     if (this.isEmail(email)) {
-      alert('Request reset password.')
+      // alert('Request reset password.')
+      this.props.doResetPassword(email);
     } else{
-      this.onOpenDialogWarning('Warning', 'Invail email entry.');
+      let title = Translate(DefineKey.DialogWarning_text_title)
+      let errorContent = Translate(DefineKey.RESET_PASSWORD_EMAIL_ERROR);
+      this.onOpenDialogWarning(title, errorContent);
     }  
-
-    // alert('Request Reset Password');
-    // let errTitle = Translate(DefineKey.DialogWarning_text_title);
-    // var userData = {};
-    // if (this.state.username === '' || this.state.password === '') {
-    //     let errorLogin = Translate(DefineKey.Login_text_valid_empty);
-    //     this.onOpenDialogWarning(errTitle, errorLogin);
-    // } else {
-    //    var userName = this.state.username;
-    //    var password = this.state.password;
-    //     if (this.isEmail(userName)) {
-    //         userData = {email: userName, password: password, phone: ""};
-    //     } else if (this.isPhoneNumber(userName)) {
-    //         userData = {email: "", password: password, phone: userName};
-    //     } else {
-    //         let errorUsername = Translate(DefineKey.Login_text_valid_username);
-    //         this.onOpenDialogWarning(errTitle, errorUsername);
-    //         return;
-    //     }
-
-    // this.props.doResetPassword(userID, userMail);
-    // }
   }
 
   onOpenDialogWarning(errTitle, errContent) {
@@ -76,7 +59,10 @@ export default class ResetPassword extends Component {
     // this.refs.dialogWarning.showModal();
   }
   onWarningOk() {
-    this.setState({ warningdialogvisible: false });
+    this.setState({ warningdialogvisible: false, redirect: false });
+    if(this.state.redirect === true){
+      this.props.navigation.navigate(ScreenName.Screen_Login);
+    }
   }
 
   isEmail(userName) {
@@ -87,10 +73,11 @@ export default class ResetPassword extends Component {
   componentWillReceiveProps(props) {
     let hasError = props.hasError;
     let errorReset = props.lastError;
+    let messageSuccess = props.messageSuccess;
     if (!hasError && errorReset === "") {
-      // this.props.navigation.navigate(ScreenName.Screen_Main,{
-      //     intent_userID: props.userProfile.user_id,
-      //   })
+      let dialogTitle = Translate(DefineKey.DialogWarning_text_title);
+      this.onOpenDialogWarning(dialogTitle, messageSuccess);
+      this.setState({redirect: true});
     } else {
       if (errorReset != null && errorReset !== "") {
         let errTitle = Translate(DefineKey.DialogWarning_text_title);
@@ -101,7 +88,7 @@ export default class ResetPassword extends Component {
 
   render() {
     return (
-      <BackgroundImage image={'http://www.bellweightloss.com/wp-content/uploads/revslider/Weight/slide2_blur2.jpg'}>
+      <ImageBackground source={{ uri: 'http://www.bellweightloss.com/wp-content/uploads/revslider/Weight/slide2_blur2.jpg' }} style={{width: '100%', height: '100%'}}>
         <TouchableWithoutFeedback
           style={styles.container}
           onPress={Keyboard.dismiss}
@@ -110,27 +97,25 @@ export default class ResetPassword extends Component {
             <View style={styles.maincontain}>
               <View>
                 <Text style={styles.title}>
-                  {Translate(DefineKey.Login_title)}
+                  {Translate(DefineKey.RESET_PASSWORD_FORM_TITLE)}
                 </Text>
               </View>
               <View>
                 <Text style={styles.content}>
-                  {
-                    'If is often forgotten that password thing. Enter your emaill addrss below and click on the \'Request Password Reset\' button. We will send your mail current password:'
-                  }
+                  {Translate(DefineKey.RESET_PASSWORD_FORM_CONTENT)}
                 </Text>
               </View>
               <View>
                 <TextInput
                   style={styles.textInput}
                   placeholder="Email..."
-                  onChangeText={text => this.setState({ emailinput: text })}
-                  value={this.state.emailinput}
+                  onChangeText={text => this.setState({ email_input: text.trim() })}
+                  value={this.state.email_input}
                 />
               </View>
 
               <TouchableOpacity style={styles.button} onPress={() => this.onPressReset()}>
-                <Text style={styles.textButton}>{"Request Reset Password"}</Text>
+                <Text style={styles.textButton}>{Translate(DefineKey.RESET_PASSWORD_FORM_BUTTON)}</Text>
               </TouchableOpacity>
             </View>
             <DialogLoading loading={this.props.showLoading}/>
@@ -143,7 +128,7 @@ export default class ResetPassword extends Component {
             />
           </View>
         </TouchableWithoutFeedback>
-      </BackgroundImage>
+      </ImageBackground>
     );
   }
 }

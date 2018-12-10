@@ -1,22 +1,22 @@
 import { connect } from "react-redux";
 import ResetPasswordScr from "../screen/resetpassword/ResetPasswordScr";
-// import {
-//     doLoginUserName,
-// } from "../actions/LoginAction";
+import {
+    doResetPassWord,
+} from "../actions/ResetPasswordAction";
 
 const mapStateToProps = (state) => {
     return {
-        hasError: state.resultLoginReducer.hasError,
-        lastError: state.resultLoginReducer.lastError,
-        showLoading: state.resultLoginReducer.isLoading
-        // userProfile: state.resultLoginReducer.userProfile
+        hasError: state.resultResetPasswordReducer.hasError,
+        lastError: state.resultResetPasswordReducer.lastError,
+        showLoading: state.resultResetPasswordReducer.isLoading,
+        messageSuccess: state.resultResetPasswordReducer.messageSuccess
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {    
-        doResetPassword: (userID, userMail) => {                        
-            // dispatch(doLoginUserName(userData));
+        doResetPassword: (userMail) => {                        
+            dispatch(doResetPassWord(userMail));
         },
     };
 }

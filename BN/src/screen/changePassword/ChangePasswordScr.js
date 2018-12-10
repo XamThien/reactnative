@@ -9,24 +9,26 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Dimensions,
-  Button
+  Button,
+  ImageBackground
 } from "react-native";
 import styles from "./ChangePasswordStyle";
 import ScreenName from "../../commons/ScreenName";
 import { Translate } from "../../utils/Language";
 import DefineKey from "../../config/language/DefineKey";
 import DialogLoading from "../../components/DialogLoading";
+import Constants from "../../commons/Constants";
 // import DialogWarning from "../../components/DialogWarning";
 import WarningDialog from "../../components/WarningDialog";
 import BackgroundImage from '../../components/BackgroundImage';
 
-export default class ResetPassword extends Component {
+export default class ChangePassword extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       warningdialogvisible: false,
-
+      redirect:false,
       errTitle: "",
       errContent: "",
       old_password: "",
@@ -37,40 +39,42 @@ export default class ResetPassword extends Component {
     this.onWarningOk = this.onWarningOk.bind(this);
   }
 
-  onPressReset() {
+  const getDataStorage = async (key) => {
+    try {
+        const value = await AsyncStorage.getItem(key);
+        return value;
+    } catch (error) {
+      // Error retrieving data
+      console.log("error... " + error.message);
+      return null;
+    }
+}
+
+  onPressChange() {
     Keyboard.dismiss();
     let old_password = this.state.old_password;
     let new_password = this.state.new_password;
     let confirm_password = this.state.confirm_password;
-    if (confirm_password.trim() === "" || new_password.trim() === "" || old_password.trim() === "") {
-      this.onOpenDialogWarning('Warning', 'Entry all.');
+    let errTitle = Translate(DefineKey.DialogWarning_text_title);
+
+    let profile = JSON.parse(this.getDataStorage(Constants.KEY_STORE_USER_PROFILE));
+    let passwordStorage = profile.password;
+
+    //
+    // check pass cu =======================
+    //
+    if (old_password !== passwordStorage){
+      this.onOpenDialogWarning(errTitle, Translate(DefineKey.CHANGE_PASSWORD_ERROR_PASSWORD));
+    }
+    else if (confirm_password.trim() === "" || new_password.trim() === "" || old_password.trim() === "") {
+      this.onOpenDialogWarning(errTitle, Translate(DefineKey.CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL));
     } else if (confirm_password.trim() !== new_password.trim()){
-      this.onOpenDialogWarning('Warning', 'Mat khau khong khop.');
+      this.onOpenDialogWarning(errTitle, Translate(DefineKey.CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD));
     }  else {
-      alert('Request reset password.');
+      // alert('Request change password.');
+      this.props.doChangePassWord(new_password);
     }
 
-    // alert('Request Reset Password');
-    // let errTitle = Translate(DefineKey.DialogWarning_text_title);
-    // var userData = {};
-    // if (this.state.username === '' || this.state.password === '') {
-    //     let errorLogin = Translate(DefineKey.Login_text_valid_empty);
-    //     this.onOpenDialogWarning(errTitle, errorLogin);
-    // } else {
-    //    var userName = this.state.username;
-    //    var password = this.state.password;
-    //     if (this.isEmail(userName)) {
-    //         userData = {email: userName, password: password, phone: ""};
-    //     } else if (this.isPhoneNumber(userName)) {
-    //         userData = {email: "", password: password, phone: userName};
-    //     } else {
-    //         let errorUsername = Translate(DefineKey.Login_text_valid_username);
-    //         this.onOpenDialogWarning(errTitle, errorUsername);
-    //         return;
-    //     }
-
-    // this.props.doResetPassword(userID, userMail);
-    // }
   }
 
   onOpenDialogWarning(errTitle, errContent) {
@@ -82,21 +86,25 @@ export default class ResetPassword extends Component {
     // this.refs.dialogWarning.showModal();
   }
   onWarningOk() {
-    this.setState({ warningdialogvisible: false });
+    this.setState({ warningdialogvisible: false, redirect: false });
+    if(this.state.redirect === true){
+      this.props.navigation.navigate(ScreenName.Screen_Login);
+    }
   }
 
-  isEmail(userName) {
-    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return reg.test(userName) === true;
-  }
+  // isEmail(userName) {
+  //   const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  //   return reg.test(userName) === true;
+  // }
 
   componentWillReceiveProps(props) {
     let hasError = props.hasError;
     let errorReset = props.lastError;
+    let messageSuccess = props.messageSuccess;
     if (!hasError && errorReset === "") {
-      // this.props.navigation.navigate(ScreenName.Screen_Main,{
-      //     intent_userID: props.userProfile.user_id,
-      //   })
+      let dialogTitle = Translate(DefineKey.DialogWarning_text_title);
+      this.onOpenDialogWarning(dialogTitle, messageSuccess);
+      this.setState({redirect: true});
     } else {
       if (errorReset != null && errorReset !== "") {
         let errTitle = Translate(DefineKey.DialogWarning_text_title);
@@ -107,7 +115,7 @@ export default class ResetPassword extends Component {
 
   render() {
     return (
-      <BackgroundImage image={'http://www.bellweightloss.com/wp-content/uploads/revslider/Weight/slide2_blur2.jpg'}>
+      <ImageBackground  source={{ uri: 'http://www.bellweightloss.com/wp-content/uploads/revslider/Weight/slide2_blur2.jpg' }} style={{width: '100%', height: '100%'}}>
         <TouchableWithoutFeedback
           style={styles.container}
           onPress={Keyboard.dismiss}
@@ -116,31 +124,31 @@ export default class ResetPassword extends Component {
             <View style={styles.maincontain}>
               <View>
                 <Text style={styles.title}>
-                  {'Create New Password'}
+                  {Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE)}
                 </Text>
               </View>
 
-              <Text style={styles.textTitleInput}>{'Old password:'}</Text>
+              <Text style={styles.textTitleInput}>{Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_OLD_PASSWORD)}</Text>
               <View>
                 <TextInput
                   style={styles.textInput}
-                  placeholder="Old password..."
+                  placeholder={Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_OLD_PASSWORD)+"..."}
                   autoCapitalize="none"
                   autoCorrect={false}
                   autoFocus={true}
                   returnKeyType="next"
                   keyboardType="default"
                   onSubmitEditing={() => this.refs.newPassword.focus()}
-                  onChangeText={text => this.setState({ old_password: text })}
+                  onChangeText={text => this.setState({ old_password: text.trim() })}
                   value={this.state.emailinput}
                 />
               </View>
 
-              <Text style={styles.textTitleInput}>{'New password:'}</Text>
+              <Text style={styles.textTitleInput}>{Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_NEW_PASSWORD)}</Text>
               <View>
                 <TextInput
                   style={styles.textInput}
-                  placeholder="New password..."
+                  placeholder={Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_NEW_PASSWORD)+"..."}
                   ref="newPassword"
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -148,24 +156,24 @@ export default class ResetPassword extends Component {
                   returnKeyType="next"
                   keyboardType="default"
                   onSubmitEditing={() => this.refs.confirmPassword.focus()}
-                  onChangeText={text => this.setState({ new_password: text })}
+                  onChangeText={text => this.setState({ new_password: text.trim() })}
                   value={this.state.emailinput}
                 />
               </View>
 
-              <Text style={styles.textTitleInput}>{'Confirm password:'}</Text>
+              <Text style={styles.textTitleInput}>{Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_CONFIRM_PASSWORD)}</Text>
               <View>
                 <TextInput
                   style={styles.textInput}
-                  placeholder="Confirm new password..."
+                  placeholder={Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_CONFIRM_PASSWORD)+"..."}
                   ref="confirmPassword"
-                  onChangeText={text => this.setState({ confirm_password: text })}
+                  onChangeText={text => this.setState({ confirm_password: text.trim() })}
                   value={this.state.emailinput}
                 />
               </View>
 
-              <TouchableOpacity style={styles.button} onPress={() => this.onPressReset()}>
-                <Text style={styles.textButton}>{"Request Reset Password"}</Text>
+              <TouchableOpacity style={styles.button} onPress={() => this.onPressChange()}>
+                <Text style={styles.textButton}>{Translate(DefineKey.CHANGE_PASSWORD_FORM_BUTTON)}</Text>
               </TouchableOpacity>
             </View>
             <DialogLoading loading={this.props.showLoading}/>
@@ -178,7 +186,7 @@ export default class ResetPassword extends Component {
             />
           </View>
         </TouchableWithoutFeedback>
-      </BackgroundImage>
+      </ImageBackground>
     );
   }
 }
