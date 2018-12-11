@@ -18,6 +18,9 @@ function* doChangePassword(action) {
         const response = yield Api.doChangePasswordApi(action.newPassword);
         if (response != null) {
             let sucsess =  Translate(DefineKey.CHANGE_PASSWORD_SUCCSESS_TEXT);
+            removeDataStorage(Constants.KEY_STORE_TOKEN);
+            removeDataStorage(Constants.KEY_USER_ID);
+            removeDataStorage( Constants.KEY_STORE_USER_PROFILE);
             yield put({ type: CHANGE_PASSWORD_SUCCESS, hasError: false , lastError: "", messageSuccess: sucsess});
         } else {
             let error =  Translate(DefineKey.CHANGE_PASSWORD_FALSE_TEXT)
@@ -33,4 +36,11 @@ export function* watchDoChangePassword() {
     yield takeLatest(CHANGE_PASSWORD_DO_CHANGE, doChangePassword );
 }
 
+async function removeDataStorage(key) {
+    try {
+      await AsyncStorage.removeItem(key);
+    } catch (error) {
+      console.log("Error removeing data" + error);
+    }
+  }
 

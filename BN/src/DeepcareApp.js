@@ -281,11 +281,11 @@ export const RootStack = createStackNavigator(
     
   },
   {
-    initialRouteName: ScreenName.Screen_StartScreen
+    // initialRouteName: ScreenName.Screen_StartScreen
     //initialRouteName: ScreenName.Screen_Appointment
     //initialRouteName: "ScheduleManager"
     //initialRouteName: "WaitingBooking"
-    //initialRouteName: ScreenName.Screen_ChangePassword
+    initialRouteName: ScreenName.Screen_ResetPassword
     
   }
 );

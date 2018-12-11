@@ -39,7 +39,7 @@ export default class ChangePassword extends Component {
     this.onWarningOk = this.onWarningOk.bind(this);
   }
 
-  const getDataStorage = async (key) => {
+  getDataStorage = async (key) => {
     try {
         const value = await AsyncStorage.getItem(key);
         return value;
