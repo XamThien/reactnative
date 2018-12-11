@@ -39,16 +39,6 @@ export default class ChangePassword extends Component {
     this.onWarningOk = this.onWarningOk.bind(this);
   }
 
-  getDataStorage = async (key) => {
-    try {
-        const value = await AsyncStorage.getItem(key);
-        return value;
-    } catch (error) {
-      // Error retrieving data
-      console.log("error... " + error.message);
-      return null;
-    }
-}
 
   onPressChange() {
     Keyboard.dismiss();
@@ -56,23 +46,14 @@ export default class ChangePassword extends Component {
     let new_password = this.state.new_password;
     let confirm_password = this.state.confirm_password;
     let errTitle = Translate(DefineKey.DialogWarning_text_title);
-
-    let profile = JSON.parse(this.getDataStorage(Constants.KEY_STORE_USER_PROFILE));
-    let passwordStorage = profile.password;
-
-    //
-    // check pass cu =======================
-    //
-    if (old_password !== passwordStorage){
-      this.onOpenDialogWarning(errTitle, Translate(DefineKey.CHANGE_PASSWORD_ERROR_PASSWORD));
-    }
-    else if (confirm_password.trim() === "" || new_password.trim() === "" || old_password.trim() === "") {
+    
+    if (confirm_password.trim() === "" || new_password.trim() === "" || old_password.trim() === "") {
       this.onOpenDialogWarning(errTitle, Translate(DefineKey.CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL));
     } else if (confirm_password.trim() !== new_password.trim()){
       this.onOpenDialogWarning(errTitle, Translate(DefineKey.CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD));
     }  else {
       // alert('Request change password.');
-      this.props.doChangePassWord(new_password);
+      this.props.doChangePassWord(new_password,old_password);
     }
 
   }

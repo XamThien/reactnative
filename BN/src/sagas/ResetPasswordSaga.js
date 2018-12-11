@@ -20,7 +20,7 @@ function* doResetPassword(action) {
     try {
         yield put({ type: RESET_PASSWORD_DO_RESET, hasError: false , lastError: undefined});
         const response = yield Api.doResetPasswordApi(action.userMail);
-        if (response != null) {
+        if (response.result === "updated") {
             let sucsess =  Translate(DefineKey.RESET_PASSWORD_SUCCSESS_TEXT);
             yield put({ type: RESET_PASSWORD_SUCCESS, hasError: false , lastError: "", messageSuccess: sucsess});
         } else {

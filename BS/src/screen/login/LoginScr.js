@@ -27,7 +27,8 @@ export default class Login extends Component {
             username: "",
             password: "",
             errTitle: "",
-            errContent: ""
+            errContent: "",
+            show_pass:false
         };
         this.onOpenDialogWarning = this.onOpenDialogWarning.bind(this);
         this.onWarningOk = this.onWarningOk.bind(this);
@@ -90,7 +91,12 @@ export default class Login extends Component {
             }
         }
     }
-
+    _getIconPassword() {
+        if (this.state.show_pass === true) {
+            return (require("../../../assets/pass_show.png"));
+        } else {
+            return (require("../../../assets/pass_hide.png"))
+        }
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -143,10 +149,24 @@ export default class Login extends Component {
                                     ref="passWord"
                                     onChangeText={text => this.setState({password: text})}
                                 />
-                                <Image
+                                {/* <Image
                                     source={require("../../../assets/icon_password.png")}
                                     style={styles.imageInput}
-                                />
+                                /> */}
+                                <TouchableOpacity
+                                    style={styles.imageInput}
+                                    onPress={() => {
+                                        if(this.state.show_pass === true)
+                                        {
+                                            this.setState({show_pass: false});
+
+                                        } else {
+                                            this.setState({show_pass: true});
+                                        }
+                                    }}
+                                >
+                                    <Image source={this._getIconPassword()} style={styles.imageInput} />
+                                </TouchableOpacity>
                             </View>
                             <View/>
                             <TouchableOpacity
@@ -155,7 +175,14 @@ export default class Login extends Component {
                             >
                                 <Text style={styles.textButton}>{Translate(DefineKey.Login_text_btn_login)}</Text>
                             </TouchableOpacity>
-
+                            <Text
+                                style={styles.textRegister}
+                                onPress={() =>
+                                this.props.navigation.navigate(ScreenName.Screen_ResetPassword)
+                                }
+                            >
+                                {Translate(DefineKey.Login_text_forgotten)}
+                            </Text>
                         </View>
 
                         <View style={styles.layoutFooter}>

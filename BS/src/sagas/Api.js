@@ -236,7 +236,7 @@ function* doResetPasswordApi(email) {
       "x-key" : xKey
     };
 let dataBody = JSON.stringify({
-  email: email,
+  email: email
 });
  return yield fetch(urlResetPassword , {
       method: "POST",
@@ -252,9 +252,10 @@ let dataBody = JSON.stringify({
       console.error("error..." + error);
     });
 }
-function* doChangePasswordApi(newPassword) {
+function* doChangePasswordApi(newPassword,old_password) {
   let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-  let userID = yield getDataStorage(Constants.KEY_USER_ID);
+  let userID = yield getDataStorage(Constants.KEY_DOCTOR_ID);
+  // alert(userID);
   let xKey = "";
   let headers = {
       Accept: "application/json",
@@ -263,7 +264,7 @@ function* doChangePasswordApi(newPassword) {
       "x-key" : xKey
     };
 let dataBody = JSON.stringify({
-  email: email, userID: userID
+   user_id: userID, old_password:old_password,new_password: newPassword
 });
  return yield fetch(urlChangePassword , {
       method: "POST",

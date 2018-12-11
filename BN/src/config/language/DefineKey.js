@@ -14,6 +14,7 @@ export default {
     Login_username: "Login_username",
     Login_password: "Login_password",
     Login_text_register: "Login_text_register",
+    Login_text_forgotten:"Login_text_forgotten",
     Login_text_help: "Login_text_help",
     Login_text_login_fail: "Login_text_login_fail",
     Login_text_login_error_connect: "Login_text_login_error_connect",
@@ -159,6 +160,7 @@ export default {
     Notifycation_doctor_decline_call_02: "Notifycation_doctor_decline_call_02",
     Notifycation_doctor_decline_call_03: "Notifycation_doctor_decline_call_03",
 
+    RESET_PASSWORD_HEADER_TITLE:"RESET_PASSWORD_HEADER_TITLE",
     RESET_PASSWORD_SUCCSESS_TEXT:"RESET_PASSWORD_SUCCSESS_TEXT",
     RESET_PASSWORD_FALSE_TEXT:"RESET_PASSWORD_FALSE_TEXT",
     RESET_PASSWORD_FORM_TITLE: "RESET_PASSWORD_FORM_TITLE",
@@ -167,6 +169,7 @@ export default {
     RESET_PASSWORD_EMAIL_ERROR: "RESET_PASSWORD_EMAIL_ERROR",
     ERROR_CONNECT:"ERROR_CONNECT",
 
+    CHANGE_PASSWORD_HEADER_TITLE:"CHANGE_PASSWORD_HEADER_TITLE",
     CHANGE_PASSWORD_SUCCSESS_TEXT:"CHANGE_PASSWORD_SUCCSESS_TEXT",
     CHANGE_PASSWORD_FALSE_TEXT:"CHANGE_PASSWORD_FALSE_TEXT",
     CHANGE_PASSWORD_FORM_TITLE: "CHANGE_PASSWORD_FORM_TITLE",

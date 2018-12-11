@@ -14,8 +14,8 @@ const urlAddNewMemberFamily = "http://35.238.126.42:443/api/v1/user/addFamilyMem
 const urlGetAppointmentSchedule = "http://35.238.126.42:443/api/v1/appointments/user/getAllAppointmentByUserID/";
 const urlGetDoctorSchedule = "http://35.238.126.42:443/api/v1/schedule/getDoctorSchedule/";
 const urlGetDoctorAppointSchedule = "http://35.238.126.42:443/api/v1/doctor/getDoctorInfoByUserID/";
-const urlResetPassword = "";
-const urlChangePassword = "";
+const urlResetPassword = "http://35.238.126.42:443/user/resetPassword";
+const urlChangePassword = "http://35.238.126.42:443/api/v2/user/changePassword";
 
 function* doLoginApi(input) {
     let xKey = "";
@@ -400,7 +400,7 @@ function* doResetPasswordApi(email) {
         "x-key" : xKey
       };
   let dataBody = JSON.stringify({
-    email: email,
+    email: email
   });
    return yield fetch(urlResetPassword , {
         method: "POST",
@@ -416,9 +416,10 @@ function* doResetPasswordApi(email) {
         console.error("error..." + error);
       });
 }
-function* doChangePasswordApi(newPassword) {
+function* doChangePasswordApi(newPassword,old_password) {
     let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
     let userID = yield getDataStorage(Constants.KEY_USER_ID);
+    // alert(userID);
     let xKey = "";
     let headers = {
         Accept: "application/json",
@@ -427,7 +428,7 @@ function* doChangePasswordApi(newPassword) {
         "x-key" : xKey
       };
   let dataBody = JSON.stringify({
-    email: email, userID: userID
+     user_id: userID, old_password:old_password,new_password: newPassword
   });
    return yield fetch(urlChangePassword , {
         method: "POST",

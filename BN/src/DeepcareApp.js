@@ -261,14 +261,14 @@ export const RootStack = createStackNavigator(
     ResetPassword: {
       screen: ResetPasswordContainer,
       navigationOptions: {
-        title: 'Reset Password',
+        title: Translate(DefineKey.RESET_PASSWORD_HEADER_TITLE),
         headerBackTitle: null
       }
     },
     ChangePassword: {
       screen: ChangePasswordContainer,
       navigationOptions: {
-        title: 'Change Password',
+        title: Translate(DefineKey.CHANGE_PASSWORD_HEADER_TITLE),
         headerBackTitle: null
       }
     },
@@ -281,11 +281,11 @@ export const RootStack = createStackNavigator(
     
   },
   {
-    // initialRouteName: ScreenName.Screen_StartScreen
+    initialRouteName: ScreenName.Screen_StartScreen
     //initialRouteName: ScreenName.Screen_Appointment
     //initialRouteName: "ScheduleManager"
     //initialRouteName: "WaitingBooking"
-    initialRouteName: ScreenName.Screen_ResetPassword
+    // initialRouteName: ScreenName.Screen_ResetPassword
     
   }
 );

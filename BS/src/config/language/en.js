@@ -8,6 +8,7 @@ export default {
   Login_username: "Email hoặc số điện thoại",
   Login_password: "Mật khẩu",
   Login_text_register: "Đăng ký Deepcare",
+  Login_text_forgotten: "Quên mật khẩu?",
   Login_text_help: "Trợ giúp",
   Login_text_login_fail: "Tên đăng nhập hoặc mật khẩu chưa đúng.",
   Login_text_login_error_connect: "Đặng nhập không thành công, vui lòng kiểm tra lại kết nối!",
@@ -127,6 +128,7 @@ export default {
   RESET_PASSWORD_EMAIL_ERROR:"Email không hợp lệ.",
   ERROR_CONNECT:"Lỗi kết nối.",
 
+  CHANGE_PASSWORD_HEADER_TITLE:"Dổi mật khẩu",
   CHANGE_PASSWORD_SUCCSESS_TEXT:"Dổi mật khẩu thành công.",
   CHANGE_PASSWORD_FALSE_TEXT:"Dổi mật khẩu không thành công.",
   CHANGE_PASSWORD_FORM_TITLE: "Dổi mật khẩu",

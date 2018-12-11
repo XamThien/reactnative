@@ -88,6 +88,20 @@ export default class Profile extends Component {
               </View>
             </TouchableOpacity>
 
+            {/* layout change password */}
+            <TouchableOpacity onPress={() =>
+              this.props.navigation.navigate(ScreenName.Screen_ChangePassword)}>
+              <View style={styles.layoutItem}>
+                <Image
+                  style={styles.itemImage}
+                  source={require("../../../assets/icon_password.png")}
+                />
+                <Text style={styles.itemText}>
+                  {Translate(DefineKey.CHANGE_PASSWORD_HEADER_TITLE)}
+                </Text>
+              </View>
+            </TouchableOpacity>
+
             {/* layout Item Subscription */}
             <TouchableOpacity>
               <View style={styles.layoutItem}>

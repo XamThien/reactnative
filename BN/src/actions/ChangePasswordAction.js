@@ -6,17 +6,19 @@ import {
   } from "./ActionType";
   
   
-  export const doChangePassword = (newPassword) => {
+  export const doChangePassword = (newPassword,oldPassword) => {
     return {
       type: CHANGE_PASSWORD_DO_CHANGE,
-      newPassword
+      newPassword,
+      oldPassword
     }
   }
   
-  export const isChangePassword = (newPassword) => {
+  export const isChangePassword = (newPassword,oldPassword) => {
     return {
       type: CHANGE_PASSWORD_SUCCESS,
-      newPassword
+      newPassword,
+      oldPassword
     }
   }
   

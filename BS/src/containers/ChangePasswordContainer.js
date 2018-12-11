@@ -15,8 +15,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {    
-        doChangePassWord: (newPassword) => {                        
-            dispatch(doChangePassword(newPassword));
+        doChangePassWord: (newPassword,old_password) => {                        
+            dispatch(doChangePassword(newPassword,old_password));
         },
     };
 }
