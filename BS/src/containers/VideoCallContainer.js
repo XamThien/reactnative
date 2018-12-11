@@ -7,7 +7,8 @@ import {
   onFinishCall,
   onReceiverCall,
   onChangeLocalStream,
-  onSendMessage
+  onSendMessage,
+  onSwitchCamera, onCamControl, onSoundControl, onMicControl
 } from "../actions/VideoCallAction";
 
 const mapStateToProps = state => {
@@ -41,6 +42,18 @@ const mapDispatchToProps = dispatch => {
     },
     onSendMessage: (userFriend, message) => {
       dispatch(onSendMessage(userFriend, message));
+    },
+    onSwitchCamera: (isFrontCamera, isOnMic) => {
+      dispatch(onSwitchCamera(isFrontCamera, isOnMic));
+    },
+    onCamControl: (isOnCamera) => {
+      dispatch(onCamControl(isOnCamera));
+    },
+    onMicControl: (isOnMic, isFrontCam) => {
+      dispatch(onMicControl(isOnMic, isFrontCam));
+    },
+    onSoundControl: (isOnSound) => {
+      dispatch(onSoundControl(isOnSound));
     }
   };
 };

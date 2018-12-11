@@ -429,7 +429,7 @@ _onUpdateStatusTime(timeId) {
       swipeToClose= {false}
       ref={"myModal"}
     >
-    <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
+    {/* <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}> */}
       <View style={styles.container}>
         <View style={styles.layout_top}>
           <View style={styles.layout_header}>
@@ -726,7 +726,7 @@ _onUpdateStatusTime(timeId) {
                         />        
         <DiseaseModalContainter ref={"diseaseModal"} onUpdateDataSelected = {this.onUpdateDataSelected.bind()}/>
       </View>
-      </TouchableWithoutFeedback>
+      {/* </TouchableWithoutFeedback> */}
       </Modal>
     );
   }

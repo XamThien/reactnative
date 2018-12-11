@@ -7,5 +7,7 @@ export default {
     Screen_Main : "Main",
     Screen_PatientProfile : "PatientProfile",
     Screen_VideoCall : "VideoCallContainer",
+    Screen_ResetPassword:"ResetPassword",
+    Screen_ChangePassword:"ChangePassword"
  
 };

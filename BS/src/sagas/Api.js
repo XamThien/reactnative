@@ -9,6 +9,9 @@ const urlCreateSchedule = "http://35.238.126.42:443/api/v1/schedule";
 const urlUpdateStatusAppoint = "http://35.238.126.42:443/api/v1/appointments/doctor/updateStatus";
 const urlGetDoctorSchedule = "http://35.238.126.42:443/api/v1/schedule/getDoctorSchedule/";
 const urlGetAllPatients = "http://35.238.126.42:443/api/v1/appointments/doctor/getUserAppointmentByDoctorID/"; 
+const urlResetPassword = "";
+const urlChangePassword = "";
+
 
 
 function* doLoginApi(input) {
@@ -225,6 +228,57 @@ const getDataStorage = async (key) => {
       return null;
     }
 }
+function* doResetPasswordApi(email) {
+  let xKey = "";
+  let headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "x-key" : xKey
+    };
+let dataBody = JSON.stringify({
+  email: email,
+});
+ return yield fetch(urlResetPassword , {
+      method: "POST",
+      headers: headers,
+      body: dataBody
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(`doResetPasswordApi...data = ${JSON.stringify(responseJson)} `);
+      return responseJson;
+    })
+    .catch((error) => {
+      console.error("error..." + error);
+    });
+}
+function* doChangePasswordApi(newPassword) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let userID = yield getDataStorage(Constants.KEY_USER_ID);
+  let xKey = "";
+  let headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "x-access-token" : token,
+      "x-key" : xKey
+    };
+let dataBody = JSON.stringify({
+  email: email, userID: userID
+});
+ return yield fetch(urlChangePassword , {
+      method: "POST",
+      headers: headers,
+      body: dataBody
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(`doChangePasswordApi...data = ${JSON.stringify(responseJson)} `);
+      return responseJson;
+    })
+    .catch((error) => {
+      console.error("error..." + error);
+    });
+}
 
 export const Api = {
   doLoginApi,
@@ -233,5 +287,7 @@ export const Api = {
   doCreateScheduleApi,
   doUpdateStatusAppointApi,
   doWorkScheduleApi,
-  doGetAllPatientApi
+  doGetAllPatientApi,
+  doResetPasswordApi,
+  doChangePasswordApi
 };

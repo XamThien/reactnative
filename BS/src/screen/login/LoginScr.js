@@ -9,15 +9,14 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
 } from "react-native";
+
 import styles from "./LoginStyle";
 import ScreenName from '../../commons/ScreenName';
 import {Translate} from "../../utils/Language"
 import DefineKey from "../../config/language/DefineKey";
 import DialogLoading from "../../components/DialogLoading";
 // import DialogWarning from "../../components/DialogWarning";
-
 import WarningDialog from '../../components/WarningDialog';
-import ConfirmDialog from '../../components/ConfirmDialog';
 
 export default class Login extends Component {
     constructor(props) {
@@ -64,8 +63,7 @@ export default class Login extends Component {
 
     onWarningOk() {
         this.setState({ warningdialogvisible: false });
-      }
-    
+    }
 
     isEmail(userName) {
         const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -181,7 +179,7 @@ export default class Login extends Component {
                             onOk={this.onWarningOk.bind()}
                             textOk={Translate(DefineKey.DialogWarning_text_ok)}
                             visible={this.state.warningdialogvisible}
-                        />               
+                        />  
                     </View>
                 </TouchableWithoutFeedback>
 

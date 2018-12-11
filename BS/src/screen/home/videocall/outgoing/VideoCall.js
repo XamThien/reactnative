@@ -18,6 +18,7 @@ import {
   Icon,
   Title
 } from "native-base";
+import KeepAwake from 'react-native-keep-awake';
 import { RTCView, MediaStreamTrack, getUserMedia } from "react-native-webrtc";
 import Sound from 'react-native-sound';
 import styles from "./VideoCallStyle";
@@ -37,6 +38,7 @@ export default class VideoCall extends Component {
       defaultUserId: 'd1',
       defaultUserType: 0,
       dataUser: {},
+      friendName: "",
       isVideo: true,
       isAudio: false,
   
@@ -46,10 +48,12 @@ export default class VideoCall extends Component {
       isHideViewName: false,
       makeCall: false,
       hasNewCall: false,
-      
+
       isOnCamera: true,
       isFrontCamera: true,
       isOnMic: true,
+      isOnSound: true,
+      
       streamURLLocal: null,
       streamURLServer: null,
       streamURL: "",
@@ -65,17 +69,12 @@ export default class VideoCall extends Component {
   
 
   componentDidMount() {
-    //this.getLocalStream();
-    // let dataFriends = this.getUserFriends();
-    // let dataUser = {
-    //   userId:this.state.defaultUserId,
-    //   userType:this.state.defaultUserType,
-    //   userFriends: dataFriends
-    // };
-    // this.props.onCreateSocketRTC(dataUser, dataFriends);
     const friendID = this.props.navigation.getParam(Constants.KEY_INTENT_CALL_FRIEND_ID, "");
+    const friendName = this.props.navigation.getParam(Constants.KEY_INTENT_CALL_FRIEND_NAME, "");
     const friendType = 1;
     this.onPressStartCall(friendID, friendType);
+    this.setState({friendName: friendName});
+
   }
 
   componentWillReceiveProps(props) {
@@ -159,16 +158,12 @@ export default class VideoCall extends Component {
   }
 
   onPressSwitchCamera () {
-    console.log("nvTien - onPressSwitchCamera...: ")
-    // this.setState({isFrontCamera: !this.state.isFrontCamera});
-    // this.setSelfViewSrc(null);
-    // this.getLocalStream(this.state.isFrontCamera, this.state.isOnMic, localStream => {
-    //   if(localStream != null) {
-    //     this.setState({streamURLLocal: localStream.toURL()})
-    //   }
-    //   changeLocalStream(this.state.localStream);
-    // });
-    
+    if(this.state.calling) {
+      console.log("nvTien - Videocall onPressSwitchCamera " + (!this.state.isFrontCamera))
+      this.props.onSwitchCamera(!this.state.isFrontCamera, this.state.isOnMic);
+      this.setState({isFrontCamera: !this.state.isFrontCamera});
+    }
+
   }
 
   onPressMic () {
@@ -201,19 +196,34 @@ onPressBackCall() {
  
 }
 
+
+onPressOnCamera() {
+  if(this.state.calling) {
+    this.props.onCamControl(!this.state.isOnCamera);
+    this.setState({isOnCamera: !this.state.isOnCamera});
+  } 
+}
+
+onPressSwitchCamera () {
+  if(this.state.calling) {
+    console.log("nvTien - Videocall onPressSwitchCamera " + (!this.state.isFrontCamera))
+    this.props.onSwitchCamera(!this.state.isFrontCamera, this.state.isOnMic);
+    this.setState({isFrontCamera: !this.state.isFrontCamera});
+  }
+
+}
+
+onPressMic () {
+  if(this.state.calling) {
+    this.props.onMicControl(!this.state.isOnMic, this.state.isFrontCamera);
+    this.setState({isOnMic: !this.state.isOnMic});
+  }
+  
+}
+
 onTouchShowControl() {
   this.setState({isShowControl: !this.state.isShowControl})
 }
-
-getUserFriends(){
-  var lst = [];
-  friendAllList.forEach(friend =>{
-     if(friend.userId != this.state.defaultUserId && friend.userType != this.state.defaultUserType){
-       lst.push(friend);
-     }
-   });
-   return lst;
- }
 
  playRingStone() {
   const sound = new Sound('https://www.soundjay.com/phone/sounds/phone-calling-1.mp3', null, (error) => {
@@ -286,9 +296,7 @@ cancelRingStone() {
             <View style={this.state.isHideController ? styles.hideView : styles.layout_footer_video_call}>
               <View style={styles.layout_controller_01}>
                 <Button style={styles.icon_control_video} transparent onPress={() => {
-                    //this.onPressOnCamera();
-                    //this.onPressStartCall();
-                    this.onPressOnOffCamera();
+                    this.onPressOnCamera();
                   }}>
                   <Image source={this.getImageOnCamera()} style={styles.icon_control_video} />
                 </Button>
@@ -312,24 +320,17 @@ cancelRingStone() {
             <View style={this.state.isHideViewName ? styles.hideView : styles.layout_infomation}>
               <Thumbnail style={styles.avata_patient} large source={require("../../../../../assets/icon_app.png")} />
               <H1 style={{ marginTop: 20, color: "white" }}>
-                Nguyen Van Tien
+                {this.state.friendName}
               </H1>
               <H3 style={{ marginTop: 10, color: "white" }}>
                 {Translate(DefineKey.Videocall_outgoing_waiting_text)}
               </H3>
             </View>
           </ImageBackground>
+          <KeepAwake/>
         </Container>
       </SafeAreaView>;
   }
 }
 
-var friendAllList = [
-  {userId:'d1',active:false,userType:0},
-  {userId:'d2',active:false,userType:0},
-  {userId:'d3',active:false,userType:0},
-  {userId:'p1',active:false,userType:1},
-  {userId:'p2',active:false,userType:1},
-  {userId:'p3',active:false,userType:1},
-];
 

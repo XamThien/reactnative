@@ -8,6 +8,11 @@ import ProfileContainer from "./containers/ProfileContainer";
 import Main from './screen/main/Main';
 import PatientProfile from "./screen/home/schedule/profile/PatientProfile";
 import VideoCallContainer from "./containers/VideoCallContainer";
+import ResetPasswordContainer from "./containers/ResetPasswordContainner";
+import ChangePasswordContainer from "./containers/ChangePasswordContainer";
+
+
+
 
 import NotifService from './lib/NotifService';
 import {Translate} from "./utils/Language";
@@ -77,8 +82,10 @@ export default class DeepcareApp extends Component {
       this.handleNewMessage(props.newMessage);
     } else if(callbackType === Constants.VIDEOCALL_LISTENER_BUSY_CB) {
       
-    } else {
-
+    } else if(callbackType === Constants.VIDEO_CALL_ONCONNECT_SOCKET){
+      
+    } else if(callbackType === Constants.VIDEO_CALL_DISCONNECT_SOCKET){
+            
     }
   }  
 
@@ -205,13 +212,33 @@ export const RootStack = createStackNavigator(
       },
       screen: VideoCallContainer
     },
+    ResetPassword: {
+      screen: ResetPasswordContainer,
+      navigationOptions: {
+        title: 'Reset Password',
+        headerBackTitle: null
+      }
+    },
+    ChangePassword: {
+      screen: ChangePasswordContainer,
+      navigationOptions: {
+        title: 'Change Password',
+        headerBackTitle: null
+      }
+    },
+
+
+
+
+
+
 
   },
   {
-    initialRouteName: ScreenName.Screen_Login
+    // initialRouteName: ScreenName.Screen_Login
     //initialRouteName: ScreenName.Screen_Appointment
     //initialRouteName: "VideoCallContainer"
-    
+    initialRouteName: ScreenName.Screen_ChangePassword
   }
 );
 

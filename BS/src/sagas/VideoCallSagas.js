@@ -20,6 +20,13 @@ import {
   VIDEO_CALL_RESET_DATA_SOCKET,
   VIDEO_CALL_ACTION_MESSAGE_CALLBACK,
   VIDEO_CALL_RESET_MESSAGE_CALLBACK,
+
+  //controller
+  VIDEO_CALL_SWITCH_CAMERA,
+  VIDEO_CALL_CAM_CONTROL,
+  VIDEO_CALL_MIC_CONTROL,
+  VIDEO_CALL_SOUND_CONTROL
+  
 } from "../actions/ActionType";
 import {
     RTCView,
@@ -50,6 +57,13 @@ const channelFinishCall = channel(buffers.expanding());
 const channelSendMessage = channel(buffers.expanding());
 const channelChageLocalStream = channel(buffers.expanding());
 const channelReceiverData = channel(buffers.expanding());
+
+//Channel controller
+const channelSwitchCamera = channel(buffers.expanding());
+const channelCamControl = channel(buffers.expanding());
+const channelMicControl = channel(buffers.expanding());
+const channelSoundControl = channel(buffers.expanding());
+
 var defaultUserId = 'd1';
 var defaultUserType = 0;
 
@@ -73,7 +87,9 @@ function* onCreateSocketRTC(action) {
       endCallCB: endCallCB, // Khi yeu cau ket thuc cuoc goi
       onNewCallCB: onNewCallCB, // khi co cuoc goi moi đến, sử lí phía người nhận
       onNewMsgCB: onNewMsgCB, // khi co tin nhan moi
-      onBusyCallCB: onBusyCallCB // người gọi thứ 3 sẽ nhận được hàm này
+      onBusyCallCB: onBusyCallCB, // người gọi thứ 3 sẽ nhận được hàm này
+      onConnectSocket: onConnectSocket,
+      onDisconectSocket:onDisconectSocket
     };
     yield createSocketRTC(config, dataUser, callback);
     mIsConnectSuccess = true;
@@ -195,6 +211,98 @@ export function* watchOnAddNewFriends() {
     // yield put(action);
 }
 
+
+function* onSwitchCamera(action) {
+  try {
+    let isFrontCam = action.isFrontCamera;
+    let isOnMic = action.isOnMic;
+    console.log(`nvTien - VideoCallSagas onSwitchCamera... `+ isFrontCam + " isOnMic " + isOnMic);
+    yield getLocalStream(isFrontCam, isOnMic, stream => {
+      setSelfViewSrc(stream, channelSwitchCamera);
+      changeLocalStream(stream);
+      
+    });
+    while (true) {
+      const action = yield take(channelSwitchCamera);
+      yield put(action);
+    }
+  } catch (error) {
+
+  }
+}
+
+export function* watchOnSwitchCamera() { 
+    yield takeLatest(VIDEO_CALL_SWITCH_CAMERA, onSwitchCamera);
+}
+
+function* onMicControl(action) {
+  try {
+    let isOnMic = action.isOnMic;
+    let isFrontCam = action.isFrontCam;
+    console.log(`nvTien - VideoCallSagas onMicControl...mic `+ isOnMic + " isFrontCam " + isFrontCam);
+    yield getLocalStream(isFrontCam, isOnMic, stream => {
+      setSelfViewSrc(stream, channelMicControl);
+      changeLocalStream(stream);
+      
+    });
+    while (true) {
+      const action = yield take(channelMicControl);
+      yield put(action);
+    }
+  } catch (error) {
+
+  }
+}
+
+export function* watchOnMicControl() { 
+    yield takeLatest(VIDEO_CALL_MIC_CONTROL, onMicControl);
+}
+
+function* onCameraControl(action) {
+  try {
+    let isFrontCam = action.isFrontCamera;
+    console.log(`nvTien - VideoCallSagas onSwitchCamera...`+ isFrontCam);
+    // yield getLocalStream(isFrontCam, true, stream => {
+    //   setSelfViewSrc(stream, channelCamControl);
+    //   changeLocalStream(stream);
+      
+    // });
+    while (true) {
+      const action = yield take(channelCamControl);
+      yield put(action);
+    }
+  } catch (error) {
+
+  }
+}
+
+export function* watchOnCameraControl() { 
+    yield takeLatest(VIDEO_CALL_CAM_CONTROL, onCameraControl);
+}
+
+
+function* onSoundControl(action) {
+  try {
+    let isFrontCam = action.isFrontCamera;
+    console.log(`nvTien - VideoCallSagas onSwitchCamera...`+ isFrontCam);
+    // yield getLocalStream(isFrontCam, true, stream => {
+    //   setSelfViewSrc(stream, channelSwitchCamera);
+    //   changeLocalStream(stream);
+      
+    // });
+    while (true) {
+      const action = yield take(channelSoundControl);
+      yield put(action);
+    }
+  } catch (error) {
+
+  }
+}
+
+export function* watchOnSoundControl() { 
+    yield takeLatest(VIDEO_CALL_SOUND_CONTROL, onSoundControl);
+}
+
 function formatDataPatients(inputDataPatients) {
   let results = [];
   for(let i = 0 ; i < inputDataPatients.length ; i++) {
@@ -209,7 +317,6 @@ function formatDataPatients(inputDataPatients) {
 }
 
 //listener callback connect server rtc
-
 function getFriendOnlineCB(data){
     console.log(`nvTien - VideoCallSagas getFriendOnlineCB ${JSON.stringify(data)}`);
     let userFriends = getUserFriends();
@@ -301,17 +408,22 @@ function onNewMsgCB(user,msg) {
   //xử lí khi gọi nhưng máy bận
 function onBusyCallCB (user){
     console.log(`nvTien - VideoCallSagas onBusyCallCB ${JSON.stringify(user)} ` );
-    channelCreateSocket.put({type: VIDEO_CALL_ACTION_MESSAGE_CALLBACK, actionCallback: Constants.VIDEOCALL_LISTENER_BUSY_CB});
+    channelCreateSocket.put({type: VIDEO_CALL_ACTION_MESSAGE_CALLBACK, actionCallback: "VIDEOCALL_LISTENER_BUSY_CB"});
     channelCreateSocket.put({type: VIDEO_CALL_LISTENER_BUSY_CALL});
 }
 
+function onConnectSocket() {
+  console.log(`nvTien - VideoCallSagas onConnectSocket...` );
+  channelCreateSocket.put({type: VIDEO_CALL_ACTION_MESSAGE_CALLBACK, actionCallback: "VIDEO_CALL_ONCONNECT_SOCKET"});
+}
+
+function onDisconectSocket() {
+  console.log(`nvTien - VideoCallSagas onDisconectSocket...` );
+  channelCreateSocket.put({type: VIDEO_CALL_ACTION_MESSAGE_CALLBACK, actionCallback: "VIDEO_CALL_DISCONNECT_SOCKET"});
+}
+
 function setSelfViewSrc(stream, channelPutData) {
-    if (mLocalStream) {
-      //remove from remote
-      mLocalStream.release();
-    }
-    console.log( "nvTien - VideoCallSagas setSelfViewSrc stream " + stream);
-    //this.setState({localStream: stream});
+    releaseOldCam();
     mLocalStream = stream;
     if(stream != null) {
         console.log( "nvTien - VideoCallSagas setSelfViewSrc set url Videolocal " + stream.toURL());
@@ -320,6 +432,15 @@ function setSelfViewSrc(stream, channelPutData) {
     }
 
 }
+
+function releaseOldCam() {
+  if (mLocalStream) {
+    mLocalStream.getTracks().forEach(t => t.stop());
+    mLocalStream.release();
+    mLocalStream = null;
+  }
+}
+
 //reset videoview, realese video đang chạy, sau khi nhận được listener kết thúc videocall
 function resetVideoView(channelPutData) {
     console.log(`nvTien - VideoCallSagas resetVideoView.... `);

@@ -8,6 +8,7 @@ export default {
     KEY_INTENT_USER_NAME: "intent_userName",
     KEY_INTENT_USER_ID: "intent_userID",
     KEY_INTENT_CALL_FRIEND_ID: "intent_friend_id",
+    KEY_INTENT_CALL_FRIEND_NAME: "item_friend_name",
     KEY_INTENT_DATA_PATIENT: "intent_data_patient",
     KEY_STORE_TOKEN: "key_store_token",
     KEY_DOCTOR_ID: "key_doctor_id",

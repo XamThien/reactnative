@@ -33,6 +33,7 @@ import HeaderComponent from "../../main/HeaderComponent";
 import WarningDialog from '../../../components/WarningDialog';
 import ConfirmDialog from '../../../components/ConfirmDialog';
 
+
 export default class ExaminationSchedule extends Component {
   constructor(props) {
     super(props);
@@ -332,6 +333,9 @@ onParserTime(headType, startTime, endTime, curIndex) {
     this.setState({warningdialogvisible: true, warnTitle: warnTitle, warnContent: warnContent});
     // this.refs.dialogWarning.showModal();
   }
+  onWarningOk() {
+    this.setState({ warningdialogvisible: false });
+  }
 
   //Bắt trường hợp show dialog của chấp nhận cuộc hẹn hoặc là show dialog của trường hợp xác nhận sẽ gọi 
   onUpdateConfirm(typeConfirm) {
@@ -357,6 +361,7 @@ onParserTime(headType, startTime, endTime, curIndex) {
         case Constant.TYPE_CALL_NOW:
         this.props.navigation.navigate(ScreenName.Screen_VideoCall ,{
           intent_friend_id: this.state.itemPatient.id,
+          item_friend_name: this.state.itemPatient.name
         });
         break;
       }
@@ -380,7 +385,7 @@ onParserTime(headType, startTime, endTime, curIndex) {
         date: this.state.itemPatient.date
       }
       let appointment_id = this.state.itemPatient.appointment_id;
-      this.onSendMessage(userFriend, typeSend, JSON.stringify(objectContent));
+      this.onSendMessage(userFriend, typeSend, objectContent);
       this.props.onUpdateStatusAppoint(appointment_id, Constant.TYPE_UPDATE_STATUS_DECLINE, this.state.selectDate);
       break;
       case Constant.TYPE_CALL_NOW:
@@ -416,9 +421,7 @@ onParserTime(headType, startTime, endTime, curIndex) {
   onDidBlur() {
     console.log("nvTien - ExaminationSchedule did blur");
   }
-  onWarningOk() {
-    this.setState({ warningdialogvisible: false });
-  }
+
 
   render() {
     return (
@@ -528,12 +531,12 @@ onParserTime(headType, startTime, endTime, curIndex) {
           </View>
           <DialogLoading loading={this.props.isLoading}/>
           {/* <DialogWarning ref={"dialogWarning"} title={this.state.warnTitle}
-                                       content={this.state.warnContent}/> */}
-         {/* <DialogConfirm ref={"dialogConfirm"} title={this.state.confirmTitle}
+                                       content={this.state.warnContent}/>
+         <DialogConfirm ref={"dialogConfirm"} title={this.state.confirmTitle}
                                        content={this.state.confirmContent} 
                                        onUpdateConfirm = {this.onUpdateConfirm.bind()}
                                        onUpdateCancel = {this.onUpdateCancel.bind()}/> */}
-        <WarningDialog
+          <WarningDialog
             titleDialog={this.state.warnTitle}
             contentDialog={this.state.warnContent}
             onOk={this.onWarningOk.bind()}
@@ -548,7 +551,7 @@ onParserTime(headType, startTime, endTime, curIndex) {
             onOk={this.onUpdateConfirm.bind()}
             textOk={Translate(DefineKey.DialogWarning_text_ok)}
             visible={this.state.confirmdialogvisible}
-        />                     
+        />                                    
        
         </View>
       </SafeAreaView>
