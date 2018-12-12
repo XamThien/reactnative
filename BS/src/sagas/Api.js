@@ -9,8 +9,8 @@ const urlCreateSchedule = "http://35.238.126.42:443/api/v1/schedule";
 const urlUpdateStatusAppoint = "http://35.238.126.42:443/api/v1/appointments/doctor/updateStatus";
 const urlGetDoctorSchedule = "http://35.238.126.42:443/api/v1/schedule/getDoctorSchedule/";
 const urlGetAllPatients = "http://35.238.126.42:443/api/v1/appointments/doctor/getUserAppointmentByDoctorID/"; 
-const urlResetPassword = "";
-const urlChangePassword = "";
+const urlResetPassword = "http://35.238.126.42:443/doctor/resetPassword";
+const urlChangePassword = "http://35.238.126.42:443/api/v2/doctor/changePassword";
 
 
 
@@ -254,7 +254,7 @@ let dataBody = JSON.stringify({
 }
 function* doChangePasswordApi(newPassword,old_password) {
   let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-  let userID = yield getDataStorage(Constants.KEY_DOCTOR_ID);
+  let doctor_id = yield getDataStorage(Constants.KEY_DOCTOR_ID);
   // alert(userID);
   let xKey = "";
   let headers = {
@@ -264,7 +264,7 @@ function* doChangePasswordApi(newPassword,old_password) {
       "x-key" : xKey
     };
 let dataBody = JSON.stringify({
-   user_id: userID, old_password:old_password,new_password: newPassword
+  doctor_id: doctor_id, old_password:old_password,new_password: newPassword
 });
  return yield fetch(urlChangePassword , {
       method: "POST",

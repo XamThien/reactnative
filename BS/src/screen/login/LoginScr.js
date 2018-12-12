@@ -97,6 +97,7 @@ export default class Login extends Component {
         } else {
             return (require("../../../assets/pass_hide.png"))
         }
+    }
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -143,7 +144,7 @@ export default class Login extends Component {
                                     placeholder="Password..."
                                     autoCapitalize="none"
                                     autoCorrect={false}
-                                    secureTextEntry={true}
+                                    secureTextEntry={!this.state.show_pass}
                                     value={this.state.password}
                                     placeholderTextColor="gray"
                                     ref="passWord"

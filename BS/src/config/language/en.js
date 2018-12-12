@@ -119,7 +119,7 @@ export default {
   Drawer_Menu_infor:"Infor",
   Drawer_Menu_setting:"Setting",
 
-
+  RESET_PASSWORD_HEADER_TITLE:"Dổi mật khẩu",
   RESET_PASSWORD_SUCCSESS_TEXT:"Yêu cầu reset mật khẩu thành công. Chúng tôi đã gửi mật khẩu mới vào mail của bạn. Vui lòng kiểm tra để đăng nhập.",
   RESET_PASSWORD_FALSE_TEXT:"Yêu cầu reset mật khẩu không thành công.",
   RESET_PASSWORD_FORM_TITLE: "Reset mật khẩu",

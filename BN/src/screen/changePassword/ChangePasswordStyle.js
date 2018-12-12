@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     fontSize: Dimens.size_15,
     marginTop:Dimens.size_10,
     paddingTop: Dimens.size_5,
+    paddingLeft:Dimens.size_15,
     fontFamily: Fonts.RobotoRegular,
     borderColor: "gray",
     borderWidth: 1,
@@ -49,7 +50,10 @@ const styles = StyleSheet.create({
   textTitleInput: {
     fontSize: Dimens.size_15,
     marginTop: Dimens.size_10,
+    paddingLeft:Dimens.size_15,
     fontFamily: Fonts.RobotoRegular,
+    textAlign: "left",
+    alignSelf: "flex-start",
   },
   button:{
     

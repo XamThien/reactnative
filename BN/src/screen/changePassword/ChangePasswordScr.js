@@ -20,7 +20,7 @@ import DialogLoading from "../../components/DialogLoading";
 import Constants from "../../commons/Constants";
 // import DialogWarning from "../../components/DialogWarning";
 import WarningDialog from "../../components/WarningDialog";
-import BackgroundImage from '../../components/BackgroundImage';
+
 
 export default class ChangePassword extends Component {
   constructor(props) {
@@ -109,7 +109,7 @@ export default class ChangePassword extends Component {
                 </Text>
               </View>
 
-              <Text style={styles.textTitleInput}>{Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_OLD_PASSWORD)}</Text>
+              <Text style={styles.textTitleInput}>{Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_OLD_PASSWORD)+":"}</Text>
               <View>
                 <TextInput
                   style={styles.textInput}
@@ -125,7 +125,7 @@ export default class ChangePassword extends Component {
                 />
               </View>
 
-              <Text style={styles.textTitleInput}>{Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_NEW_PASSWORD)}</Text>
+              <Text style={styles.textTitleInput}>{Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_NEW_PASSWORD)+":"}</Text>
               <View>
                 <TextInput
                   style={styles.textInput}
@@ -142,7 +142,7 @@ export default class ChangePassword extends Component {
                 />
               </View>
 
-              <Text style={styles.textTitleInput}>{Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_CONFIRM_PASSWORD)}</Text>
+              <Text style={styles.textTitleInput}>{Translate(DefineKey.CHANGE_PASSWORD_FORM_TITLE_CONFIRM_PASSWORD)+":"}</Text>
               <View>
                 <TextInput
                   style={styles.textInput}
