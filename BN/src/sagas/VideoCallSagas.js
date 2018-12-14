@@ -457,6 +457,7 @@ function endCallCB (user) {
 function onNewCallCB (user){
     console.log(`nvTien - VideoCallSagas onNewCallCB ${JSON.stringify(user)}`);
     let userFriend = getFriendIncomingCall(user);
+    console.log(`nvTien - VideoCallSagas onNewCallCB get userFriend ${JSON.stringify(userFriend)}`);
     channelCreateSocket.put({type: VIDEO_CALL_LISTENER_NEW_CALL, userFriend: userFriend});
     channelCreateSocket.put({type: VIDEO_CALL_ACTION_MESSAGE_CALLBACK, actionCallback: "VIDEOCALL_LISTENER_NEW_CALL_CB"});
 }
@@ -479,12 +480,16 @@ function onBusyCallCB (user){
     channelCreateSocket.put({type: VIDEO_CALL_LISTENER_BUSY_CALL});
 }
 
+//trạng thái connect socket
 function onConnectSocket() {
+  //alert("onConnectSocket...");
   console.log(`nvTien - VideoCallSagas onConnectSocket...` );
   channelCreateSocket.put({type: VIDEO_CALL_ACTION_MESSAGE_CALLBACK, actionCallback: "VIDEO_CALL_ONCONNECT_SOCKET"});
 }
 
+//trạng thái disconnect socket
 function onDisconectSocket() {
+  //alert("onDisconectSocket...");
   console.log(`nvTien - VideoCallSagas onDisconectSocket...` );
   channelCreateSocket.put({type: VIDEO_CALL_ACTION_MESSAGE_CALLBACK, actionCallback: "VIDEO_CALL_DISCONNECT_SOCKET"});
 }
@@ -511,7 +516,7 @@ function getFriendIncomingCall(userFriend) {
         }
     }
   }
-
+  
   return friend;
 }
 

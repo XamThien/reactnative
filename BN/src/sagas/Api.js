@@ -14,6 +14,8 @@ const urlAddNewMemberFamily = "http://35.238.126.42:443/api/v1/user/addFamilyMem
 const urlGetAppointmentSchedule = "http://35.238.126.42:443/api/v1/appointments/user/getAllAppointmentByUserID/";
 const urlGetDoctorSchedule = "http://35.238.126.42:443/api/v1/schedule/getDoctorSchedule/";
 const urlGetDoctorAppointSchedule = "http://35.238.126.42:443/api/v1/doctor/getDoctorInfoByUserID/";
+const urlUserCancelAppoint = "http://35.238.126.42:443/api/v1/appointments/doctor/updateStatus";
+
 const urlResetPassword = "http://35.238.126.42:443/user/resetPassword";
 const urlChangePassword = "http://35.238.126.42:443/api/v2/user/changePassword";
 
@@ -44,6 +46,7 @@ function* doLoginApi(input) {
       });
 }
 
+//api đăng ký
 function* doRegisterApi(input) {
     let token = "";
     let xKey = "";  
@@ -76,6 +79,7 @@ function* doRegisterApi(input) {
 //   return yield JSON.parse(JSON.stringify(response));
 }
 
+//lấy danh sách tất cả chuyên ngành
 function* doGetSpecialityApi() {
     let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
    // console.log(`doGetSpecialityApi...data = ${JSON.stringify(token)} token...` + token);
@@ -99,6 +103,7 @@ function* doGetSpecialityApi() {
         });
 }
 
+//lấy doctor theo ngày
 function* doGetDataDoctorApi(input) {
     let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
     let getDate = yield convertDateToMillisecond(input.date);
@@ -125,6 +130,7 @@ function* doGetDataDoctorApi(input) {
         });
 }
 
+//lấy ds doctor khám ngay lập tức
 function* doGetDataDoctorImmediatelyApi(input) {
     let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
     let getDate = yield convertDateToMillisecond(input.date);
@@ -181,6 +187,7 @@ function* doGetAllDoctorApi(input) {
         });
 }
 
+//lấy danh sách gia đình
 function* doGetListFamilyApi(userId) {
     let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
     let xKey = "";  
@@ -205,6 +212,7 @@ function* doGetListFamilyApi(userId) {
         });
 }
 
+//thêm thành viên mới trong gia đình
 function* doAddNewMemberFamilyApi(input) {
     let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
     let xKey = "";  
@@ -218,13 +226,16 @@ function* doAddNewMemberFamilyApi(input) {
     email: input.email,
     phone: "",
     password: "",
+    email: input.email,
     first_name: input.firstName,
     last_name: input.lastName,
-    date_birth: input.birthDate,
+    date_birth: yield convertDateToMillisecond(input.birthDate),
+    relation: input.relationship,
     sex: input.sex,
-    parent_id: input.parentId
+    parent_id: input.parent_id
     
   });
+  console.log(`nvTien - doAddNewMemberFamilyApi Databody ${JSON.stringify(dataBody)} dataInput ${JSON.stringify(input)}`)
 
    return yield fetch(urlAddNewMemberFamily , {
         method: "POST",
@@ -241,6 +252,7 @@ function* doAddNewMemberFamilyApi(input) {
       });
 }
 
+//bệnh nhân đặt lịch khám
 function* doSaveDataAppointmentApi(input) {
     let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
     let xKey = "";  
@@ -314,6 +326,7 @@ function* doGetAppointScheduleApi() {
         });
 }
 
+//lấy lịch làm việc của bác sĩ
 function* doGetDoctorAppointScheduleApi() {
     let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
     let user_id = yield getDataStorage(Constants.KEY_USER_ID);
@@ -382,16 +395,29 @@ const getDataStorage = async (key) => {
     }
 }
 
-// async function getDataStorage(key) {
-//     try {
-//         const value = await AsyncStorage.getItem(key);
-//         console.log(`getDataStorage... ` + value);
-//         return value;
-//     } catch (error) {
-//         console.log("Error retrieving data" + error + " key: " + key);
-//         return {};
-//     }
-// }
+//bệnh nhân huỷ lịch khám đang đợi xác nhận từ bác sĩ
+function* doCancelAppointmentPatient(input) {
+    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+    let user_id = yield getDataStorage(Constants.KEY_USER_ID);
+    let xKey = "";  
+  let dataBody = JSON.stringify({
+     user_id: userID, old_password:old_password,new_password: newPassword
+  });
+   return yield fetch(urlChangePassword , {
+        method: "POST",
+        headers: headers,
+        body: dataBody
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(`doChangePasswordApi...data = ${JSON.stringify(responseJson)} `);
+        return responseJson;
+      })
+      .catch((error) => {
+        console.error("error..." + error);
+      });
+}
+
 function* doResetPasswordApi(email) {
     let xKey = "";
     let headers = {
@@ -426,24 +452,26 @@ function* doChangePasswordApi(newPassword,old_password) {
         "Content-Type": "application/json",
         "x-access-token" : token,
         "x-key" : xKey
-      };
-  let dataBody = JSON.stringify({
-     user_id: userID, old_password:old_password,new_password: newPassword
-  });
-   return yield fetch(urlChangePassword , {
+    };
+    let dataBody = JSON.stringify({
+        appointment_id: input.appointment_id,
+        action: input.status
+      });
+   
+    console.log(`doCancelAppointmentPatient url ` + urlUserCancelAppoint + ` header: ${JSON.stringify(headers)}`);
+    return yield fetch(urlUserCancelAppoint, {
         method: "POST",
         headers: headers,
         body: dataBody
-      })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(`doChangePasswordApi...data = ${JSON.stringify(responseJson)} `);
-        return responseJson;
-      })
-      .catch((error) => {
-        console.error("error..." + error);
-      });
-}
+    }).then((response) => response.json())
+        .then((responseJson) => {
+            console.log(`doCancelAppointmentPatient response = ${JSON.stringify(responseJson)}`)
+            return responseJson;
+        })
+        .catch((error) => {
+            console.error("error..." + error);
+    });
+ };
 
 
 export const Api = {
@@ -459,6 +487,7 @@ export const Api = {
   doGetDoctorAppointScheduleApi,
   doGetAppointmentScheduleApi,
   doGetAllDoctorApi,
+  doCancelAppointmentPatient,
   doResetPasswordApi,
   doChangePasswordApi
 };

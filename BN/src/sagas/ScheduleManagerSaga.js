@@ -3,12 +3,18 @@ import {
     SCHEDULE_MANAGER_GET_LIST_APPOINT,
     SCHEDULE_MANAGER_GET_LIST_APPOINT_SUCCESS,
     SCHEDULE_MANAGER_GET_LIST_APPOINT_FAIL,
-    SCHEDULE_MANAGER_RESET_DATA
+    SCHEDULE_MANAGER_RESET_DATA,
+    SCHEDULE_MANAGER_CANCEL_APPOINTMENT,
+    SCHEDULE_MANAGER_CANCEL_APPOINT_SUCCESS,
+    SCHEDULE_MANAGER_CANCEL_APPOINT_FAIL
+
 } from "../actions/ActionType";
 
     //Saga effects
 import { put, takeLatest } from 'redux-saga/effects';
 import {Api} from './Api';
+
+var dataAppointGlobal = [];
 
 function* doGetListDataSchedule() {
     try {
@@ -53,6 +59,7 @@ function mergeDataAppointSchedule(dataAppoint, dataDoctorAppoint) {
             arrAppointSchedule.push(objectDoctorAppoint);
         }
     }
+    dataAppointGlobal = arrAppointSchedule;
     return arrAppointSchedule;
 
 }
@@ -70,6 +77,31 @@ function loadDataDoctorAppoint (dataDoctorAppoint, doctor_id) {
     }
     return dataDoctor;
 
+}
+
+function* doCancelAppointPatient(action) {
+    try {
+        yield put({ type: EXAMINATION_SCHEDULE_RESET_LOADING, hasError: false , lastError: undefined});
+       
+       // yield var dateMilli = convertDateToMillisecond(action.date);
+        const response = yield Api.doCancelAppointmentPatient(action);
+        console.log(`updateStatusAppoint...data response = ${JSON.stringify(response)} `);
+        if (response != null && response.result != null && response.result === TYPE_UPDATED) {
+            let responseAppoint = yield getDataGrobalUpdateStatus(action.date, action.appointment_id, action.status);
+            yield put({ type: EXAMINATION_SCHEDULE_LOAD_APPOINT_SUCCESS, hasError: false , 
+                lastError: "", dataAppoint: responseAppoint});
+            
+        } else {
+            
+        }
+    } catch (error) {
+        console.log("nvTien - ExaminationScheduleSaga error catch: " + error);
+        let errorText =  Translate(DefineKey.Deepcare_error_call_service)
+        yield put({ type: EXAMINATION_SCHEDULE_LOAD_APPOINT_FAIL, lastError: errorText, hasError: true  });
+    }
+}
+export function* watchDoCancelAppointPatient() { 
+    yield takeLatest(SCHEDULE_MANAGER_GET_LIST_APPOINT, doCancelAppointPatient);
 }
 
 

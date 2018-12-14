@@ -63,7 +63,8 @@ export default class Profile extends Component {
             </View>
 
             {/* layout Item family */}
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() =>
+              this.props.navigation.navigate(ScreenName.Screen_FamilyManager)}>
               <View style={styles.layoutItem}>
                 <Image
                   style={styles.itemImage}

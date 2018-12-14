@@ -43,6 +43,7 @@ async function saveUserProfileLogin(responseProfile) {
             email: user.email,
             id: user.user_id,
             token: token,
+            relation:'',
             expire: responseProfile.expires,
             image:"",
             phoneNumber: responseProfile.phone

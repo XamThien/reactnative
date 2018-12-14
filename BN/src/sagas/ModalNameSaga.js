@@ -17,6 +17,7 @@ function* fetchDataNamesSaga(action) {
         //const response = yield Api.doGetListFamilyApi(action.userId);
         yield put({type: MODAL_NAME_RESET_OLD_DATA});
         const response = yield Api.doGetListFamilyApi(action.userId);
+        // alert(response.data);
         if (response != null && response.data != null) {
             let dataRespone = yield all(addUserName(response.data));
             yield put({ type: MODAL_NAME_FETCH_NAME_SUCCESS, dataNames: dataRespone});
@@ -35,7 +36,7 @@ function addUserName(arrResponse) {
         for (let i = 0 ; i < arrResponse.length ;i ++) {
             let object = arrResponse[i];
             const result = {
-                ...object, userName: object.firstName + " " + object.lastName,selected: false
+                ...object, userName: object.first_name + " " + object.last_name,selected: false
             };
             arrOutput.push(result);
         }

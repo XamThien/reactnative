@@ -11,7 +11,9 @@ export default {
     Screen_Main: "Main",
     Screen_ExamiSchedule: "Schedule",
     Screen_ResetPassword:"ResetPassword",
-    Screen_ChangePassword:"ChangePassword"
+    Screen_ChangePassword:"ChangePassword",
+    Screen_FamilyManager:"FamilyManger",
+    Screen_EditFamilyMember:"EditFamilyMember",
     
  
 };

@@ -36,6 +36,7 @@ export default {
     Register_text_fail_username:"Register_text_fail_username",
     Register_error_firstName: "Register_error_firstName",
     Register_error_lastName: "Register_error_lastName",
+    Register_error_relationship: "Register_error_relationship",
     Register_error_pass_empty:"Register_error_pass_empty",
     Register_error_email: "Register_error_email",
     Register_error_email_empty: "Register_error_email_empty",
@@ -93,11 +94,13 @@ export default {
     AddNewMemberModal_text_save: "AddNewMemberModal_text_save",
     AddNewMemberModal_text_first_name: "AddNewMemberModal_text_first_name",
     AddNewMemberModal_text_last_name:"AddNewMemberModal_text_last_name",
+    AddNewMemberModal_text_relationship:"AddNewMemberModal_text_relationship",
     AddNewMemberModal_text_email: "AddNewMemberModal_text_email",
     AddNewMemberModal_text_valid_email: "AddNewMemberModal_text_valid_email",
     AddNewMemberModal_text_date_of_birth: "AddNewMemberModal_text_date_of_birth",
     AddNewMemberModal_text_male:"AddNewMemberModal_text_male",
     AddNewMemberModal_text_female:"AddNewMemberModal_text_female",
+    EditMemberModal_text_save: "EditMemberModal_text_save",
   
     BookExamination_text_button_01:"BookExamination_text_button_01",
     BookExamination_text_button_02:"BookExamination_text_button_02",
@@ -182,5 +185,7 @@ export default {
     CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL:"CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL",
     CHANGE_PASSWORD_ERROR_PASSWORD:"CHANGE_PASSWORD_ERROR_PASSWORD",
 
+    FAMILY_MANAGER_HEADER_TITLE:"FAMILY_MANAGER_HEADER_TITLE",
+    FAMILY_MANAGER_HEADER_EDIT_TITLE:"FAMILY_MANAGER_HEADER_EDIT_TITLE",
   };
   

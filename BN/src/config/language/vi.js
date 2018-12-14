@@ -38,6 +38,7 @@ export default {
   Register_text_fail_username: "Email hoặc số điện thoại đã tồn tại",
   Register_error_firstName: "Vui lòng nhập vào Họ",
   Register_error_lastName: "Vui lòng nhập vào Tên",
+  Register_error_relationship: "Vui lòng nhập quan hệ thân nhân",
   Register_error_pass_empty: "Vui lòng nhập vào mật khẩu",
   Register_error_email_empty: "Vui lòng nhập vào địa chỉ email",
   Register_error_email :"Email không đúng định dạng",
@@ -97,10 +98,12 @@ export default {
   AddNewMemberModal_text_first_name: "Họ",
   AddNewMemberModal_text_last_name:"Tên",
   AddNewMemberModal_text_email: "Email",
+  AddNewMemberModal_text_relationship:"Mối quan hệ",
   AddNewMemberModal_text_valid_email: "Chỉ 16 tuổi trở lên",
   AddNewMemberModal_text_date_of_birth: "Ngày tháng năm sinh",
   AddNewMemberModal_text_male:"Nam",
   AddNewMemberModal_text_female:"Nữ",
+  EditMemberModal_text_save: "Lưu sửa đổi",
 
   BookExamination_text_button_01:"Thông tin cá nhân",
   BookExamination_text_button_02:"Sổ bảo hiểm",
@@ -184,5 +187,12 @@ export default {
   CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD:"Nhập mật khẩu mới không khớp",
   CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL:"Yêu cầu nhập đủ các trường",
   CHANGE_PASSWORD_ERROR_PASSWORD:"Sai mật khẩu",
+
+  FAMILY_MANAGER_HEADER_TITLE:"Quản lý thành viên gia đình",
+  FAMILY_MANAGER_HEADER_EDIT_TITLE:"Chỉnh sửa thông tin"
+
+
+
+
  
 };
