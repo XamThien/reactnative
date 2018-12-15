@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions,Platform,PixelRatio  } from "react-native";
+import { StyleSheet, Dimensions, Platform, PixelRatio } from "react-native";
 import Dimens from "../../../../commons/Dimensions";
 import Colors from "../../../../commons/Colors";
 import Fonts from "../../../../commons/Fonts";
@@ -7,14 +7,14 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     flex: 1,
-    backgroundColor: "powderblue",
+    backgroundColor: "powderblue"
     // justifyContent: "center"
   },
   //style layout top
   layoutTop: {
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
     // flex: 3,
   },
   imageTop: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: Dimens.size_25,
     marginTop: Dimens.size_5,
-    fontFamily: Fonts.RobotoRegular,
+    fontFamily: Fonts.RobotoRegular
   },
 
   //style layout content
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   },
   textTitleInput: {
     fontSize: Dimens.size_15,
-    marginTop:Dimens.size_10,
-    fontFamily: Fonts.RobotoRegular,
+    marginTop: Dimens.size_10,
+    fontFamily: Fonts.RobotoRegular
   },
   layoutInput: {
     width: normalize(300),
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     margin: Dimens.size_10,
-    borderRadius:Dimens.size_5
+    borderRadius: Dimens.size_5
   },
   textButton: {
     color: Colors.white,
@@ -84,19 +84,32 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.RobotoRegular,
     textAlign: "center"
   },
+  viewError: {
+    flex: 1,
+    flexDirection: "row"
+  },
+  hideViewError: {
+    width: 0,
+    height: 0
+  },
+  textError: {
+    fontSize: Dimens.size_15,
+    color: Colors.red,
+    fontFamily: Fonts.RobotoRegular
+  },
   textRegister: {
-    alignSelf:"center",
+    alignSelf: "center",
     fontSize: Dimens.size_16,
     marginTop: Dimens.size_10,
     textDecorationLine: "underline",
-    fontFamily: Fonts.RobotoRegular,
+    fontFamily: Fonts.RobotoRegular
   },
   //style button facebook, google
 
   //style layout footer
   layoutFooter: {
     flex: 1.3,
-    flexDirection: "row",
+    flexDirection: "row"
   },
   layoutFooterHelp: {
     flexDirection: "column",
@@ -115,24 +128,21 @@ const styles = StyleSheet.create({
   },
   //indicator loading
   indicatorLoading: {
-    position:"absolute",
+    position: "absolute",
     zIndex: 5,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    alignSelf: 'center',
-
-  },
- 
-
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    alignSelf: "center"
+  }
 });
 
 export default styles;
 
 export function normalize(size) {
-  if (Platform.OS === 'ios') {
-    return Math.round(PixelRatio.roundToNearestPixel(size))
+  if (Platform.OS === "ios") {
+    return Math.round(PixelRatio.roundToNearestPixel(size));
   } else {
-    return Math.round(PixelRatio.roundToNearestPixel(size)) - 2
+    return Math.round(PixelRatio.roundToNearestPixel(size)) - 2;
   }
 }

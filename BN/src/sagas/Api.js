@@ -18,6 +18,8 @@ const urlUserCancelAppoint = "http://35.238.126.42:443/api/v1/appointments/docto
 
 const urlResetPassword = "http://35.238.126.42:443/user/resetPassword";
 const urlChangePassword = "http://35.238.126.42:443/api/v2/user/changePassword";
+const urlDeleteFamilyMember = "http://35.238.126.42:443/api/v2/user/deleteFamilymembers/";
+const urlUpdateFamilyMember = "http://35.238.126.42:443/api/v2/user/updateFamilyMembers/";
 
 function* doLoginApi(input) {
     let xKey = "";
@@ -454,18 +456,83 @@ function* doChangePasswordApi(newPassword,old_password) {
         "x-key" : xKey
     };
     let dataBody = JSON.stringify({
-        appointment_id: input.appointment_id,
-        action: input.status
+        user_id: userID,
+        old_password: old_password,
+        new_password: newPassword
       });
    
-    console.log(`doCancelAppointmentPatient url ` + urlUserCancelAppoint + ` header: ${JSON.stringify(headers)}`);
-    return yield fetch(urlUserCancelAppoint, {
+    // console.log(`doCancelAppointmentPatient url ` + urlUserCancelAppoint + ` header: ${JSON.stringify(headers)}`);
+    return yield fetch(urlChangePassword, {
         method: "POST",
         headers: headers,
         body: dataBody
     }).then((response) => response.json())
         .then((responseJson) => {
-            console.log(`doCancelAppointmentPatient response = ${JSON.stringify(responseJson)}`)
+            return responseJson;
+        })
+        .catch((error) => {
+            console.error("error..." + error);
+    });
+ };
+ function* doDeleteFamilyMemberApi(memberID) {
+    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+    // let userID = yield getDataStorage(Constants.KEY_USER_ID);
+    // alert(userID);
+    let xKey = "";
+    let headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token" : token,
+        "x-key" : xKey
+    };
+    let dataBody = "";
+    let url = urlDeleteFamilyMember.concat(memberID);
+    // alert(url);
+    // console.log(`doCancelAppointmentPatient url ` + urlUserCancelAppoint + ` header: ${JSON.stringify(headers)}`);
+    return yield fetch(url , {
+        method: "POST",
+        headers: headers,
+        body: dataBody
+    }).then((response) => response.json())
+        .then((responseJson) => {
+            // console.log(`doCancelAppointmentPatient response = ${JSON.stringify(responseJson)}`)
+            return responseJson;
+        })
+        .catch((error) => {
+            console.error("error..." + error);
+    });
+ };
+ function* doUpdateFamilyMemberApi(memberInfor) {
+    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+    let userID = yield getDataStorage(Constants.KEY_USER_ID);
+    // alert(userID);
+    let xKey = "";
+    let headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token" : token,
+        "x-key" : xKey
+    };
+    let dataBody = JSON.stringify({
+        first_name: memberInfor.firstName,
+        last_name: memberInfor.lastName,
+        full_name: memberInfor.firstName+" "+memberInfor.lastName,
+        email: memberInfor.email,
+        date_birth: memberInfor.birthDate,
+        sex: memberInfor.sex,
+        relation: memberInfor.relationship,
+        parent_id: userID
+      });
+    var url = urlUpdateFamilyMember.concat(memberInfor.user_id);
+//    alert('api body :'+ dataBody+" => "+url);
+    // console.log(`doCancelAppointmentPatient url ` + urlUserCancelAppoint + ` header: ${JSON.stringify(headers)}`);
+    return yield fetch(url, {
+        method: "POST",
+        headers: headers,
+        body: dataBody
+    }).then((response) => response.json())
+        .then((responseJson) => {
+            // console.log(`doCancelAppointmentPatient response = ${JSON.stringify(responseJson)}`)
             return responseJson;
         })
         .catch((error) => {
@@ -489,5 +556,16 @@ export const Api = {
   doGetAllDoctorApi,
   doCancelAppointmentPatient,
   doResetPasswordApi,
-  doChangePasswordApi
+  doChangePasswordApi,
+  doDeleteFamilyMemberApi,
+  doUpdateFamilyMemberApi,
+
+
+
+
+
+
+
+
+
 };

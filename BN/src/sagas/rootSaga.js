@@ -18,6 +18,12 @@ import {watchOnCreateSocketRTC, watchOnMakeCall, watchOnFinishCall,
   watchOnSwitchCamera, watchOnCameraControl, watchOnMicControl, watchOnSoundControl} from "./VideoCallSagas";
 import {watchDoResetPassword} from "./ResetPasswordSaga";
 import {watchDoChangePassword} from "./ChangePasswordSaga";
+import {watchDoDeleteMember, watchDoUpdateMember} from "./FamilyManagerSaga";
+
+
+
+
+
 
 export default function* rootSaga() {
   yield all([
@@ -49,6 +55,12 @@ export default function* rootSaga() {
       fork(watchOnSoundControl),
       fork(watchDoResetPassword),
       fork(watchDoChangePassword),
+      fork(watchDoDeleteMember),
+      fork(watchDoUpdateMember),
+
+
+
+
 
       
   ]);

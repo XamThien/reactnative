@@ -2,17 +2,22 @@ import { connect } from "react-redux";
 import familyManagerScr from "../screen/profile/familyManager/familyManagerScr";
 import {
     fetchDataModalName,
-    onClickItem,
-
 } from "../actions/ModalNameAction";
+
+import { doDeleteMember } from '../actions/FamilyManagerAction';
 
 const mapStateToProps = (state) => {
     return {
         dataNames: state.getDataNameReducer.dataNames,
         dataNewMember: state.addNewMemberReducer.dataNewUser,
-        // userProfile: state.getProfilesReducers,
+        userProfile: state.getProfilesReducers,
         showLoading: state.getDataNameReducer.isLoading,
-        error: state.getDataNameReducer.lastError
+        error: state.getDataNameReducer.lastError,
+
+        hasErrorDelete: state.resultDeleteMemberReducer.hasError,
+        lastErrorDelete: state.resultDeleteMemberReducer.lastError,
+        showLoadingDelete: state.resultDeleteMemberReducer.isLoading,
+        messageSuccessDelete: state.resultDeleteMemberReducer.messageSuccess
     }
 };
 
@@ -21,8 +26,12 @@ const mapDispatchToProps = (dispatch) => {
         onFetchAllDataNames: (userId) => {
             dispatch(fetchDataModalName(userId));
         }, 
-        // onClickItem :(userId, selectName) =>{
-        //     dispatch(onClickItem(userId, selectName));
+
+        onDeleteMember: (memberID) => {
+            dispatch(doDeleteMember(memberID));
+        },
+        // onUpdateMember: (memberID) => {
+        //     // dispatch(deleteMember(memberID));
         // },
         
     };

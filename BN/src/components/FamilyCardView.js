@@ -16,8 +16,7 @@ export default class FamilyCardView extends Component {
   }
 
   onItemClick(itemID, userName) {
-    // this.props.onclickItem(itemID, userName);
-    alert('Hello '+ userName);
+    // alert('Hello '+ userName);
   }
   onEdit(item){
     this.props.onEdit(item);

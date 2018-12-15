@@ -189,7 +189,11 @@ export default {
   CHANGE_PASSWORD_ERROR_PASSWORD:"Sai mật khẩu",
 
   FAMILY_MANAGER_HEADER_TITLE:"Quản lý thành viên gia đình",
-  FAMILY_MANAGER_HEADER_EDIT_TITLE:"Chỉnh sửa thông tin"
+  FAMILY_MANAGER_HEADER_EDIT_TITLE:"Chỉnh sửa thông tin",
+  FAMILY_MANAGER_SUCCESS_DELETE_MEMBER_TEXT:"Xóa thành viên thành công",
+  FAMILY_MANAGER_ERROR_DELETE_MEMBER_TEXT:"Xóa thành viên không thành công",
+  FAMILY_MANAGER_SUCCESS_UPDATE_MEMBER_TEXT:"Cập nhật thông tin thành viên thành công",
+  FAMILY_MANAGER_ERROR_UPDATE_MEMBER_TEXT:"Cập nhật thông tin thành viên không thành công",
 
 
 

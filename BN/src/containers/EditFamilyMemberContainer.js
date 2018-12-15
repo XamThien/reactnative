@@ -1,26 +1,25 @@
 import { connect } from "react-redux";
 import editMemberScr from "../screen/profile/familyManager/editMemberInfor/editMemberScr";
-// import {
-//     fetchDataModalName,
-//     onClickItem,
+import {
+    doUpdateMember,
 
-// } from "../actions/ModalNameAction";
+} from "../actions/FamilyManagerAction";
 
 const mapStateToProps = (state) => {
     return {
-        dataNames: state.getDataNameReducer.dataNames,
-        dataNewMember: state.addNewMemberReducer.dataNewUser,
-        // userProfile: state.getProfilesReducers,
-        showLoading: state.getDataNameReducer.isLoading,
-        error: state.getDataNameReducer.lastError
+        hasError: state.resultUpdateMemberReducer.hasError,
+        lastError: state.resultUpdateMemberReducer.lastError,
+        showLoading: state.resultUpdateMemberReducer.isLoading,
+        error: state.resultUpdateMemberReducer.lastError,
+        messageSuccess: state.resultUpdateMemberReducer.messageSuccess
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {    
-        // onFetchAllDataNames: (userId) => {
-        //     dispatch(fetchDataModalName(userId));
-        // }, 
+        onUpdateMember: (dataMember) => {
+            dispatch(doUpdateMember(dataMember));
+        }, 
         // onClickItem :(userId, selectName) =>{
         //     dispatch(onClickItem(userId, selectName));
         // },
