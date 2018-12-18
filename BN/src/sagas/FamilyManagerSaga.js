@@ -34,7 +34,7 @@ function* getAllMemberSaga(action) {
       const response = yield Api.doGetListFamilyApi(action.userId);
       
       if (response != null && response.data != null) {
-        alert( `From saga: ${JSON.stringify(response.data)}`);  
+        // alert( `From saga: ${JSON.stringify(response.data)}`);  
           let dataRespone = response.data;
           yield put({ type: FAMILY_MANAGER_LOAD_ALL_SUCCESS, dataNames: dataRespone});
       } else {
@@ -122,7 +122,8 @@ export function* watchFamilyAddNewMember() {
       const response = yield Api.doUpdateFamilyMemberApi(action.dataMember);
       if (response.result === "updated") {
         let sucsess = Translate(DefineKey.FAMILY_MANAGER_SUCCESS_UPDATE_MEMBER_TEXT);
-
+        // alert(`from update saga: ${JSON.stringify(action.dataMember)}`);
+        
         yield put({
           type: FAMILY_MANAGER_SUCCESS_DUPDATE,
           hasError: false,
@@ -130,6 +131,18 @@ export function* watchFamilyAddNewMember() {
           messageSuccess: sucsess,
           dataMember: action.dataMember
         });
+        yield put({type: FAMILY_MANAGER_LOAD_ALL_RESET_OLD_DATA});
+        let user_id = yield getDataStorage(Constants.KEY_USER_ID);
+        const response = yield Api.doGetListFamilyApi(user_id);
+      
+      if (response != null && response.data != null) {
+        // alert( `From saga: ${JSON.stringify(response.data)}`);  
+          let dataRespone = response.data;
+          yield put({ type: FAMILY_MANAGER_LOAD_ALL_SUCCESS, dataNames: dataRespone});
+      } else {
+          let error =  Translate(DefineKey.Deepcare_error_call_service);
+          yield put({type: FAMILY_MANAGER_LOAD_ALL_FAIL, lastError: error});
+      }
       } else {
         let error = Translate(DefineKey.FAMILY_MANAGER_ERROR_UPDATE_MEMBER_TEXT);
         yield put({

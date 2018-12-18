@@ -72,7 +72,7 @@ export default class AppointNameModal extends Component {
   }
 
   addUserIntoList(dataUsers, newUser) {
-      if (newUser != null && newUser.id != null && newUser.id !== "") {
+      if (newUser != null && newUser.user_id != null && newUser.user_id !== "") {
           if (!this.isExistedUser(dataUsers, newUser)) {
               // this.setState({dataMember: []})
               dataUsers.unshift(newUser);
@@ -84,7 +84,7 @@ export default class AppointNameModal extends Component {
   isExistedUser(dataUsers, newUser) {
       var result = false;
       for (let i = 0; i < dataUsers.length ; i ++) {
-          if (dataUsers[i].id == newUser.id) {
+          if (dataUsers[i].user_id == newUser.user_id) {
               result = true;
               break;
           }

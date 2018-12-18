@@ -84,7 +84,7 @@ export const resultFamilyManagerReducer = (state = _INITIAL_STATE_, action) => {
             lastError: "",
             isLoading: false,
             isDissmiss: true,
-            dataNewUser: updateListAfterAdd(action.dataNewUser)
+            dataNames: updateListAfterAdd(action.dataNewUser)
           };
       case FAMILY_MANAGER_ADD_NEW_MEMBER_FAIL:
           return {
@@ -159,17 +159,26 @@ function saveLocal(listMember){
 }
 function updateListAfterAdd(newUser) {
   allMember.push(newUser);
-  alert("update func: ==>"+ JSON.stringify(allMember)+"==>>"+JSON.stringify(newUser))
+  // alert(`From funtion add reducer ${JSON.stringify(allMember)}`);
   return allMember;
 }
 function updateListAfterDeleteMember(memberId){
-  allMember.filter(function( obj ) {
-    return obj.user_id !== memberId;
+  // allMember.filter(function( obj ) {
+  //   return obj.user_id !== memberId;
+  // });
+  var arrNew=new Array();
+  arrNew= [];
+  allMember.forEach(ele => {
+    if(ele.user_id !== memberId){
+      arrNew.push(ele);
+    }
   });
-  return allMember;
+  // alert(`From funtion delete reducer ${JSON.stringify(arrNew)}`);
+  return saveLocal(arrNew);
 }
 function updateListAfterUpdateMember(dataMember){
   updateListAfterDeleteMember(dataMember.user_id);
   updateListAfterAdd(dataMember);
+  // alert(`From funtion update reducer ${JSON.stringify(allMember)}`);
   return  allMember ;
 }

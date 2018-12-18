@@ -1,4 +1,6 @@
 import {
+    FAMILY_MANAGER_ADD_NEW_MEMBER_SUCCESS,
+
     MODAL_NAME_ADD_NEW_MEMBER,
     MODAL_NAME_ADD_NEW_MEMBER_SUCCESS,
     MODAL_NAME_ADD_NEW_MEMBER_FAIL,
@@ -14,8 +16,9 @@ function* addNewMember(action) {
         const response = yield Api.doAddNewMemberFamilyApi(action.dataNewUser);
         if (response != null && response.data != null) {
             let dataRespone = response.data;
-            alert("from add member saga:"+JSON.stringify(dataRespone));
+            // alert("from add member saga:"+JSON.stringify(dataRespone));
             yield put({ type: MODAL_NAME_ADD_NEW_MEMBER_SUCCESS, dataNewUser: dataRespone }); 
+            yield put({ type: FAMILY_MANAGER_ADD_NEW_MEMBER_SUCCESS, dataNewUser: dataRespone }); 
         } else {
             let error =  Translate(DefineKey.Deepcare_error_call_service)
             yield put({ type: MODAL_NAME_ADD_NEW_MEMBER_FAIL, lastError: error });

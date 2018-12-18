@@ -24,6 +24,7 @@ import {
 } from "../../../../utils/Utils";
 import DatePicker from "../../../../components/DatePicker";
 import Constant from "../../../../commons/Constants";
+import { StackActions, NavigationActions } from 'react-navigation';
 
 export default class EditMemberScr extends Component {
   constructor(props) {
@@ -175,7 +176,9 @@ export default class EditMemberScr extends Component {
     let messageSuccess = props.messageSuccess;
     if (!hasError && error === "") {
       let errTitle = Translate(DefineKey.DialogWarning_text_title);
-      this.onOpenDialogWarning(errTitle, messageSuccess);
+      // this.onOpenDialogWarning(errTitle, messageSuccess);
+      alert(messageSuccess,errTitle);
+      this.props.navigation.pop(1);
     } else {
       if (error != null && error !== "") {
         let errTitle = Translate(DefineKey.DialogWarning_text_title);

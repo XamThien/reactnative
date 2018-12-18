@@ -7,7 +7,9 @@ import familyManagerScr from "../screen/profile/familyManager/familyManagerScr";
 import { doDeleteMember,doLoadAllFamilyMember,addNewMember } from '../actions/FamilyManagerAction';
 
 const mapStateToProps = (state) => {
-    // alert(`From container: ${JSON.stringify(state.resultFamilyManagerReducer.dataNames)}`);
+    // alert(`From container dataNames: ${JSON.stringify(state.resultFamilyManagerReducer.dataNames)}`);
+    // alert(`From container dataNewUser: ${JSON.stringify(state.resultFamilyManagerReducer.dataNewUser)}`);
+    // alert(`From container state.getProfilesReducers: ${JSON.stringify(state.getProfilesReducers)}`);
     return {
         dataNames: state.resultFamilyManagerReducer.dataNames,
         userProfile: state.getProfilesReducers,

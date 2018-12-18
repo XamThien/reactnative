@@ -277,7 +277,7 @@ export default class AddNewMemberModal extends Component {
                         }
                         autoCapitalize="none"
                         autoCorrect={false}
-                        autoFocus={true}
+                        
                         returnKeyType="next"
                         keyboardType="default"
                         value={this.state.lastName}
@@ -329,7 +329,7 @@ export default class AddNewMemberModal extends Component {
                         }
                         autoCapitalize="none"
                         autoCorrect={false}
-                        autoFocus={true}
+                        
                         returnKeyType="next"
                         keyboardType="default"
                         value={this.state.relationship}
@@ -378,7 +378,7 @@ export default class AddNewMemberModal extends Component {
                         }
                         autoCapitalize="none"
                         autoCorrect={false}
-                        autoFocus={true}
+                        
                         returnKeyType="next"
                         keyboardType="email-address"
                         value={this.state.email}
@@ -428,7 +428,7 @@ export default class AddNewMemberModal extends Component {
                         placeholder="--/--/----"
                         autoCapitalize="none"
                         autoCorrect={false}
-                        autoFocus={true}
+                        
                         returnKeyType="next"
                         keyboardType="default"
                         value={this.state.birthDate}

@@ -71,25 +71,18 @@ export default class FamilyManagerScr extends Component {
     this.onOpenDialogConfirm(userID);
   }
   componentWillReceiveProps(props) {
-    // this.componentDidMount();
     let dataUsers = props.dataNames;
-    // if(props.dataNames !== this.state.dataMember)
-    // {
-    //   this.setState({ dataMember: dataUsers });
-    // }
-    
+
     this.setState({ dataMember: dataUsers });
-    let newUser = props.dataNewMember;
+    // let newUser = props.dataNewMember;
 
-    let dataNewUsers = this.addUserIntoList(dataUsers, newUser);
-    this.setState({ dataMember: dataNewUsers });
+    // let dataNewUsers = this.addUserIntoList(dataUsers, newUser);
+    // this.setState({ dataMember: dataNewUsers });
 
-    // if (dataUsers == undefined || dataUsers.length == 0) {
-    //   this.setState({ dataMember: dataUsers });
-    // }
-    // this.setState({ dataMember: dataUsers });
     let userProfile = this.formatDataProfile(props.userProfile);
-    // let outPut = this.addUserIntoList(dataUsers, userProfile);
+    let outPut = this.addUserIntoList(dataUsers, userProfile);
+
+    this.setState({ dataMember: outPut });
 
     let hasErrorDelete = props.hasErrorDelete;
     let lastErrorDelete = props.lastErrorDelete;
@@ -101,7 +94,6 @@ export default class FamilyManagerScr extends Component {
         props.showLoadingDelete === null
       ) {
         this.onOpenDialogWarning(dialogTitle, messageSuccessDelete);
-
       }
     } else {
       if (lastErrorDelete != null && lastErrorDelete !== "") {
@@ -151,7 +143,7 @@ export default class FamilyManagerScr extends Component {
         password: userProfile.password,
         full_name: userProfile.userName,
         image: userProfile.image,
-        id: userProfile.id,
+        user_id: userProfile.id,
         parentId: userProfile.id
       };
       return formatData;
@@ -200,8 +192,6 @@ export default class FamilyManagerScr extends Component {
 
   render() {
     return (
-  
-
       <ScrollView>
         <View style={styles.container}>
           {this.state.dataMember.map((item, index) => (
