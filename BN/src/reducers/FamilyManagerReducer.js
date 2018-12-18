@@ -41,7 +41,7 @@ export const resultFamilyManagerReducer = (state = _INITIAL_STATE_, action) => {
               hasError: false,
           };
       case FAMILY_MANAGER_LOAD_ALL_SUCCESS:
-      // alert(`From reducer: ${JSON.stringify(action.dataNames)}`);
+      // alert(`From reducer: ${JSON.stringify(action.dataNames)}`); ///
           return {
               ...state,
               dataNames: saveLocal(action.dataNames),
