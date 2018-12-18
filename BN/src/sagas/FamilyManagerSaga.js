@@ -1,4 +1,14 @@
 import {
+
+  FAMILY_MANAGER_LOAD_ALL,
+  FAMILY_MANAGER_LOAD_ALL_SUCCESS,
+  FAMILY_MANAGER_LOAD_ALL_FAIL,
+  FAMILY_MANAGER_LOAD_ALL_RESET_OLD_DATA,
+
+  FAMILY_MANAGER_ADD_NEW_MEMBER,
+  FAMILY_MANAGER_ADD_NEW_MEMBER_SUCCESS,
+  FAMILY_MANAGER_ADD_NEW_MEMBER_FAIL,
+
     FAMILY_MANAGER_DO_DELETE,
     FAMILY_MANAGER_SUCCESS_DELETE,
     FAMILY_MANAGER_ERROR_DELETE,
@@ -16,7 +26,51 @@ import {
   import { AsyncStorage } from "react-native";
   import { Translate } from "../utils/Language";
   import DefineKey from "../config/language/DefineKey";
-  
+// =====================================load all ==============================
+function* getAllMemberSaga(action) {
+  try {
+      //const response = yield Api.doGetListFamilyApi(action.userId);
+      yield put({type: FAMILY_MANAGER_LOAD_ALL_RESET_OLD_DATA});
+      const response = yield Api.doGetListFamilyApi(action.userId);
+      
+      if (response != null && response.data != null) {
+        alert( `From saga: ${JSON.stringify(response.data)}`);  
+          let dataRespone = response.data;
+          yield put({ type: FAMILY_MANAGER_LOAD_ALL_SUCCESS, dataNames: dataRespone});
+      } else {
+          let error =  Translate(DefineKey.Deepcare_error_call_service);
+          yield put({type: FAMILY_MANAGER_LOAD_ALL_FAIL, lastError: error});
+      }
+  } catch (error) {
+      yield put({type: FAMILY_MANAGER_LOAD_ALL_FAIL, lastError: error});
+  }
+}
+
+
+
+export function* watchGetFamilyMember() { 
+  yield takeLatest(FAMILY_MANAGER_LOAD_ALL, getAllMemberSaga);
+}
+// ===================== add new =============================================
+  function* addFamilyNewMember(action) {
+    try {
+        const response = yield Api.doAddNewMemberFamilyApi(action.dataNewUser);
+        if (response != null && response.data != null) {
+            let dataRespone = response.data;
+            // alert(JSON.stringify(dataRespone));
+            yield put({ type: FAMILY_MANAGER_ADD_NEW_MEMBER_SUCCESS, dataNewUser: dataRespone }); 
+        } else {
+            let error =  Translate(DefineKey.Deepcare_error_call_service)
+            yield put({ type: FAMILY_MANAGER_ADD_NEW_MEMBER_FAIL, lastError: error });
+        }
+    } catch (error) {
+        yield put({ type: FAMILY_MANAGER_ADD_NEW_MEMBER_FAIL, lastError: error });
+    }
+}
+export function* watchFamilyAddNewMember() { 
+    yield takeLatest(FAMILY_MANAGER_ADD_NEW_MEMBER, addFamilyNewMember);
+}
+// ===================================== delete ==========================================
   function* doDeleteMember(action) {
     try {
       yield put({
@@ -33,7 +87,8 @@ import {
           type: FAMILY_MANAGER_SUCCESS_DELETE,
           hasError: false,
           lastError: "",
-          messageSuccess: sucsess
+          messageSuccess: sucsess,
+          user_id:action.memberID
         });
       } else {
         let error = Translate(DefineKey.FAMILY_MANAGER_ERROR_DELETE_MEMBER_TEXT);
@@ -55,7 +110,7 @@ import {
   export function* watchDoDeleteMember() {
     yield takeLatest(FAMILY_MANAGER_DO_DELETE, doDeleteMember);
   }
-  
+// =========================================update ========================================
   function* doUpdateMember(action) {
     try {
       yield put({
@@ -72,7 +127,8 @@ import {
           type: FAMILY_MANAGER_SUCCESS_DUPDATE,
           hasError: false,
           lastError: "",
-          messageSuccess: sucsess
+          messageSuccess: sucsess,
+          dataMember: action.dataMember
         });
       } else {
         let error = Translate(DefineKey.FAMILY_MANAGER_ERROR_UPDATE_MEMBER_TEXT);
@@ -95,7 +151,7 @@ import {
     yield takeLatest(FAMILY_MANAGER_DO_UPDATE, doUpdateMember);
   }
   
-
+// ====================================================================
 
   async function removeDataStorage(key) {
     try {

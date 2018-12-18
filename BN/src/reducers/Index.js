@@ -13,7 +13,7 @@ import {scheduleManagerReducer} from "./ScheduleManagerReducer";
 import {listenerVideocallReducers} from "./VideoCallReducer";
 import {resultResetPasswordReducer} from "./ResetPasswordReducer";
 import { resultChangePasswordReducer } from "./ChangePasswordReducer";
-import { resultDeleteMemberReducer, resultUpdateMemberReducer } from "./FamilyManagerReducer"
+import { resultFamilyManagerReducer } from "./FamilyManagerReducer"
 
 const allReducers = combineReducers({
     specializedReducers,
@@ -29,8 +29,7 @@ const allReducers = combineReducers({
     listenerVideocallReducers,
     resultResetPasswordReducer,
     resultChangePasswordReducer,
-    resultDeleteMemberReducer,
-    resultUpdateMemberReducer,
+    resultFamilyManagerReducer,
 
 
 

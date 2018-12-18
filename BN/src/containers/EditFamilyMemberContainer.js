@@ -7,11 +7,11 @@ import {
 
 const mapStateToProps = (state) => {
     return {
-        hasError: state.resultUpdateMemberReducer.hasError,
-        lastError: state.resultUpdateMemberReducer.lastError,
-        showLoading: state.resultUpdateMemberReducer.isLoading,
-        error: state.resultUpdateMemberReducer.lastError,
-        messageSuccess: state.resultUpdateMemberReducer.messageSuccess
+        hasError: state.resultFamilyManagerReducer.hasError,
+        lastError: state.resultFamilyManagerReducer.lastError,
+        showLoading: state.resultFamilyManagerReducer.isLoading,
+        error: state.resultFamilyManagerReducer.lastError,
+        messageSuccess: state.resultFamilyManagerReducer.messageSuccess
     }
 };
 

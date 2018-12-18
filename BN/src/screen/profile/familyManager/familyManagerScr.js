@@ -71,7 +71,13 @@ export default class FamilyManagerScr extends Component {
     this.onOpenDialogConfirm(userID);
   }
   componentWillReceiveProps(props) {
+    // this.componentDidMount();
     let dataUsers = props.dataNames;
+    // if(props.dataNames !== this.state.dataMember)
+    // {
+    //   this.setState({ dataMember: dataUsers });
+    // }
+    
     this.setState({ dataMember: dataUsers });
     let newUser = props.dataNewMember;
 
@@ -95,6 +101,7 @@ export default class FamilyManagerScr extends Component {
         props.showLoadingDelete === null
       ) {
         this.onOpenDialogWarning(dialogTitle, messageSuccessDelete);
+
       }
     } else {
       if (lastErrorDelete != null && lastErrorDelete !== "") {
@@ -153,9 +160,9 @@ export default class FamilyManagerScr extends Component {
   }
 
   addUserIntoList(dataUsers, newUser) {
-    if (newUser != null && newUser.id != null && newUser.id !== "") {
+    if (newUser != null && newUser.user_id != null && newUser.user_id !== "") {
       if (!this.isExistedUser(dataUsers, newUser)) {
-        this.setState({ dataMember: [] });
+        // this.setState({ dataMember: [] });
         dataUsers.unshift(newUser);
       }
     }
@@ -165,7 +172,7 @@ export default class FamilyManagerScr extends Component {
   isExistedUser(dataUsers, newUser) {
     var result = false;
     for (let i = 0; i < dataUsers.length; i++) {
-      if (dataUsers[i].id == newUser.id) {
+      if (dataUsers[i].user_id == newUser.user_id) {
         result = true;
         break;
       }
@@ -193,61 +200,7 @@ export default class FamilyManagerScr extends Component {
 
   render() {
     return (
-      //   <Modal
-      //     style={styles.wrapContent}
-      //     position="center"
-      //     backdrop={true}
-      //     backdropOpacity={0.5}
-      //     onClosed={() => console.log("close modal")}
-      //     ref={"myModal"}
-      //   >
-
-      //     <View style={styles.layoutFlatlist}>
-      //       <FlatList
-      //         style={styles.flatlist}
-      //         data={this.state.dataMember}
-      //         extraData={this.state}
-      //         renderItem={({ item, index }) => {
-      //           return (
-      //             <FamilyCardView
-      //               key={index}
-      //               item={item}
-      //               index={index}
-      //               parentFlatList={this}
-      //               onclickItem={this.onclickItem.bind(this)}
-      //             />
-      //           );
-      //         }}
-      //         keyExtractor = { (item, index) => index.toString() }
-      //       />
-      //     </View>
-      //     <View style={styles.viewLine} />
-
-      //     {/* layout button add */}
-      //     <View style={styles.layoutButtonAdd}>
-      //       <TouchableOpacity
-      //         style={styles.layoutButtonAdd}
-      //         onPress={() => this.onShowDialogAddNewMember()}
-      //       >
-      //         <View style={styles.avataContainer}>
-      //           <Image
-      //             style={styles.avata}
-      //             source={require("../../../assets/icon_add.png")}
-      //           />
-      //         </View>
-      //         <Text style={styles.txtName}>{Translate(DefineKey.AppointNameModal_text_add)}</Text>
-      //       </TouchableOpacity>
-      //         <DialogLoading loading={this.props.showLoading}/>
-
-      //         <WarningDialog
-      //           titleDialog={this.state.errTitle}
-      //           contentDialog={this.state.errContent}
-      //           onOk={this.onWarningOk.bind()}
-      //           textOk={Translate(DefineKey.DialogWarning_text_ok)}
-      //           visible={this.state.warningdialogvisible}
-      //         />
-      //     </View>
-      //   </Modal>
+  
 
       <ScrollView>
         <View style={styles.container}>

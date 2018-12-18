@@ -1,30 +1,31 @@
 import { connect } from "react-redux";
 import familyManagerScr from "../screen/profile/familyManager/familyManagerScr";
-import {
-    fetchDataModalName,
-} from "../actions/ModalNameAction";
+// import {
+//     fetchDataModalName,
+// } from "../actions/ModalNameAction";
 
-import { doDeleteMember } from '../actions/FamilyManagerAction';
+import { doDeleteMember,doLoadAllFamilyMember,addNewMember } from '../actions/FamilyManagerAction';
 
 const mapStateToProps = (state) => {
+    // alert(`From container: ${JSON.stringify(state.resultFamilyManagerReducer.dataNames)}`);
     return {
-        dataNames: state.getDataNameReducer.dataNames,
-        dataNewMember: state.addNewMemberReducer.dataNewUser,
+        dataNames: state.resultFamilyManagerReducer.dataNames,
         userProfile: state.getProfilesReducers,
-        showLoading: state.getDataNameReducer.isLoading,
-        error: state.getDataNameReducer.lastError,
+        dataNewMember: state.resultFamilyManagerReducer.dataNewUser,
+        showLoading: state.resultFamilyManagerReducer.isLoading,
+        error: state.resultFamilyManagerReducer.lastError,
 
-        hasErrorDelete: state.resultDeleteMemberReducer.hasError,
-        lastErrorDelete: state.resultDeleteMemberReducer.lastError,
-        showLoadingDelete: state.resultDeleteMemberReducer.isLoading,
-        messageSuccessDelete: state.resultDeleteMemberReducer.messageSuccess
+        hasErrorDelete: state.resultFamilyManagerReducer.hasError,
+        lastErrorDelete: state.resultFamilyManagerReducer.lastError,
+        showLoadingDelete: state.resultFamilyManagerReducer.isLoading,
+        messageSuccessDelete: state.resultFamilyManagerReducer.messageSuccess
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {    
         onFetchAllDataNames: (userId) => {
-            dispatch(fetchDataModalName(userId));
+            dispatch(doLoadAllFamilyMember(userId));
         }, 
 
         onDeleteMember: (memberID) => {
