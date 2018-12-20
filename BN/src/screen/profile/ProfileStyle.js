@@ -39,6 +39,12 @@ const styles = StyleSheet.create({
     marginTop: Dimens.size_5,
     
   },
+  userNameContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: Dimens.size_5,
+    
+  },
   textUserName: {
     fontSize: Dimens.size_25,
     color: Colors.black,

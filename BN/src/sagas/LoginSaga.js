@@ -17,7 +17,7 @@ function* doLoginUserData(action) {
         yield put({ type: LOGIN_RESET_LOGIN, hasError: false , lastError: undefined});
         const response = yield Api.doLoginApi(action.userData);
         if (response != null && response.token != null) {
-            yield saveUserProfileLogin(response)
+            yield saveUserProfileLogin(response);
             yield put({ type: LOGIN_SUCCESS, hasError: false , lastError: "", userProfile: response.user});
         } else {
             let error =  Translate(DefineKey.Login_text_login_fail)
@@ -37,17 +37,21 @@ async function saveUserProfileLogin(responseProfile) {
     if(responseProfile !== null) {
         let user = responseProfile.user;
         let token = responseProfile.token;
-       
         var profile = {
             userName: user.last_name + " " + user.first_name,
+            last_name: user.last_name,
+            first_name: user.first_name,
+            password: user.password,
             email: user.email,
             id: user.user_id,
             token: token,
             relation:'',
             expire: responseProfile.expires,
             image:"",
-            phoneNumber: responseProfile.phone
+            phoneNumber: user.phone,
+            date_birth: user.date_birth
         }
+        
         saveDataStorage(Constants.KEY_STORE_TOKEN, token);
         saveDataStorage(Constants.KEY_USER_ID, user.user_id);
         //let gettoken = getDataStorage(Constants.KEY_STORE_TOKEN);  

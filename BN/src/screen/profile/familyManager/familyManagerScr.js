@@ -132,6 +132,7 @@ export default class FamilyManagerScr extends Component {
   }
 
   formatDataProfile(userProfile) {
+    // alert(`from familySRC: ${JSON.stringify(userProfile)}`);
     if (
       userProfile != null &&
       userProfile.id != null &&

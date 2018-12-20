@@ -14,6 +14,7 @@ export default {
     Screen_ChangePassword:"ChangePassword",
     Screen_FamilyManager:"FamilyManger",
     Screen_EditFamilyMember:"EditFamilyMember",
+    Screen_UserManager:"UserManager",
     
  
 };

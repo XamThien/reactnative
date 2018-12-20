@@ -114,6 +114,7 @@ export default {
     BookExamination_text_button_10: "BookExamination_text_button_10",
     BookExamination_head_title: "BookExamination_head_title",
   
+    Profile_personal: "Profile_personal",
     Profile_family: "Profile_family",
     Profile_membership: "Profile_membership",
     Profile_subcription: "Profile_subcription",
@@ -187,13 +188,14 @@ export default {
 
     FAMILY_MANAGER_HEADER_TITLE:"FAMILY_MANAGER_HEADER_TITLE",
     FAMILY_MANAGER_HEADER_EDIT_TITLE:"FAMILY_MANAGER_HEADER_EDIT_TITLE",
-
     FAMILY_MANAGER_SUCCESS_DELETE_MEMBER_TEXT:"FAMILY_MANAGER_SUCCESS_DELETE_MEMBER_TEXT",
     FAMILY_MANAGER_ERROR_DELETE_MEMBER_TEXT:"FAMILY_MANAGER_ERROR_DELETE_MEMBER_TEXT",
-
     FAMILY_MANAGER_SUCCESS_UPDATE_MEMBER_TEXT:"FAMILY_MANAGER_SUCCESS_UPDATE_MEMBER_TEXT",
     FAMILY_MANAGER_ERROR_UPDATE_MEMBER_TEXT:"FAMILY_MANAGER_ERROR_UPDATE_MEMBER_TEXT",
 
+    USER_PROFILE_HEADER_TITLE:"USER_PROFILE_HEADER_TITLE",
+    USER_MANAGER_EDIT_HEADER_TITLE:"USER_MANAGER_EDIT_HEADER_TITLE",
+    
 
 
 

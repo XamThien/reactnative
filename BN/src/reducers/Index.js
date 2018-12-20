@@ -14,6 +14,7 @@ import {listenerVideocallReducers} from "./VideoCallReducer";
 import {resultResetPasswordReducer} from "./ResetPasswordReducer";
 import { resultChangePasswordReducer } from "./ChangePasswordReducer";
 import { resultFamilyManagerReducer } from "./FamilyManagerReducer"
+import {editUserInfoReducer} from "./EditUserInfoReducer.js"
 
 const allReducers = combineReducers({
     specializedReducers,
@@ -30,6 +31,7 @@ const allReducers = combineReducers({
     resultResetPasswordReducer,
     resultChangePasswordReducer,
     resultFamilyManagerReducer,
+    editUserInfoReducer,
 
 
 

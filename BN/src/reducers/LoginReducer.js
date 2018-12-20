@@ -1,7 +1,8 @@
 import {
     LOGIN_SUCCESS, 
     LOGIN_FAIL,
-    LOGIN_RESET_LOGIN
+    LOGIN_RESET_LOGIN,
+    EDIT_USER_SUCCESS
   } from "../actions/ActionType";
 
   export const _INITIAL_STATE_ = {
@@ -22,7 +23,12 @@ import {
         hasError: action.hasError,
         lastError: "",
         isLoading: false
-      };
+      }; 
+      case EDIT_USER_SUCCESS:
+        return{
+          userProfile: action.userProfile,
+          isLoading: false
+        }
       case LOGIN_FAIL:
       return {
         ...state,

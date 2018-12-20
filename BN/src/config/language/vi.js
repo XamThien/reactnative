@@ -117,6 +117,7 @@ export default {
   BookExamination_text_button_10: "Hoạt động thể thao",
   BookExamination_head_title: "Sổ khám bệnh",
 
+  Profile_personal: "Thông tin tài khoản",
   Profile_family: "Gia đình",
   Profile_membership: "Thành viên",
   Profile_subcription: "Đăng ký",
@@ -195,7 +196,8 @@ export default {
   FAMILY_MANAGER_SUCCESS_UPDATE_MEMBER_TEXT:"Cập nhật thông tin thành viên thành công",
   FAMILY_MANAGER_ERROR_UPDATE_MEMBER_TEXT:"Cập nhật thông tin thành viên không thành công",
 
-
+  USER_PROFILE_HEADER_TITLE:"Thông tin cá nhân",
+  USER_MANAGER_EDIT_HEADER_TITLE:"Cập nhật thông tin",
 
 
  

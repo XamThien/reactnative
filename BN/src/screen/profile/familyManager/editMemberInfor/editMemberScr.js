@@ -163,6 +163,7 @@ export default class EditMemberScr extends Component {
   }
   onWarningOk() {
     this.setState({ warningdialogvisible: false });
+    this.props.navigation.pop(1);
   }
 
   isPhoneNumber(userName) {
@@ -176,9 +177,9 @@ export default class EditMemberScr extends Component {
     let messageSuccess = props.messageSuccess;
     if (!hasError && error === "") {
       let errTitle = Translate(DefineKey.DialogWarning_text_title);
-      // this.onOpenDialogWarning(errTitle, messageSuccess);
-      alert(messageSuccess,errTitle);
-      this.props.navigation.pop(1);
+      this.onOpenDialogWarning(errTitle, messageSuccess);
+      // alert(messageSuccess,errTitle);
+      
     } else {
       if (error != null && error !== "") {
         let errTitle = Translate(DefineKey.DialogWarning_text_title);

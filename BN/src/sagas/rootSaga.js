@@ -19,7 +19,7 @@ import {watchOnCreateSocketRTC, watchOnMakeCall, watchOnFinishCall,
 import {watchDoResetPassword} from "./ResetPasswordSaga";
 import {watchDoChangePassword} from "./ChangePasswordSaga";
 import {watchDoDeleteMember, watchDoUpdateMember, watchFamilyAddNewMember, watchGetFamilyMember} from "./FamilyManagerSaga";
-
+import {watchUpdateUser} from "./EditUserInfoSaga";
 
 
 
@@ -59,7 +59,7 @@ export default function* rootSaga() {
       fork(watchDoUpdateMember),
       fork(watchFamilyAddNewMember), 
       fork(watchGetFamilyMember),
-
+      fork(watchUpdateUser),
 
 
 

@@ -12,13 +12,14 @@ const mapStateToProps = (state) => {
         showLoading: state.resultFamilyManagerReducer.isLoading,
         error: state.resultFamilyManagerReducer.lastError,
         messageSuccess: state.resultFamilyManagerReducer.messageSuccess
+
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {    
-        onUpdateMember: (dataMember) => {
-            dispatch(doUpdateMember(dataMember));
+        onUpdateMember: (dataUser) => {
+            dispatch(doUpdateMember(dataUser));
         }, 
         // onClickItem :(userId, selectName) =>{
         //     dispatch(onClickItem(userId, selectName));

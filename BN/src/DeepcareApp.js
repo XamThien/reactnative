@@ -14,6 +14,7 @@ import ResetPasswordContainer from "./containers/ResetPasswordContainner";
 import ChangePasswordContainer from "./containers/ChangePasswordContainer";
 import FamilyManagerContainer from "./containers/FamilyManagerContainer";
 import EditFamilyMemberContainer from "./containers/EditFamilyMemberContainer";
+import UserManagerContainer from "./containers/UserManagerContainer";
 
 
 
@@ -288,6 +289,13 @@ export const RootStack = createStackNavigator(
       headerBackTitle: null
       }
     },
+    UserManager:{
+      screen: UserManagerContainer,
+      navigationOptions: {
+      title: Translate(DefineKey.USER_PROFILE_HEADER_TITLE),
+      headerBackTitle: null
+      }
+    },
 
 
 
@@ -301,7 +309,7 @@ export const RootStack = createStackNavigator(
     //initialRouteName: ScreenName.Screen_Appointment
     //initialRouteName: "ScheduleManager"
     //initialRouteName: "WaitingBooking"
-    // initialRouteName: ScreenName.Screen_Profile
+    // initialRouteName: ScreenName.Screen_UserManager
     
   }
 );
