@@ -198,7 +198,16 @@ export default {
 
   USER_PROFILE_HEADER_TITLE:"Thông tin cá nhân",
   USER_MANAGER_EDIT_HEADER_TITLE:"Cập nhật thông tin",
-
+  USER_MANAGER_EDIT_SUCCESS_TEXT:"Cập nhật thông tin thành công",
+    
+  SETTING_NOTIFICATION_HEADER_TITLE:"Cài đặt thông báo",
+  SETTING_NOTIFICATION_CHECKBOX_TITLE:"Cho phép hiển thị thông báo",
+  SETTING_NOTIFICATION_TIME_TITLE:"Thời gian thông báo lịch đặt hẹn sắp đến",
+  SETTING_NOTIFICATION_BUTTON_SAVE:"Lưu cài đặt",
+  SETTING_NOTIFICATION_SUCCESS_MESSAGE:"Cài đặt thành công",
+  SETTING_NOTIFICATION_ERROR_MESSAGE:"Cài đặt không thành công",
+  SETTING_NOTIFICATION_WARNING_MESSAGE:"Cài đặt không thành công. Thời gian thông báo phải từ 5-30 phút",
+  SETTING_NOTIFICATION_DISABLE_MESSAGE:"Bạn sẽ không còn nhận được thông báo cuộc hẹn",
 
 
   

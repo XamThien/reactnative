@@ -9,7 +9,8 @@ import {
   export const _INITIAL_STATE = {
     dataAppointSchedule: [],
     isLoading: false,
-    lastError: ""
+    lastError: "",
+    hasError: false,
   };
 
   export const scheduleManagerReducer = (state = _INITIAL_STATE, action) => {

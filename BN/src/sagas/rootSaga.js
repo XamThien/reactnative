@@ -20,6 +20,7 @@ import {watchDoResetPassword} from "./ResetPasswordSaga";
 import {watchDoChangePassword} from "./ChangePasswordSaga";
 import {watchDoDeleteMember, watchDoUpdateMember, watchFamilyAddNewMember, watchGetFamilyMember} from "./FamilyManagerSaga";
 import {watchUpdateUser} from "./EditUserInfoSaga";
+import {watchGetTimeSettingNotification, watchUpdateTimeSettingNotification} from "./SettingNotificationSaga";
 
 
 
@@ -60,6 +61,8 @@ export default function* rootSaga() {
       fork(watchFamilyAddNewMember), 
       fork(watchGetFamilyMember),
       fork(watchUpdateUser),
+      fork(watchGetTimeSettingNotification),
+      fork(watchUpdateTimeSettingNotification),
 
 
 

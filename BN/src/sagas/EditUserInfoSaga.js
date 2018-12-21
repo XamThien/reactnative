@@ -11,6 +11,8 @@ import { put, takeLatest } from "redux-saga/effects";
 import { Api } from "./Api";
 import { AsyncStorage } from "react-native";
 import Constants from "../commons/Constants";
+import { Translate } from "../utils/Language";
+import DefineKey from "../config/language/DefineKey";
 
 function* editUserInfo(action) {
   try {
@@ -19,7 +21,7 @@ function* editUserInfo(action) {
     if (response.result === "updated") {
       yield put({
         type: USER_MANAGER_UPDATE_USER_SUCCESS,
-        messageSuccess: "Success"
+        messageSuccess: Translate(DefineKey.USER_MANAGER_EDIT_SUCCESS_TEXT)
       });
       const user_new_profile = yield saveUserProfile(action.dataNewUser,action.userOldInfo);
     //   alert(`from saga ${user_new_profile}`);

@@ -15,6 +15,7 @@ import ChangePasswordContainer from "./containers/ChangePasswordContainer";
 import FamilyManagerContainer from "./containers/FamilyManagerContainer";
 import EditFamilyMemberContainer from "./containers/EditFamilyMemberContainer";
 import UserManagerContainer from "./containers/UserManagerContainer";
+import SettingNotificationContainer from "./containers/SettingNotifycationContainer";
 
 
 
@@ -296,6 +297,13 @@ export const RootStack = createStackNavigator(
       headerBackTitle: null
       }
     },
+    SettingNotification:{
+      screen: SettingNotificationContainer,
+      navigationOptions: {
+      title: Translate(DefineKey.SETTING_NOTIFICATION_HEADER_TITLE),
+      headerBackTitle: null
+      }
+    },
 
 
 
@@ -309,7 +317,7 @@ export const RootStack = createStackNavigator(
     //initialRouteName: ScreenName.Screen_Appointment
     //initialRouteName: "ScheduleManager"
     //initialRouteName: "WaitingBooking"
-    // initialRouteName: ScreenName.Screen_UserManager
+    // initialRouteName: ScreenName.Screen_SettingNotification
     
   }
 );

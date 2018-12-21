@@ -15,6 +15,7 @@ export default {
     Screen_FamilyManager:"FamilyManger",
     Screen_EditFamilyMember:"EditFamilyMember",
     Screen_UserManager:"UserManager",
+    Screen_SettingNotification:"SettingNotification",
     
  
 };

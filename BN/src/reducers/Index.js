@@ -15,6 +15,7 @@ import {resultResetPasswordReducer} from "./ResetPasswordReducer";
 import { resultChangePasswordReducer } from "./ChangePasswordReducer";
 import { resultFamilyManagerReducer } from "./FamilyManagerReducer"
 import {editUserInfoReducer} from "./EditUserInfoReducer.js"
+import { resultSettingNotificationReducer } from "./SettingNotificationReducer";
 
 const allReducers = combineReducers({
     specializedReducers,
@@ -32,6 +33,7 @@ const allReducers = combineReducers({
     resultChangePasswordReducer,
     resultFamilyManagerReducer,
     editUserInfoReducer,
+    resultSettingNotificationReducer,
 
 
 

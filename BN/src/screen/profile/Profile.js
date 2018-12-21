@@ -133,6 +133,26 @@ export default class Profile extends Component {
                 </View>
               </TouchableOpacity>
 
+              {/* layout setting notify */}
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate(
+                    ScreenName.Screen_SettingNotification
+                  )
+                }
+              >
+                <View style={styles.layoutItem}>
+                  <Image
+                    style={styles.itemImage}
+                    source={require("../../../assets/icon_password.png")}
+                  />
+                  <Text style={styles.itemText}>
+                    {Translate(DefineKey.SETTING_NOTIFICATION_HEADER_TITLE)}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+
+
               {/* layout Item Subscription */}
               <TouchableOpacity>
                 <View style={styles.layoutItem}>

@@ -21,6 +21,9 @@ const urlChangePassword = "http://35.238.126.42:443/api/v2/user/changePassword";
 const urlDeleteFamilyMember = "http://35.238.126.42:443/api/v2/user/deleteFamilymembers/";
 const urlUpdateFamilyMember = "http://35.238.126.42:443/api/v2/user/updateFamilyMembers/";
 const urlUpdateUserInfo = "http://35.238.126.42:443/api/v2/user/updateUser";
+const urlGetTimeSettingNotification = "http://35.238.126.42:443/api/v2/setting/getSetting";
+const urlUpdateTimeSettingNotification = "http://35.238.126.42:443/api/v2/setting/settingNotify";
+
 
 function* doLoginApi(input) {
     let xKey = "";
@@ -576,6 +579,70 @@ function* doChangePasswordApi(newPassword,old_password) {
     });
  };
 
+ // function get time setting notification
+ function* doGetTimeSettingNotificationApi(){
+    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+    let userID = yield getDataStorage(Constants.KEY_USER_ID);
+    
+    let xKey = "";
+    let headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token" : token,
+        "x-key" : xKey
+    };
+    let dataBody = JSON.stringify({
+        user_id: userID
+      });
+
+    //   alert( `From update api: ${dataBody + " == "+ urlGetTimeSettingNotification}`); 
+    return yield fetch(urlGetTimeSettingNotification, {
+        method: "POST",
+        headers: headers,
+        body: dataBody
+    }).then((response) => response.json())
+        .then((responseJson) => {
+            // alert( `From get api: ${JSON.stringify(responseJson)}`);
+            return responseJson;
+        })
+        .catch((error) => {
+            console.error("error..." + error);
+    });
+ };
+
+  // function update time setting notification
+  function* doUpdateTimeSettingNotificationApi(time){
+    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+    let userID = yield getDataStorage(Constants.KEY_USER_ID);
+    
+    let xKey = "";
+    let headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token" : token,
+        "x-key" : xKey
+    };
+    let dataBody = JSON.stringify({
+        user_id:userID,
+        notify: (time * 60000)
+      });
+    return yield fetch(urlUpdateTimeSettingNotification, {
+        method: "POST",
+        headers: headers,
+        body: dataBody
+    }).then((response) => response.json())
+        .then((responseJson) => {
+            return responseJson;
+            // alert( `From update api: ${responseJson}`);
+        })
+        .catch((error) => {
+            console.error("error..." + error);
+    });
+ };
+
+
+
+
 
 export const Api = {
   doRegisterApi,
@@ -596,6 +663,8 @@ export const Api = {
   doDeleteFamilyMemberApi,
   doUpdateFamilyMemberApi,
   doUpdateUserInfoApi,
+  doGetTimeSettingNotificationApi,
+  doUpdateTimeSettingNotificationApi,
 
 
 
