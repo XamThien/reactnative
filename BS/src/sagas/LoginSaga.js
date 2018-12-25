@@ -49,6 +49,7 @@ async function saveUserProfileLogin(responseProfile) {
             image:"",
             phoneNumber: user.phone
         }
+        alert("From login saga: "+JSON.stringify(profile));
         saveDataStorage(Constants.KEY_STORE_TOKEN, token);
         saveDataStorage(Constants.KEY_DOCTOR_ID, user.doctor_id);
         //let gettoken = getDataStorage(Constants.KEY_STORE_TOKEN);  

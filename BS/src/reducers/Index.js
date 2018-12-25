@@ -7,6 +7,7 @@ import {loadWorkScheduleReducers} from "./WorkScheduleReducers";
 import {listenerVideocallReducers} from "./VideoCallReducer";
 import {resultResetPasswordReducer} from "./ResetPasswordReducer";
 import { resultChangePasswordReducer } from "./ChangePasswordReducer";
+import {resultDoctorInfoManagerReducer} from "./DoctorInfoMangerReducer";
 
 
 const allReducers = combineReducers({
@@ -18,6 +19,7 @@ const allReducers = combineReducers({
     listenerVideocallReducers,
     resultResetPasswordReducer,
     resultChangePasswordReducer,
+    resultDoctorInfoManagerReducer,
 
 });
 export default allReducers;

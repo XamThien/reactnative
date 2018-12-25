@@ -150,7 +150,32 @@ export default {
   CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL:"Yêu cầu nhập đủ các trường",
   CHANGE_PASSWORD_ERROR_PASSWORD:"Sai mật khẩu",
 
-
+  // key for show doctor profile screen
+  DOCTOR_PROFILE_HEADER_TITLE:"Thông tin bác sỹ",
+  Doctor_Info_Update_Header_Title:"Cập nhật thông tin",
+  Doctor_Info_Manager_Speciality: "Chuyên ngành",
+  Doctor_Info_Manager_Birthday:"Ngày sinh",
+  Doctor_Info_Manager_Birth_Place:"Nơi sinh",
+  Doctor_Info_Manager_Age:"Tuổi",
+  Doctor_Info_Manager_Place:"Nơi làm việc",
+  Doctor_Info_Manager_Home_Town: "Thành phố",
+  Doctor_Info_Manager_Phone:"Điện thoại",
+  Doctor_Info_Manager_Email:"Email",
+  Doctor_Info_Manager_Avatar:"Ảnh đại diện",
+  Doctor_Info_Manager_Degree_Name:"Học vị",
+  Doctor_Info_Manager_Academic_Rank_Name:"Học hàm",
+  Doctor_Info_Manager_Position_Name:"Chức vụ",
+  Doctor_Info_Manager_Department_Name:"Phòng ban",
+  Doctor_Info_Manager_Working_Process:"Qúa trình làm việc",
+  Doctor_Info_Manager_Disease_Name:"Điều trị các bệnh",
+  Doctor_Info_Manager_Language_Name:"Ngôn ngữ",
+  Doctor_Info_Manager_Training_Process:"Quá trình đào tạo",
+  Doctor_Info_Manager_Experience:"Kinh nghiệm",
+  Doctor_Info_Manager_Reseach_Work:"Công trình nghiên cứu",
+  Doctor_Info_Manager_Description:"Mô tả",
+  Doctor_Info_Manager_Certificate:"Chứng chỉ",
+  Doctor_Info_Manager_Organization:"Tổ chức",
+  Doctor_Info_Manager_Day_Off:"Ngày nghỉ",
 
 
 

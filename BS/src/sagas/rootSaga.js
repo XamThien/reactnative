@@ -9,6 +9,7 @@ import {watchOnCreateSocketRTC, watchOnMakeCall, watchOnFinishCall,
 watchOnSwitchCamera, watchOnCameraControl, watchOnMicControl, watchOnSoundControl} from "./VideoCallSagas";
 import {watchDoResetPassword} from "./ResetPasswordSaga";
 import {watchDoChangePassword} from "./ChangePasswordSaga";
+import {watchDoGetDoctorInfo} from "./DoctorInfoManagerSaga";
 
 
 
@@ -37,7 +38,7 @@ export default function* rootSaga() {
       fork(watchOnSoundControl),
       fork(watchDoResetPassword),
       fork(watchDoChangePassword),
-
+      fork(watchDoGetDoctorInfo),
 
 
 

@@ -10,6 +10,8 @@ import PatientProfile from "./screen/home/schedule/profile/PatientProfile";
 import VideoCallContainer from "./containers/VideoCallContainer";
 import ResetPasswordContainer from "./containers/ResetPasswordContainner";
 import ChangePasswordContainer from "./containers/ChangePasswordContainer";
+import ShowDoctorProfileContainer from "./containers/ShowDoctorProfileContainer";
+import UpdateDoctorInfoContainer from "./containers/UpdateDoctorInfoContainer";
 
 
 
@@ -226,10 +228,23 @@ export const RootStack = createStackNavigator(
         headerBackTitle: null
       }
     },
+    DoctorProfile:{
+      screen: ShowDoctorProfileContainer,
+      navigationOptions: {
+        title: Translate(DefineKey.DOCTOR_PROFILE_HEADER_TITLE),
+        headerBackTitle: null
+      }
+    },
+    UpdateDoctorProfile:{
+      screen: UpdateDoctorInfoContainer,
+      navigationOptions: {
+        title: Translate(DefineKey.Doctor_Info_Update_Header_Title),
+        headerBackTitle: null
+      }
+    },
 
 
-
-
+    
 
 
 
@@ -238,7 +253,7 @@ export const RootStack = createStackNavigator(
     initialRouteName: ScreenName.Screen_Login
     //initialRouteName: ScreenName.Screen_Appointment
     //initialRouteName: "VideoCallContainer"
-    // initialRouteName: ScreenName.Screen_ChangePassword
+    // initialRouteName: ScreenName.Screen_ShowDoctorProfile
   }
 );
 

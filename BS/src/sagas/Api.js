@@ -11,6 +11,7 @@ const urlGetDoctorSchedule = "http://35.238.126.42:443/api/v1/schedule/getDoctor
 const urlGetAllPatients = "http://35.238.126.42:443/api/v1/appointments/doctor/getUserAppointmentByDoctorID/"; 
 const urlResetPassword = "http://35.238.126.42:443/doctor/resetPassword";
 const urlChangePassword = "http://35.238.126.42:443/api/v2/doctor/changePassword";
+const urlGetDoctorInfo = "http://35.238.126.42:443/api/v1/doctor/getDoctorByID/";
 
 
 
@@ -280,6 +281,33 @@ let dataBody = JSON.stringify({
       console.error("error..." + error);
     });
 }
+// function get doctor info
+function* doGetDoctorInfoApi() {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let doctorId = yield getDataStorage(Constants.KEY_DOCTOR_ID);
+
+  let xKey = "";  
+  let headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "x-access-token" : token,
+      "x-key" : xKey
+  };
+  let url = urlGetDoctorInfo.concat(doctorId);
+  
+ return yield fetch(url , {
+      method: "GET",
+      headers: headers,
+      body: ""
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      return responseJson;
+    })
+    .catch((error) => {
+      console.error("error..." + error);
+    });
+}
 
 export const Api = {
   doLoginApi,
@@ -290,5 +318,6 @@ export const Api = {
   doWorkScheduleApi,
   doGetAllPatientApi,
   doResetPasswordApi,
-  doChangePasswordApi
+  doChangePasswordApi,
+  doGetDoctorInfoApi
 };

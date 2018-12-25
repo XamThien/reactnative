@@ -8,6 +8,8 @@ export default {
     Screen_PatientProfile : "PatientProfile",
     Screen_VideoCall : "VideoCallContainer",
     Screen_ResetPassword:"ResetPassword",
-    Screen_ChangePassword:"ChangePassword"
+    Screen_ChangePassword:"ChangePassword",
+    Screen_ShowDoctorProfile:"DoctorProfile",
+    Screen_UpdateDoctorProfile:"UpdateDoctorProfile",
  
 };
