@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import editMemberScr from "../screen/profile/familyManager/editMemberInfor/editMemberScr";
+import EditMember from "../screen/profile/familymanager/editmemberinfor/editMember";
 import {
     doUpdateMember,
 
@@ -23,5 +23,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     };
 }
-const EditFamilyMemberContainer =  connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(editMemberScr);
+const EditFamilyMemberContainer =  connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(EditMember);
 export default EditFamilyMemberContainer;

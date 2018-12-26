@@ -29,7 +29,7 @@ export const _INITIAL_STATE_ = {
   messageSuccess: ''
 };
 var allMember = [];
-export const resultFamilyManagerReducer = (state = _INITIAL_STATE_, action) => {
+export const familyManagerReducer = (state = _INITIAL_STATE_, action) => {
   switch (action.type) {
 
     // cases for load all family member
