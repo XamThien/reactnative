@@ -1,7 +1,6 @@
 export default {
     KEY_STORE_USER_PROFILE : "key_store_user_profile",
     //using just ios
-    KEY_CLIENT_ID_LOGIN_GOOGLE: "79233148802-k4or16n5ki5ejmtqogut9d96ejvg7hse.apps.googleusercontent.com",
     VALIDATE_PASSWORD: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$",
     DEFAULT_SYMPLE_DATE: "YYYY-MM-DD",
     KEY_INTENT_USER_NAME: "intent_userName",
@@ -27,7 +26,7 @@ export default {
     VIDEOCALL_SEND_MSG_DECLINE_CALL: "VIDEOCALL_SEND_MSG_DECLINE_CALL",
     //type gửi đi từ bệnh nhân, sau khi gửi request đặt hẹn thành công
     VIDEOCALL_SEND_MSG_REQ_APPOINT: "VIDEOCALL_SEND_MSG_REQ_APPOINT",
-    SCHEDULE_EVENT_LOAD_DOCTORS_SUCCESS: "SCHEDULE_EVENT_LOAD_DOCTORS_SUCCESS",
+    DOCTORLIST_EVENT_LOAD_DOCTORS_SUCCESS: "DOCTORLIST_EVENT_LOAD_DOCTORS_SUCCESS",
 
-    KEY_STORE_SETTING_NOTIFICATION : "key_store_setting_notification",
+
 };

@@ -1,67 +1,40 @@
 import { AsyncStorage } from "react-native";
 import Constants from "../commons/Constants";
-import {convertDateToMillisecond, convertTimeToMillisecond} from "../utils/Utils";
-//import {getDataStorage} from "../utils/Utils";
-const urlRegister = "http://35.238.126.42:443/register";
-const urlLogin = "http://35.238.126.42:443/login";
-const urlSpeciality = "http://35.238.126.42:443/api/v1/speciality/getAll";
-const urlDoctor = "http://35.238.126.42:443/api/v1/doctor/getDoctorBusiness/";
-const urlDoctorImmediately = "http://35.238.126.42:443/api/v1/schedule/getDoctorAvailableByDateAndTime/";
-const urlListFamily = "http://35.238.126.42:443/api/v1/user/getFamilyMembers/";
-const urlSearchScheduleByDate = "http://35.238.126.42:443/api/v1/appointment/getScheduleByDate/";
-const urlSaveAppointment = "http://35.238.126.42:443/api/v1/appointments/user";
-const urlAddNewMemberFamily = "http://35.238.126.42:443/api/v1/user/addFamilyMembers";
-const urlGetAppointmentSchedule = "http://35.238.126.42:443/api/v1/appointments/user/getAllAppointmentByUserID/";
-const urlGetDoctorSchedule = "http://35.238.126.42:443/api/v1/schedule/getDoctorSchedule/";
-const urlGetDoctorAppointSchedule = "http://35.238.126.42:443/api/v1/doctor/getDoctorInfoByUserID/";
-const urlUserCancelAppoint = "http://35.238.126.42:443/api/v1/appointments/doctor/updateStatus";
+import ApiString from "./ApiString";
+import {
+  convertDateToMillisecond,
+  convertTimeToMillisecond
+} from "../utils/Utils";
+const TIME_OUT_SERVICE = 45 * 1000; //timeout call service 45s
 
-const urlResetPassword = "http://35.238.126.42:443/user/resetPassword";
-const urlChangePassword = "http://35.238.126.42:443/api/v2/user/changePassword";
-const urlDeleteFamilyMember = "http://35.238.126.42:443/api/v2/user/deleteFamilymembers/";
-const urlUpdateFamilyMember = "http://35.238.126.42:443/api/v2/user/updateFamilyMembers/";
-const urlUpdateUserInfo = "http://35.238.126.42:443/api/v2/user/updateUser";
-const urlGetTimeSettingNotification = "http://35.238.126.42:443/api/v2/setting/getSetting";
-const urlUpdateTimeSettingNotification = "http://35.238.126.42:443/api/v2/setting/settingNotify";
-
-
+//service login app, trả về user profile của bệnh nhân
 function* doLoginApi(input) {
-    let xKey = "";
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-key" : xKey
-      };
+  console.log("nvTien - Api doLoginApi...");
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-key": xKey
+  };
   let dataBody = JSON.stringify({
     email: input.email,
     password: input.password,
     phone: input.phone
   });
-   return yield fetch(urlLogin , {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-      })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(`doLoginApi...data = ${JSON.stringify(responseJson)} `);
-        return responseJson;
-      })
-      .catch((error) => {
-        console.error("error..." + error);
-      });
+  return yield handlePostRequest(ApiString.URL_Login, headers, dataBody);
+  
 }
 
-//api đăng ký
+//service đăng ký tài khoản người dùng
 function* doRegisterApi(input) {
-    let token = "";
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
+  let token = "";
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
   var dataBody = JSON.stringify({
     first_name: input.firstName,
     last_name: input.lastName,
@@ -69,165 +42,122 @@ function* doRegisterApi(input) {
     phone: input.phoneNumber,
     password: input.passWord
   });
+  return yield handlePostRequest(ApiString.URL_Register, headers, dataBody);
  
-  return yield fetch(urlRegister, {
-    method: "POST",
-    headers: headers,
-    body: dataBody
-  }).then((response) => response.json())
-    .then((responseJson) => {
-        return responseJson;
-    })
-    .catch((error) => {
-        console.error("error..." + error);
-    });
-
-//   return yield JSON.parse(JSON.stringify(response));
 }
 
-//lấy danh sách tất cả chuyên ngành
+//service lấy danh sách tất cả các chuyên ngành
 function* doGetSpecialityApi() {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-   // console.log(`doGetSpecialityApi...data = ${JSON.stringify(token)} token...` + token);
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    return yield fetch(urlSpeciality, {
-        method: "GET",
-        headers: headers,
-        body: ""
-      }).then((response) => response.json())
-        .then((responseJson) => {
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-        });
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  return yield handleGetRequest(ApiString.URL_Speciality, headers);
 }
 
-//lấy doctor theo ngày
-function* doGetDataDoctorApi(input) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let getDate = yield convertDateToMillisecond(input.date);
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    var url = urlDoctor + input.specID + "/" + input.typeSearch + "/" + getDate;
-    console.log(`nvTien - doGetDataDoctorApi get by date header = ${JSON.stringify(headers)} url = ` + url)
-    return yield fetch(url, {
-        method: "GET",
-        headers: headers,
-        body: ""
-    }).then((response) => response.json())
-        .then((responseJson) => {
-           // console.log(`doGetDataDoctorApi response = ${JSON.stringify(responseJson)}`)
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-        });
-}
-
-//lấy ds doctor khám ngay lập tức
+//service lấy danh sách bác sĩ khám ngay lập tức, tức chưa có cuộc hẹn nào ở thời điểm hiện tại
 function* doGetDataDoctorImmediatelyApi(input) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let getDate = yield convertDateToMillisecond(input.date);
-    let getTime = yield convertTimeToMillisecond(input.time);
-
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    var url = urlDoctorImmediately + getDate + "/" + getTime;
-    console.log(`nvTien - doGetDataDoctorApi get by date header = ${JSON.stringify(headers)} url = ` 
-    + url + " Date: " +input.date + " Time: " + input.time)
-    return yield fetch(url, {
-        method: "GET",
-        headers: headers,
-        body: ""
-    }).then((response) => response.json())
-        .then((responseJson) => {
-            console.log(`doGetDataDoctorApi response = ${JSON.stringify(responseJson)}`)
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-        });
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let getDate = yield convertDateToMillisecond(input.date);
+  let getTime = yield convertTimeToMillisecond(input.time);
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  var url = ApiString.URL_Doctor_Immediately + getDate + "/" + getTime;
+  return yield handleGetRequest(url, headers);
 }
 
-//service lấy tất cả bác sĩ với type search = 0, specId = 1, date = null
-function* doGetAllDoctorApi(input) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let getDate = "null";
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    var url = urlDoctor + input.specID + "/" + input.typeSearch + "/" + getDate;
-    console.log(`nvTien - doGetAllDoctorApi get by date header = ${JSON.stringify(headers)} url = ` + url)
-    return yield fetch(url, {
-        method: "GET",
-        headers: headers,
-        body: ""
-    }).then((response) => response.json())
-        .then((responseJson) => {
-           // console.log(`doGetAllDoctorApi response = ${JSON.stringify(responseJson)}`)
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-        });
+//service lấy danh sách bác sĩ theo ngày
+function* doGetDoctorByDateApi(input) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let getDate = yield convertDateToMillisecond(input.date);
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  var url =
+    ApiString.URL_Doctor_by_date +
+    input.specID +
+    "/" +
+    input.typeSearch +
+    "/" +
+    getDate;
+  return yield handleGetRequest(url, headers);
 }
 
-//lấy danh sách gia đình
+//service lưu dữ liệu đặt hẹn khám bệnh
+function* doSaveDataBookingApi(input) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  let dataBody = JSON.stringify({
+    user_id: input.id,
+    doctor_id: input.id_doctor,
+    disease_id: input.id_disease,
+    date: input.date,
+    hours: input.hours,
+    type_call: input.type_call,
+    note_text: input.note_text,
+    note_images: input.note_images
+  });
+  return yield handlePostRequest(ApiString.URL_Save_Booking, headers, dataBody);
+}
+
+//service lấy lịch khám của bác sĩ theo ngày chọn
+function* doGetDataBookingApi(input) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let getDate = yield convertDateToMillisecond(input.date);
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  let url = ApiString.URL_Get_Data_Booking + input.doctor_id + "/" + getDate;
+  return yield handleGetRequest(url, headers);
+}
+
+//service lấy lịch danh sách thành viên gia đình
 function* doGetListFamilyApi(userId) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    const url = urlListFamily.concat(userId);
-
-    return yield fetch(url, {
-        method: "GET",
-        headers: headers,
-        body: ""
-      }).then((response) => response.json())
-        .then((responseJson) => {
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-        });
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  const url = ApiString.URL_ListFamily.concat(userId);
+  return yield handleGetRequest(url, headers);
 }
 
-//thêm thành viên mới trong gia đình
-function* doAddNewMemberFamilyApi(input) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
+//service thêm thành viên mới gia đình
+function* doAddMemberFamilyApi(input) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
   let dataBody = JSON.stringify({
     email: input.email,
     phone: "",
@@ -239,439 +169,228 @@ function* doAddNewMemberFamilyApi(input) {
     relation: input.relationship,
     sex: input.sex,
     parent_id: input.parent_id
-    
   });
-  console.log(`nvTien - doAddNewMemberFamilyApi Databody ${JSON.stringify(dataBody)} dataInput ${JSON.stringify(input)}`)
-
-   return yield fetch(urlAddNewMemberFamily , {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-      })
-      .then((response) => response.json())
-      .then((responseJson) => {
-   
-        return responseJson;
-      })
-      .catch((error) => {
-        console.error("error..." + error);
-      });
+  return yield handlePostRequest(ApiString.URL_AddMemberFamily, headers, dataBody);
 }
 
-//bệnh nhân đặt lịch khám
-function* doSaveDataAppointmentApi(input) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    let dataBody = JSON.stringify({
-        user_id: input.id,
-        doctor_id: input.id_doctor,
-        disease_id: input.id_disease,
-        date: input.date,
-        hours: input.hours,
-        type_call: input.type_call,
-        note_text: input.note_text,
-        note_images: input.note_images
+//api lấy thời gian cài đặt notify trên server
+function* doGetTimeSettingNotificationApi() {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let userID = yield getDataStorage(Constants.KEY_USER_ID);
 
-    });
-    console.log("data save body...: " + dataBody + ` Header ${JSON.stringify(headers)}` );
-    return yield fetch(urlSaveAppointment, {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-    }).then((response) => response.json())
-        .then((responseJson) => {
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-     });
-}
-
-//lấy ra danh sách các lịch hẹn mà bệnh nhân đã đặt trước đó
-// case 'pending':
-// status = 0;
-// break;
-// case 'accept':
-// status = 1;
-// break;
-// case 'doctorcancel':
-// status = 2;
-// break;
-// case 'usercancel': //type update trạng thái của user, khi user huỷ
-// status = 3;
-// break;
-function* doGetAppointScheduleApi() {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let user_id = yield getDataStorage(Constants.KEY_USER_ID);
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    var url = urlGetAppointmentSchedule + user_id;
-    console.log(`doGetAppointScheduleApi url ` + url + ` header: ${JSON.stringify(headers)}`);
-    return yield fetch(url, {
-        method: "GET",
-        headers: headers,
-        body: ""
-    }).then((response) => response.json())
-        .then((responseJson) => {
-            console.log(`doGetAppointScheduleApi response = ${JSON.stringify(responseJson)}`)
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-        });
-}
-
-//lấy lịch làm việc của bác sĩ
-function* doGetDoctorAppointScheduleApi() {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let user_id = yield getDataStorage(Constants.KEY_USER_ID);
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    var url = urlGetDoctorAppointSchedule + user_id;
-    console.log(`doGetDoctorAppointScheduleApi url ` + url + ` header: ${JSON.stringify(headers)}`);
-    return yield fetch(url, {
-        method: "GET",
-        headers: headers,
-        body: ""
-    }).then((response) => response.json())
-        .then((responseJson) => {
-            console.log(`doGetAppointScheduleApi response = ${JSON.stringify(responseJson)}`)
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-    });
-}
-
-//lấy lịch hẹn của bác sĩ theo ngày
-function* doGetAppointmentScheduleApi(input) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let getDate = yield convertDateToMillisecond(input.date);
-    console.log("nvTien - doGetAppointmentScheduleApi token: " + token + " dateMilli: " + getDate);
-    let xKey = "";  
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    let url = urlGetDoctorSchedule + input.doctor_id + "/" + getDate;
-    console.log(`doGetAppointmentScheduleApi...data url = ` + url + ` Header: ${JSON.stringify(headers)}`);
-    
-   return yield fetch(url , {
-        method: "GET",
-        headers: headers,
-        body: ""
-      })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(`doGetAppointmentScheduleApi...data response = ${JSON.stringify(responseJson)} `);
-        return responseJson;
-      })
-      .catch((error) => {
-        console.error("error..." + error);
-      });
-  }
-
-
-const getDataStorage = async (key) => {
-    try {
-        const value = await AsyncStorage.getItem(key);
-        return value;
-    } catch (error) {
-      // Error retrieving data
-      console.log("error... " + error.message);
-      return null;
-    }
-}
-
-//bệnh nhân huỷ lịch khám đang đợi xác nhận từ bác sĩ
-function* doCancelAppointmentPatient(input) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let user_id = yield getDataStorage(Constants.KEY_USER_ID);
-    let xKey = "";  
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
   let dataBody = JSON.stringify({
-     user_id: user_id, old_password:old_password,new_password: newPassword
+    user_id: userID
   });
-   return yield fetch(urlChangePassword , {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-      })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(`doChangePasswordApi...data = ${JSON.stringify(responseJson)} `);
-        return responseJson;
-      })
-      .catch((error) => {
-        console.error("error..." + error);
-      });
+  return yield handlePostRequest(ApiString.URL_Get_TimeSettingNotification, headers, dataBody);
+  
 }
 
+//api cập nhật thời gian setting notify
+function* doUpdateTimeSettingNotificationApi(time) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let userID = yield getDataStorage(Constants.KEY_USER_ID);
+
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  let dataBody = JSON.stringify({
+    user_id: userID,
+    notify: time * 60000
+  });
+  return yield handlePostRequest(ApiString.URL_Update_TimeSettingNotification, headers, dataBody);
+}
+
+// function delete family member
+function* doDeleteFamilyMemberApi(memberID) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  let dataBody = "";
+  let url = ApiString.URL_DeleteFamilyMember.concat(memberID);
+  return yield handlePostRequest(url, headers, dataBody);
+}
+
+// function update family member info
+function* doUpdateFamilyMemberApi(memberInfor) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let userID = yield getDataStorage(Constants.KEY_USER_ID);
+
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  let dataBody = JSON.stringify({
+    first_name: memberInfor.firstName,
+    last_name: memberInfor.lastName,
+    full_name: memberInfor.firstName + " " + memberInfor.lastName,
+    email: memberInfor.email,
+    date_birth: memberInfor.birthDate,
+    sex: memberInfor.sex,
+    relation: memberInfor.relationship,
+    parent_id: userID
+  });
+  var url = ApiString.URL_UpdateFamilyMember.concat(memberInfor.user_id);
+  return yield handlePostRequest(url, headers, dataBody);
+}
+
+// service update thong tin user
+function* doUpdateUserInfoApi(dateUser) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let userID = yield getDataStorage(Constants.KEY_USER_ID);
+
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  let dataBody = JSON.stringify({
+    user_id: userID,
+    first_name: dateUser.first_name,
+    last_name: dateUser.last_name,
+    phone: dateUser.phone,
+    sex: 1,
+    date_birth: dateUser.date_birth,
+    avata: dateUser.avata
+  });
+  return yield handlePostRequest(ApiString.URL_UpdateUserInfo, headers, dataBody);
+}
+
+//Service resetpassword, khi người dùng quên mật khẩu, hệ thống sẽ gen pass mới và gửi lại vào mail đã đăng ký
 function* doResetPasswordApi(email) {
-    let xKey = "";
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-key" : xKey
-      };
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-key": xKey
+  };
   let dataBody = JSON.stringify({
     email: email
   });
-   return yield fetch(urlResetPassword , {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-      })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(`doResetPasswordApi...data = ${JSON.stringify(responseJson)} `);
-        return responseJson;
-      })
-      .catch((error) => {
-        console.error("error..." + error);
-      });
+  return yield handlePostRequest(ApiString.URL_ResetPassword, headers, dataBody);
 }
-function* doChangePasswordApi(newPassword,old_password) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let userID = yield getDataStorage(Constants.KEY_USER_ID);
-    // alert(userID);
-    let xKey = "";
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    let dataBody = JSON.stringify({
-        user_id: userID,
-        old_password: old_password,
-        new_password: newPassword
-      });
-   
-    
-    return yield fetch(urlChangePassword, {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-    }).then((response) => response.json())
-        .then((responseJson) => {
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-    });
- };
- function* doDeleteFamilyMemberApi(memberID) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    // let userID = yield getDataStorage(Constants.KEY_USER_ID);
-    // alert(userID);
-    let xKey = "";
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    let dataBody = "";
-    let url = urlDeleteFamilyMember.concat(memberID);
-    
-    return yield fetch(url , {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-    }).then((response) => response.json())
-        .then((responseJson) => {
-            
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-    });
- };
- function* doUpdateFamilyMemberApi(memberInfor) {
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let userID = yield getDataStorage(Constants.KEY_USER_ID);
-    
-    let xKey = "";
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    let dataBody = JSON.stringify({
-        first_name: memberInfor.firstName,
-        last_name: memberInfor.lastName,
-        full_name: memberInfor.firstName+" "+memberInfor.lastName,
-        email: memberInfor.email,
-        date_birth: memberInfor.birthDate,
-        sex: memberInfor.sex,
-        relation: memberInfor.relationship,
-        parent_id: userID
-      });
-    var url = urlUpdateFamilyMember.concat(memberInfor.user_id);
 
-    return yield fetch(url, {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-    }).then((response) => response.json())
-        .then((responseJson) => {
-            
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-    });
- };
- // function update thong tin user
- function* doUpdateUserInfoApi(dateUser){
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let userID = yield getDataStorage(Constants.KEY_USER_ID);
-    
-    let xKey = "";
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    let dataBody = JSON.stringify({
-        user_id:userID,
-        first_name: dateUser.first_name,
-        last_name: dateUser.last_name,
-        phone: dateUser.phone,
-        sex: 1,
-        date_birth: dateUser.date_birth,
-        avata: dateUser.avata
-      });
-    
-    // alert("from api: ==>" + dataBody);
-    // alert(url);
-    return yield fetch(urlUpdateUserInfo, {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-    }).then((response) => response.json())
-        .then((responseJson) => {
-            
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-    });
- };
-
- // function get time setting notification
- function* doGetTimeSettingNotificationApi(){
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let userID = yield getDataStorage(Constants.KEY_USER_ID);
-    
-    let xKey = "";
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    let dataBody = JSON.stringify({
-        user_id: userID
-      });
-
-    //   alert( `From update api: ${dataBody + " == "+ urlGetTimeSettingNotification}`); 
-    return yield fetch(urlGetTimeSettingNotification, {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-    }).then((response) => response.json())
-        .then((responseJson) => {
-            // alert( `From get api: ${JSON.stringify(responseJson)}`);
-            return responseJson;
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-    });
- };
-
-  // function update time setting notification
-  function* doUpdateTimeSettingNotificationApi(time){
-    let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
-    let userID = yield getDataStorage(Constants.KEY_USER_ID);
-    
-    let xKey = "";
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token" : token,
-        "x-key" : xKey
-    };
-    let dataBody = JSON.stringify({
-        user_id:userID,
-        notify: (time * 60000)
-      });
-    return yield fetch(urlUpdateTimeSettingNotification, {
-        method: "POST",
-        headers: headers,
-        body: dataBody
-    }).then((response) => response.json())
-        .then((responseJson) => {
-            return responseJson;
-            // alert( `From update api: ${responseJson}`);
-        })
-        .catch((error) => {
-            console.error("error..." + error);
-    });
- };
-
-
-
-
+//service change password, người dùng thay đổi mật khẩu
+function* doChangePasswordApi(newPassword, old_password) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let userID = yield getDataStorage(Constants.KEY_USER_ID);
+  // alert(userID);
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  let dataBody = JSON.stringify({
+    user_id: userID,
+    old_password: old_password,
+    new_password: newPassword
+  });
+  return yield handlePostRequest(ApiString.URL_ChangePassword, headers, dataBody);
+}
 
 export const Api = {
-  doRegisterApi,
   doLoginApi,
+  doRegisterApi,
   doGetSpecialityApi,
-  doGetDataDoctorApi,
   doGetDataDoctorImmediatelyApi,
+  doGetDoctorByDateApi,
+  doSaveDataBookingApi,
+  doGetDataBookingApi,
   doGetListFamilyApi,
-  doAddNewMemberFamilyApi,
-  doSaveDataAppointmentApi,
-  doGetAppointScheduleApi,
-  doGetDoctorAppointScheduleApi,
-  doGetAppointmentScheduleApi,
-  doGetAllDoctorApi,
-  doCancelAppointmentPatient,
-  doResetPasswordApi,
-  doChangePasswordApi,
+  doAddMemberFamilyApi,
+  doGetTimeSettingNotificationApi,
+  doUpdateTimeSettingNotificationApi,
   doDeleteFamilyMemberApi,
   doUpdateFamilyMemberApi,
   doUpdateUserInfoApi,
-  doGetTimeSettingNotificationApi,
-  doUpdateTimeSettingNotificationApi,
+  doResetPasswordApi,
+  doChangePasswordApi
+};
 
 
+//function dùng để request lên server theo method POST
+function* handlePostRequest(urlApi, headers, dataBody) {
+  return yield timeout(
+     TIME_OUT_SERVICE,
+     fetch(urlApi, {
+       method: "POST",
+       headers: headers,
+       body: dataBody
+     })
+   )
+     .then(response => response.json())
+     .then(responseJson => {
+       console.log(`handlePostRequest...data response = ${JSON.stringify(responseJson)} `);
+       return responseJson;
+     })
+     .catch(error => {
+       console.error("error..." + error);
+       return null;
+     });
+ }
+ 
+ //function dùng để request lên server theo method GET
+ function* handleGetRequest(urlApi, headers) {
+   return yield timeout(
+     TIME_OUT_SERVICE,
+     fetch(urlApi, {
+       method: "GET",
+       headers: headers,
+       body: ""
+     })
+   )
+     .then(response => response.json())
+     .then(responseJson => {
+       console.log(
+         `handleGetRequest...data response = ${JSON.stringify(responseJson)} `
+       );
+       return responseJson;
+     })
+     .catch(error => {
+       console.error("error..." + error);
+       return null;
+     });
+ }
 
-
-
-
-
-
-
+//xử lí set timeout cho call service, trường hợp server không trả về response
+function timeout(ms, promise) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      reject(new Error("timeout"));
+    }, ms);
+    promise.then(resolve, reject);
+  });
+}
+//lấy dữ liệu trong cache ra
+const getDataStorage = async key => {
+  try {
+    const value = await AsyncStorage.getItem(key);
+    return value;
+  } catch (error) {
+    // Error retrieving data
+    console.log("error... " + error.message);
+    return null;
+  }
 };

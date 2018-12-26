@@ -1,8 +1,5 @@
 import {
-    // LOGIN_DO_LOGIN,
-    // LOGIN_SUCCESS,
-    // LOGIN_FAIL,
-    // LOGIN_RESET_LOGIN,
+
     RESET_PASSWORD_DO_RESET_PASSWORD,
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_FAIL,
@@ -16,6 +13,7 @@ import { AsyncStorage } from "react-native";
 import {Translate} from "../utils/Language"
 import DefineKey from "../config/language/DefineKey";
 
+// function reset change password
 function* doResetPassword(action) {
     try {
         yield put({ type: RESET_PASSWORD_DO_RESET, hasError: false , lastError: undefined});
@@ -33,6 +31,8 @@ function* doResetPassword(action) {
     }
 
 }
+
+// request reset password listenner
 export function* watchDoResetPassword() { 
     yield takeLatest(RESET_PASSWORD_DO_RESET_PASSWORD, doResetPassword);
 }

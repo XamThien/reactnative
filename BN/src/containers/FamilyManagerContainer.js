@@ -1,26 +1,20 @@
 import { connect } from "react-redux";
-import familyManagerScr from "../screen/profile/familyManager/familyManagerScr";
-// import {
-//     fetchDataModalName,
-// } from "../actions/ModalNameAction";
+import FamilyManager from "../screen/profile/familymanager/FamilyManager";
 
 import { doDeleteMember,doLoadAllFamilyMember,addNewMember } from '../actions/FamilyManagerAction';
 
 const mapStateToProps = (state) => {
-    // alert(`From container dataNames: ${JSON.stringify(state.resultFamilyManagerReducer.dataNames)}`);
-    // alert(`From container dataNewUser: ${JSON.stringify(state.resultFamilyManagerReducer.dataNewUser)}`);
-    // alert(`From container state.getProfilesReducers: ${JSON.stringify(state.getProfilesReducers)}`);
     return {
-        dataNames: state.resultFamilyManagerReducer.dataNames,
+        dataNames: state.familyManagerReducer.dataNames,
         userProfile: state.getProfilesReducers,
-        dataNewMember: state.resultFamilyManagerReducer.dataNewUser,
-        showLoading: state.resultFamilyManagerReducer.isLoading,
-        error: state.resultFamilyManagerReducer.lastError,
+        dataNewMember: state.familyManagerReducer.dataNewUser,
+        showLoading: state.familyManagerReducer.isLoading,
+        error: state.familyManagerReducer.lastError,
 
-        hasErrorDelete: state.resultFamilyManagerReducer.hasError,
-        lastErrorDelete: state.resultFamilyManagerReducer.lastError,
-        showLoadingDelete: state.resultFamilyManagerReducer.isLoading,
-        messageSuccessDelete: state.resultFamilyManagerReducer.messageSuccess
+        hasErrorDelete: state.familyManagerReducer.hasError,
+        lastErrorDelete: state.familyManagerReducer.lastError,
+        showLoadingDelete: state.familyManagerReducer.isLoading,
+        messageSuccessDelete: state.familyManagerReducer.messageSuccess
     }
 };
 
@@ -39,5 +33,5 @@ const mapDispatchToProps = (dispatch) => {
         
     };
 }
-const ModalNameContainer =  connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(familyManagerScr);
+const ModalNameContainer =  connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(FamilyManager);
 export default ModalNameContainer;

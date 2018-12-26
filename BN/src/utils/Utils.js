@@ -1,10 +1,10 @@
 
-
+//đổi ngày sang millisecond
 export function convertDateToMillisecond(strDate) {
     var output = new Date(strDate).getTime();
     return output;
 }
-
+//đổi millisecond sang date yyy-MM-DD
 export function convertMillisecondToDate(duration) {
     let outPut = "";
     var isoFormat = new Date(duration);
@@ -22,12 +22,12 @@ export function convertMillisecondToDate(duration) {
     outPut = year + "-" + month + "-" + date;
     return outPut;
 }
-
+//Đổi thời gian sang millisecond
 export function convertTimeToMillisecond(time) {
    var output = (Number(time.split(':')[0])*3600*1000) + (Number(time.split(':')[1])*60*1000);
    return output;
 }
-
+//đổi millisecond sang thời gian
 export function convertMilliToTime(duration) {
    var milliseconds = parseInt((duration % 1000) / 100),
    seconds = parseInt((duration / 1000) % 60),
@@ -40,8 +40,8 @@ export function convertMilliToTime(duration) {
 
  return hours + ":" + minutes;
 }
-
- export function getCurrentDate() {
+//lấy ra ngày hiện tại của device
+export function getCurrentDate() {
      var date = new Date().getDate();
      var month = new Date().getMonth() + 1;
      var year = new Date().getFullYear();
@@ -51,12 +51,12 @@ export function convertMilliToTime(duration) {
 
      return outPut;
  }
-
- export function getTimeMillisecond() {
+//lấy ra millisecond thời gian hiện tại của device
+export function getTimeMillisecond() {
      var curDate = new Date();
      return curDate.getTime();
  }
-
+//lấy ra thời gian hiện tại của device
  export function getCurrentTime() {
     var date, TimeType, hour, minutes, seconds, fullTime;
     date = new Date();
@@ -70,7 +70,7 @@ export function convertMilliToTime(duration) {
     fullTime = hour.toString() + ':' + minutes.toString();
      return fullTime;
 }
-
+//lấy ra thời gian hiện tại theo AM, PM của device
  export function getCurrentTimeAMPM() {
 
      var date, TimeType, hour, minutes, seconds, fullTime;
@@ -106,8 +106,8 @@ export function convertMilliToTime(duration) {
      fullTime = hour.toString() + ':' + minutes.toString() + ':' + seconds.toString() + ' ' + TimeType.toString();
      return fullTime;
  }
-
- export function getTime() {
+//lấy ra thời gian hiện tại, theo định dạng hour:minutes:seconds
+export function getTime() {
 
      var date, hour, minutes, seconds, fullTime;
      date = new Date();
@@ -126,29 +126,7 @@ export function convertMilliToTime(duration) {
      fullTime = hour.toString() + ':' + minutes.toString() + ':' + seconds.toString();
      return fullTime;
  }
-
- export function saveDataStorage(key, value){
-    try {
-         AsyncStorage.setItem(key,
-          JSON.stringify(value)
-        );
-      } catch (error) {
-        console.log("Error saving data" + error);
-      }
- }
-
-export const getDataStorage = async () => {
-    try {
-        const value = await AsyncStorage.getItem(key);
-        console.log(`Utils getData...data = ${JSON.stringify(value)}` + value);
-        return value;
-    } catch (error) {
-      // Error retrieving data
-      console.log(error.message);
-      return null;
-    }
-}
-
+//kiểm tra đối tượng object có rỗng hay không
 export function isEmptyObject(obj){
     return JSON.stringify(obj) === '{}';
 }

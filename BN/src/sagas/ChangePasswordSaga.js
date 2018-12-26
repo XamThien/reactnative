@@ -12,6 +12,8 @@ import { AsyncStorage } from "react-native";
 import { Translate } from "../utils/Language";
 import DefineKey from "../config/language/DefineKey";
 
+
+// change password function
 function* doChangePassword(action) {
   try {
     yield put({
@@ -49,10 +51,13 @@ function* doChangePassword(action) {
     });
   }
 }
+
+// do change password listenner
 export function* watchDoChangePassword() {
   yield takeLatest(CHANGE_PASSWORD_DO_CHANGE, doChangePassword);
 }
 
+// remove data from local storage
 async function removeDataStorage(key) {
   try {
     await AsyncStorage.removeItem(key);
@@ -61,6 +66,7 @@ async function removeDataStorage(key) {
   }
 }
 
+// get data from local storage
 async function getDataStorage(key) {
   try {
     const value = await AsyncStorage.getItem(key);

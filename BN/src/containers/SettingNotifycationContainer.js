@@ -1,16 +1,16 @@
 import { connect } from "react-redux";
-import settingNotificationSrc from "../screen/profile/settingNotification/settingNotificationScr";
+import SettingNotification from "../screen/profile/settingnotification/SettingNotification";
 import {
     updateTimeSettingNotification, doGetTimeSettingNotification
 } from "../actions/SettingNotificationAction";
 
 const mapStateToProps = (state) => {
     return {
-        hasError: state.resultSettingNotificationReducer.hasError,
-        lastError: state.resultSettingNotificationReducer.lastError,
-        showLoading: state.resultSettingNotificationReducer.isLoading,
-        setting_notify: state.resultSettingNotificationReducer.setting_notify,
-        messageSuccess: state.resultSettingNotificationReducer.messageSuccess,
+        hasError: state.settingNotificationReducer.hasError,
+        lastError: state.settingNotificationReducer.lastError,
+        showLoading: state.settingNotificationReducer.isLoading,
+        setting_notify: state.settingNotificationReducer.setting_notify,
+        messageSuccess: state.settingNotificationReducer.messageSuccess,
     }
 };
 
@@ -24,5 +24,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     };
 }
-const LoginContainer =  connect(mapStateToProps, mapDispatchToProps)(settingNotificationSrc);
+const LoginContainer =  connect(mapStateToProps, mapDispatchToProps)(SettingNotification);
 export default LoginContainer;

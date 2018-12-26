@@ -11,11 +11,10 @@ import {
     messageSuccess: ''
   };
   
-  export const resultResetPasswordReducer = (state = _INITIAL_STATE_, action) => {
+  export const resetPasswordReducer = (state = _INITIAL_STATE_, action) => {
     
     switch (action.type) {
       case RESET_PASSWORD_SUCCESS:  
-      console.log(`nvHuy - reset password success...`);
       return {
         ...state,
         messageSuccess: action.messageSuccess,
@@ -24,11 +23,10 @@ import {
         isLoading: false
       };
       case RESET_PASSWORD_FAIL:
-      console.log(`nvHuy - reset password false...`);
       return {
         ...state,
         messageSuccess: "",
-		lastError : action.lastError,
+		    lastError : action.lastError,
         hasError : action.hasError,
         isLoading: false
       };
@@ -36,7 +34,7 @@ import {
       return {
         ...state,
         messageSuccess: "",
-		lastError : action.lastError,
+		    lastError : action.lastError,
         hasError : action.hasError,
         isLoading: true
       };

@@ -1,15 +1,15 @@
 import { connect } from "react-redux";
-import LoginScr from "../screen/login/LoginScr";
+import Login from "../screen/login/Login";
 import {
     doLoginUserName,
 } from "../actions/LoginAction";
 
 const mapStateToProps = (state) => {
     return {
-        hasError: state.resultLoginReducer.hasError,
-        lastError: state.resultLoginReducer.lastError,
-        showLoading: state.resultLoginReducer.isLoading,
-        userProfile: state.resultLoginReducer.userProfile
+        hasError: state.loginReducer.hasError,
+        lastError: state.loginReducer.lastError,
+        showLoading: state.loginReducer.isLoading,
+        userProfile: state.loginReducer.userProfile
     }
 };
 
@@ -20,5 +20,5 @@ const mapDispatchToProps = (dispatch) => {
         },
     };
 }
-const LoginContainer =  connect(mapStateToProps, mapDispatchToProps)(LoginScr);
+const LoginContainer =  connect(mapStateToProps, mapDispatchToProps)(Login);
 export default LoginContainer;

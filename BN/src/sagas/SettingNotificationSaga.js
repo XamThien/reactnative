@@ -27,13 +27,9 @@ function* getTimeSettingSaga(action) {
       });
     } else {
       const response = yield Api.doGetTimeSettingNotificationApi();
-      // alert("From get setting notify 1: " + JSON.stringify(response));
       if (response !== null && response.data !== null) {
-        // alert( `From saga 1: ${JSON.stringify(response.data)}`);
         let dataResponse = response.data;
-
         var time = dataResponse[0].notify;
-        // alert( `From saga 2: ${JSON.stringify(time)}`);
         var setting_notify = {};
         if (time === null) {
           setting_notify = { status: true, time: 5 };
@@ -42,7 +38,7 @@ function* getTimeSettingSaga(action) {
           setting_notify = { status: true, time: (time / 60000) };
         }
         yield saveDataStorage(Constants.KEY_STORE_SETTING_NOTIFICATION,JSON.stringify(setting_notify));
-        // alert(`from saga : ${JSON.stringify(setting_notify)}`);
+
         yield put({
           type: SETTING_NOTIFICATION_GET_DATA_SUCCESS,
           setting_notify: setting_notify,
@@ -67,7 +63,6 @@ export function* watchGetTimeSettingNotification() {
 // ===================== update time setting notification =============================================
 function* updateTimeSettingNotification(action) {
   try {
-    // alert("From save setting notify 1: " + action.time + " ," + action.checked);
     const response = yield Api.doUpdateTimeSettingNotificationApi(action.time);
     if (response != null && response.result !== "updated") {
       var setting_notify = {status: action.checked, time: action.time};

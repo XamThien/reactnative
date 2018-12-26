@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import editMemberScr from "../screen/profile/familyManager/editMemberInfor/editMemberScr";
+import EditMember from "../screen/profile/familymanager/editMemberInfor/EditMember";
 import {
     doUpdateMember,
 
@@ -7,11 +7,11 @@ import {
 
 const mapStateToProps = (state) => {
     return {
-        hasError: state.resultFamilyManagerReducer.hasError,
-        lastError: state.resultFamilyManagerReducer.lastError,
-        showLoading: state.resultFamilyManagerReducer.isLoading,
-        error: state.resultFamilyManagerReducer.lastError,
-        messageSuccess: state.resultFamilyManagerReducer.messageSuccess
+        hasError: state.familyManagerReducer.hasError,
+        lastError: state.familyManagerReducer.lastError,
+        showLoading: state.familyManagerReducer.isLoading,
+        error: state.familyManagerReducer.lastError,
+        messageSuccess: state.familyManagerReducer.messageSuccess
 
     }
 };
@@ -23,5 +23,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     };
 }
-const EditFamilyMemberContainer =  connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(editMemberScr);
+const EditFamilyMemberContainer =  connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(EditMember);
 export default EditFamilyMemberContainer;

@@ -14,7 +14,6 @@ import ScreenName from "../../commons/ScreenName";
 import { Translate } from "../../utils/Language";
 import DefineKey from "../../config/language/DefineKey";
 import DialogLoading from "../../components/DialogLoading";
-// import DialogWarning from "../../components/DialogWarning";
 import WarningDialog from "../../components/WarningDialog";
 
 export default class Login extends Component {
@@ -34,7 +33,7 @@ export default class Login extends Component {
     this.onWarningOk = this.onWarningOk.bind(this);
   }
 
-  onPressLogin() {
+  onPressLoginScreen() {
     let errTitle = Translate(DefineKey.DialogWarning_text_title);
     var userData = {};
     if (this.state.username === "" || this.state.password === "") {
@@ -55,6 +54,23 @@ export default class Login extends Component {
 
       this.props.doLogin(userData);
     }
+  }
+
+  onPressRegisterScreen() {
+    this.props.navigation.navigate(ScreenName.Screen_RegisterScreen)
+  }
+
+  onPressHelpScreen() {
+    this.props.navigation.navigate(ScreenName.Screen_HelpScreen)
+  }
+  
+  onPressResetPassword() {
+    this.props.navigation.navigate(ScreenName.Screen_ResetPassword)
+  }
+  //chuyển sang màn hình main khi login thành công
+  redirectToMainScreen(user_id) {
+  this.props.navigation.navigate(ScreenName.Screen_MainScreen, {
+          intent_userID: user_id});
   }
 
   onOpenDialogWarning(errTitle, errContent) {
@@ -80,12 +96,10 @@ export default class Login extends Component {
   }
 
   componentWillReceiveProps(props) {
-    let hasError = props.hasError;
     let errorLogin = props.lastError;
-    if (!hasError && errorLogin === "") {
-      this.props.navigation.navigate(ScreenName.Screen_Main, {
-        intent_userID: props.userProfile.user_id
-      });
+    if (errorLogin === "") {
+        // this.redirectToMainScreen(props.userProfile.user_id);
+        this.props.navigation.navigate(ScreenName.Screen_UserProfile)
     } else {
       if (errorLogin != null && errorLogin !== "") {
         let errTitle = Translate(DefineKey.DialogWarning_text_title);
@@ -102,18 +116,11 @@ export default class Login extends Component {
 }
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <TouchableWithoutFeedback
-          style={styles.container}
-          onPress={Keyboard.dismiss}
-        >
+    <SafeAreaView style={styles.container}>
+        <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
           <View style={styles.container}>
             <View style={styles.layoutTop}>
-              <Image
-                resizeMode="contain"
-                source={require("../../../assets/icon_start.png")}
-                style={styles.imageTop}
-              />
+              <Image resizeMode="contain" source={require("../../../assets/icon_start.png")} style={styles.imageTop} />
               <Text style={styles.textTop}>
                 {Translate(DefineKey.Login_title)}
               </Text>
@@ -124,98 +131,47 @@ export default class Login extends Component {
                 {Translate(DefineKey.Login_username)}
               </Text>
               <View style={styles.layoutInput}>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Username..."
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  autoFocus={true}
-                  returnKeyType="next"
-                  keyboardType="email-address"
-                  value={this.state.username}
-                  placeholderTextColor="gray"
-                  ref="userName"
-                  onSubmitEditing={() => this.refs.passWord.focus()}
-                  onChangeText={text => this.setState({ username: text })}
-                />
-                <Image
-                  source={require("../../../assets/icon_username.png")}
-                  style={styles.imageInput}
-                />
+                <TextInput style={styles.input} placeholder="Username..." autoCapitalize="none" autoCorrect={false} autoFocus={true} returnKeyType="next" keyboardType="email-address" value={this.state.username} placeholderTextColor="gray" ref="userName" onSubmitEditing={() => this.refs.passWord.focus()} onChangeText={text => this.setState(
+                      { username: text }
+                    )} />
+                <Image source={require("../../../assets/icon_username.png")} style={styles.imageInput} />
               </View>
               <Text style={styles.textTitleInput}>
                 {Translate(DefineKey.Login_password)}
               </Text>
               <View style={styles.layoutInput}>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Password..."
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  secureTextEntry={!this.state.show_pass}
-                  value={this.state.password}
-                  placeholderTextColor="gray"
-                  ref="passWord"
-                  onChangeText={text => this.setState({ password: text })}
-                />
-                {/* <Image
-                                    source={require("../../../assets/icon_password.png")}
-                                    style={styles.imageInput}
-                                /> */}
-                <TouchableOpacity
-                    style={styles.imageInput}
-                    onPress={() => {
-                        if(this.state.show_pass === true)
-                        {
-                            this.setState({show_pass: false});
-
-                        } else {
-                            this.setState({show_pass: true});
-                        }
-                    }}
-                >
-                    <Image source={this._getIconPassword()} style={styles.imageInput} />
+                <TextInput style={styles.input} placeholder="Password..." autoCapitalize="none" autoCorrect={false} secureTextEntry={!this.state.show_pass} value={this.state.password} placeholderTextColor="gray" ref="passWord" onChangeText={text => this.setState(
+                      { password: text }
+                    )} />
+                <TouchableOpacity style={styles.imageInput} onPress={() => {
+                    if (this.state.show_pass === true) {
+                      this.setState({ show_pass: false });
+                    } else {
+                      this.setState({ show_pass: true });
+                    }
+                  }}>
+                  <Image source={this._getIconPassword()} style={styles.imageInput} />
                 </TouchableOpacity>
               </View>
               <View />
-              <TouchableOpacity
-                style={styles.btnLogin}
-                onPress={() => this.onPressLogin()}
-              >
+              <TouchableOpacity style={styles.btnLogin} onPress={() => this.onPressLoginScreen()}>
                 <Text style={styles.textButton}>
                   {Translate(DefineKey.StartScreen_text_btn_login)}
                 </Text>
               </TouchableOpacity>
 
-              <Text
-                style={styles.textRegister}
-                onPress={() =>
-                  this.props.navigation.navigate(ScreenName.Screen_Register)
-                }
-              >
+              <Text style={styles.textRegister} onPress={() => this.onPressRegisterScreen()}>
                 {Translate(DefineKey.Login_text_register)}
               </Text>
-              <Text
-                style={styles.textRegister}
-                onPress={() =>
-                  this.props.navigation.navigate(ScreenName.Screen_ResetPassword)
-                }
-              >
+              <Text style={styles.textRegister} onPress={() => this.onPressResetPassword()}>
                 {Translate(DefineKey.Login_text_forgotten)}
               </Text>
             </View>
 
             <View style={styles.layoutFooter}>
               <View style={styles.layoutFooterHelp}>
-                <TouchableOpacity
-                  onPress={() =>
-                    this.props.navigation.navigate(ScreenName.Screen_Help)
-                  }
-                >
-                  <Image
-                    source={require("../../../assets/icon_help.png")}
-                    style={styles.imageHelp}
-                  />
+                <TouchableOpacity onPress={() => this.onPressHelpScreen()}>
+                  <Image source={require("../../../assets/icon_help.png")} style={styles.imageHelp} />
                 </TouchableOpacity>
                 <Text style={styles.textTitleHelp}>
                   {Translate(DefineKey.Login_text_help)}
@@ -223,18 +179,10 @@ export default class Login extends Component {
               </View>
             </View>
             <DialogLoading loading={this.props.showLoading} />
-            {/* <DialogWarning ref={"dialogWarning"} title={this.state.errTitle}
-                                       content={this.state.errContent}/> */}
-            <WarningDialog
-              titleDialog={this.state.errTitle}
-              contentDialog={this.state.errContent}
-              onOk={this.onWarningOk.bind()}
-              textOk={Translate(DefineKey.DialogWarning_text_ok)}
-              visible={this.state.warningdialogvisible}
-            />
+            <WarningDialog titleDialog={this.state.errTitle} contentDialog={this.state.errContent} onOk={this.onWarningOk.bind()} textOk={Translate(DefineKey.DialogWarning_text_ok)} visible={this.state.warningdialogvisible} />
           </View>
         </TouchableWithoutFeedback>
       </SafeAreaView>
-    );
+      );
   }
 }

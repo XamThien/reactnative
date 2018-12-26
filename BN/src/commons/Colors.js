@@ -11,6 +11,7 @@ export default {
     green: "#18a0a0",
     blue: "#0000FF",
     facebook: "#214096",
-    yellow: "#FFFF00"
+    yellow: "#FFFF00",
+    lightblue:"#3497d9"
 
 };

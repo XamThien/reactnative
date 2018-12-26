@@ -5,11 +5,10 @@ import {
 } from "../actions/RegisterAction";
 
 const mapStateToProps = (state) => {
-    console.log("mapStateToProps: " + state.resultLoginReducer.hasError);
     return {
-        hasError: state.resultRegisterReducer.hasError,
-        lastError: state.resultRegisterReducer.lastError,
-        showLoading: state.resultRegisterReducer.isLoading
+        hasError: state.registerReducer.hasError,
+        lastError: state.registerReducer.lastError,
+        showLoading: state.registerReducer.isLoading
     }
 };
 

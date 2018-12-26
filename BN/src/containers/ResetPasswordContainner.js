@@ -1,15 +1,15 @@
 import { connect } from "react-redux";
-import ResetPasswordScr from "../screen/resetpassword/ResetPasswordScr";
+import ResetPassword from "../screen/resetpassword/ResetPassword";
 import {
     doResetPassWord,
 } from "../actions/ResetPasswordAction";
 
 const mapStateToProps = (state) => {
     return {
-        hasError: state.resultResetPasswordReducer.hasError,
-        lastError: state.resultResetPasswordReducer.lastError,
-        showLoading: state.resultResetPasswordReducer.isLoading,
-        messageSuccess: state.resultResetPasswordReducer.messageSuccess
+        hasError: state.resetPasswordReducer.hasError,
+        lastError: state.resetPasswordReducer.lastError,
+        showLoading: state.resetPasswordReducer.isLoading,
+        messageSuccess: state.resetPasswordReducer.messageSuccess
     }
 };
 
@@ -20,5 +20,5 @@ const mapDispatchToProps = (dispatch) => {
         },
     };
 }
-const ResetPasswordContainer =  connect(mapStateToProps, mapDispatchToProps)(ResetPasswordScr);
+const ResetPasswordContainer =  connect(mapStateToProps, mapDispatchToProps)(ResetPassword);
 export default ResetPasswordContainer;

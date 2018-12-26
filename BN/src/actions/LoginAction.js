@@ -1,8 +1,5 @@
 import {
-    LOGIN_DO_LOGIN,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGIN_RESET_LOGIN
+    LOGIN_DO_LOGIN
   } from "./ActionType";
   
   
@@ -10,29 +7,6 @@ import {
     return {
       type: LOGIN_DO_LOGIN,
       userData
-    }
-  }
-  
-  export const isLogin = (userData) => {
-    return {
-      type: LOGIN_SUCCESS,
-      userData
-    }
-  }
-  
-  export const getErrorLogin = (lastError, hasError) => {
-    return {
-      type: LOGIN_FAIL,
-      lastError,
-      hasError
-    }
-  }
-
-  export const resetLogin = (lastError, hasError) => {
-    return {
-      type: LOGIN_RESET_LOGIN,
-      lastError,
-      hasError
     }
   }
   

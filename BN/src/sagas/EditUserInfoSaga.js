@@ -2,7 +2,6 @@ import {
   USER_MANAGER_UPDATE_USER,
   USER_MANAGER_UPDATE_USER_SUCCESS,
   USER_MANAGER_UPDATE_USER_FAIL,
-  USER_MANAGER_UPDATE_USER_RESET,
   EDIT_USER_SUCCESS
 } from "../actions/ActionType";
 
@@ -17,15 +16,12 @@ import DefineKey from "../config/language/DefineKey";
 function* editUserInfo(action) {
   try {
     const response = yield Api.doUpdateUserInfoApi(action.dataNewUser);
-    // alert(`from saga ${JSON.stringify(response)}`);
     if (response.result === "updated") {
       yield put({
         type: USER_MANAGER_UPDATE_USER_SUCCESS,
         messageSuccess: Translate(DefineKey.USER_MANAGER_EDIT_SUCCESS_TEXT)
       });
       const user_new_profile = yield saveUserProfile(action.dataNewUser,action.userOldInfo);
-    //   alert(`from saga ${user_new_profile}`);
-
       yield put({
         type: EDIT_USER_SUCCESS,
         hasError: false,

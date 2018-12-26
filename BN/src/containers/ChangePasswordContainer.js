@@ -1,15 +1,15 @@
 import { connect } from "react-redux";
-import ChangePasswordScr from "../screen/changePassword/ChangePasswordScr";
+import ChangePassword from "../screen/profile/changepassword/ChangePassword";
 import {
     doChangePassword,
 } from "../actions/ChangePasswordAction";
 
 const mapStateToProps = (state) => {
     return {
-        hasError: state.resultChangePasswordReducer.hasError,
-        lastError: state.resultChangePasswordReducer.lastError,
-        showLoading: state.resultChangePasswordReducer.isLoading,
-        messageSuccess: state.resultChangePasswordReducer.messageSuccess
+        hasError: state.changePasswordReducer.hasError,
+        lastError: state.changePasswordReducer.lastError,
+        showLoading: state.changePasswordReducer.isLoading,
+        messageSuccess: state.changePasswordReducer.messageSuccess
     }
 };
 
@@ -20,5 +20,5 @@ const mapDispatchToProps = (dispatch) => {
         },
     };
 }
-const ChangePasswordContainer =  connect(mapStateToProps, mapDispatchToProps)(ChangePasswordScr);
+const ChangePasswordContainer =  connect(mapStateToProps, mapDispatchToProps)(ChangePassword);
 export default ChangePasswordContainer;

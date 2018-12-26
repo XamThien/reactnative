@@ -15,7 +15,7 @@ export const _INITIAL_STATE_ = {
   messageSuccess: ''
 };
 
-export const resultSettingNotificationReducer = (state = _INITIAL_STATE_, action) => {
+export const settingNotificationReducer = (state = _INITIAL_STATE_, action) => {
   switch (action.type) {
       
       case SETTING_NOTIFICATION_GET_DATA_SUCCESS:

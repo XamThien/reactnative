@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import EditUserInfoModal from "../screen/profile/userManager/dialogEditUserInfo/editUserInfoModal";
+import EditUserInfoModal from "../screen/profile/usermanager/dialogedituserinfo/EditUserInfoModal";
 import {doUpdateUser
 } from "../actions/EditUserInfoAction";
 

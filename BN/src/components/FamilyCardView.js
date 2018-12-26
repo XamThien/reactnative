@@ -7,6 +7,8 @@ import {
   TouchableHighlight
 } from "react-native";
 import styles from "./FamilyCardViewStyle";
+import { Translate } from "../utils/Language";
+import DefineKey from "../config/language/DefineKey";
 
 
 export default class FamilyCardView extends Component {
@@ -61,7 +63,8 @@ export default class FamilyCardView extends Component {
               
               onPress={() => this.onEdit(this.props.item)}
             >
-              <Image style={styles.btn_edit} source={require("../../assets/edit-btn.png")} />
+              {/* <Image style={styles.btn_edit} source={require("../../assets/edit-btn.png")} /> */}
+              <Text style={styles.txt_edit}>{Translate(DefineKey.Family_Manager_Update_Member_Button)}</Text>
             </TouchableOpacity>
           </View>
         </TouchableOpacity>

@@ -11,11 +11,10 @@ import {
     messageSuccess: ''
   };
   
-  export const resultChangePasswordReducer = (state = _INITIAL_STATE_, action) => {
+  export const changePasswordReducer = (state = _INITIAL_STATE_, action) => {
     
     switch (action.type) {
       case CHANGE_PASSWORD_SUCCESS:  
-      console.log(`nvHuy - change password success...`);
       return {
         ...state,
         messageSuccess: action.messageSuccess,
@@ -24,7 +23,6 @@ import {
         isLoading: false
       };
       case CHANGE_PASSWORD_FAIL:
-      console.log(`nvHuy - change password false...`);
       return {
         ...state,
         messageSuccess: "",

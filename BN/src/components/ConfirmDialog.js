@@ -8,7 +8,6 @@ param: Confirm Dialog
   visible                     // show-hidden dialog
  */
 
-
 import React, { Component } from "react";
 import { Text, View, StyleSheet, Button, Keyboard } from "react-native";
 
@@ -19,7 +18,6 @@ import Dialog, {
   SlideAnimation,
   ScaleAnimation
 } from "react-native-popup-dialog";
-
 
 export default class ConfirmDialog extends Component {
   constructor(props) {
@@ -34,7 +32,7 @@ export default class ConfirmDialog extends Component {
     // alert('will mout');
   }
   showModal(typeConfirm) {
-    this.setState({typeConfirm: typeConfirm})
+    this.setState({ typeConfirm: typeConfirm });
   }
   onCancel() {
     this.props.onCancel(this.state.typeConfirm);
@@ -47,7 +45,7 @@ export default class ConfirmDialog extends Component {
   render() {
     return (
       <View>
-        <Dialog 
+        <Dialog
           width={0.9}
           visible={this.props.visible}
           rounded
@@ -56,7 +54,7 @@ export default class ConfirmDialog extends Component {
               title={this.props.titleDialog}
               style={{
                 backgroundColor: "#F7F7F8",
-                textAlign: "center",
+                textAlign: "center"
               }}
               hasTitleBar={false}
               align="center"
@@ -79,8 +77,12 @@ export default class ConfirmDialog extends Component {
             />
           ]}
         >
-          <DialogContent style={{ backgroundColor: "#F7F7F8",justifyContent: 'center' }}>
-            <Text style={{textAlign: "center" }}>{this.props.contentDialog}</Text>
+          <DialogContent
+            style={{ backgroundColor: "#F7F7F8", justifyContent: "center" }}
+          >
+            <Text style={{ textAlign: "center" }}>
+              {this.props.contentDialog}
+            </Text>
           </DialogContent>
         </Dialog>
       </View>

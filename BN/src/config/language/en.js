@@ -1,4 +1,22 @@
 export default {
+  //key string màn hình dialog cảnh báo, thông báo lỗi
+  DialogWarning_text_ok:"Đồng ý",
+  DialogWarning_text_cancel:"Huỷ",
+  DialogWarning_text_title:"Thông báo",
+  Dialog_title_warning: "Xác Nhận",
+  Deepcare_error_select_time : "Bạn vui lòng chọn thời gian khám bệnh",
+  Deepcare_error_call_service: "Không lấy được dữ liệu, vui lòng kiểm tra lại kết nối!",
+  
+  //key string tiêu đề phần header của các màn hình
+  Header_title_login: "Đăng Nhập",
+  Header_title_register: "Đăng Ký Tài Khoản",
+  Header_title_term_of_service: "Điều Khoản Sử Dụng",
+  Header_title_help: "Trợ Giúp",
+  CustomHeader_title : "Tài khoản",
+  Header_title_booking: "Đặt Hẹn Khám Bệnh",
+  Header_title_user_profile: "Hồ Sơ",
+
+  //key string màn hình startScreen
   StartScreen_title_welcome: "Chào Mừng Bạn Đến Với",
   StartScreen_text_btn_login: "Đăng nhập",
   StartScreen_text_btn_login_face: "Đăng nhập với facebook",
@@ -12,6 +30,7 @@ export default {
   TermOfService_textTitle: "Điều khoản sử dụng ứng dụng \nDeepCare",
   TermOfService_BtnSave: "Lưu điều khoản",
 
+  //key string màn hình login
   Login_title: "ĐĂNG NHẬP",
   Login_username: "Email hoặc số điện thoại",
   Login_password: "Mật khẩu",
@@ -23,6 +42,11 @@ export default {
   Login_text_valid_empty : "Vui lòng nhập vào giá trị",
   Login_text_valid_username : "Bạn phải nhập vào email hoặc số điện thoại",
 
+  //key string màn hình đăng ký tài khoản
+  Register_text_register_fail: "Quá trình đăng ký bị lỗi kết nối, vui lòng thử lại",
+  Register_text_fail_username: "Email hoặc số điện thoại đã tồn tại",
+  Register_error_email_empty: "Vui lòng nhập vào địa chỉ email",
+  Register_error_email :"Email không đúng định dạng",
   Register_title: "ĐĂNG KÝ",
   Register_fist_name: "Họ",
   Register_last_name: "Tên",
@@ -34,139 +58,101 @@ export default {
   Register_safe_03: "Tốt",
   Register_safe_04: "Mạnh",
   Register_btn_finish: "Kết thúc đăng ký",
-  Register_text_register_fail: "Quá trình đăng ký bị lỗi kết nối, vui lòng thử lại",
-  Register_text_fail_username: "Email hoặc số điện thoại đã tồn tại",
   Register_error_firstName: "Vui lòng nhập vào Họ",
   Register_error_relationship: "Vui lòng nhập quan hệ thân nhân",
   Register_error_lastName: "Vui lòng nhập vào Tên",
   Register_error_pass_empty: "Vui lòng nhập vào mật khẩu",
-  Register_error_email_empty: "Vui lòng nhập vào địa chỉ email",
-  Register_error_email :"Email không đúng định dạng",
   Register_error_phone: "Số điện thoại không đúng định dạng",
   Register_error_birthdate:"Vui lòng nhập vào ngày tháng năm sinh",
 
+  //key string màn hình trợ giúp
   Help_title: "Trợ Giúp",
-  Note_title: "Ghi Chú",
-  Note_history_video:"Lịch sử khám bệnh Video",
-  Note_history_phone:"Lịch sử khám bệnh Điện Thoại",
-  Note_individual: "Ghi chú cá nhân",
-  Note_prescription:"Đơn thuốc bác sĩ",
 
-  Schedule_titleHead: "Đặt hẹn khám bệnh",
-  Schedule_textWelcome: "Xin Chào ",
-  Schedule_textOnline01: "Hiện có 20 bác sỹ của Deepcare đang online ",
-  Schedule_textOnline02: " có thể đặt lịch khám ngay bây giờ. ",
-  Schedule_textBtnImmediate: "Khám ngay",
-  Schedule_textBtnSchedule: "Chọn lịch khám",
-  Schedule_textSelect: "Chọn chuyên ngành",
-  Schedule_item_doctor_available: "Khám ngay",
-  Schedule_item_doctor_unavailable: "Không sẵn sàng khám ngay",
-  Schedule_item_doctor_time_online: "Bác sĩ sẽ online trong khoảng ",
-  Schedule_item_doctor_time_online_2: "giờ nữa ",
-  Schedule_error_get_speciality: "Không thể lấy danh sách chuyên ngành, vui lòng thử lại!",
+  //key string định nghĩa các tab ở màn hình main
+  MainNavigation_tab_doctor_list: "Đặt hẹn",
+  MainNavigation_tab_Booking_schedule: "Lịch khám",
+  MainNavigation_tab_user_note: "Ghi chú",
+  MainNavigation_tab_examination_book: "Sổ khám bệnh",
 
-  HomeNavigation_title_shedule: "Đặt hẹn",
-  HomeNavigation_title_medical_exami: "Khám bệnh",
-  HomeNavigation_title_note: "Ghi chú",
-  HomeNavigation_title_book_exami: "Sổ khám bệnh",
-  HomeNavigation_title_schedule_manager: "Lịch khám",
+  //key string màn hình hiển thị danh sách bác sĩ
+  DoctorList_titleHead: "Đặt hẹn khám bệnh",
+  DoctorList_textWelcome: "Xin Chào ",
+  DoctorList_textOnline01: "Hiện có ",
+  DoctorList_textOnline02: " bác sỹ của Deepcare đang online ",
+  DoctorList_textOnline03: " có thể đặt lịch khám ngay bây giờ. ",
+  DoctorList_textBtnImmediate: "Khám ngay",
+  DoctorList_textBtnSchedule: "Chọn lịch khám",
+  DoctorList_textSelect: "Chọn chuyên ngành",
+  DoctorList_item_doctor_available: "Khám ngay",
+  DoctorList_item_doctor_unavailable: "Không sẵn sàng khám ngay",
+  DoctorList_item_doctor_time_online: "Bác sĩ sẽ online trong khoảng ",
+  DoctorList_item_doctor_time_online_2: "giờ nữa ",
+  DoctorList_error_get_speciality: "Không thể lấy danh sách chuyên ngành, vui lòng thử lại!",
 
-  AppNavigation_title_login: "Đăng Nhập",
-  AppNavigation_title_term_service: "Điều Khoản Sử Dụng",
-  AppNavigation_title_register: "Đăng Ký",
-
-  Appointment_titleHead: "Đặt hẹn khám bệnh",
-  Appointment_textAppoitment: "Appointment for",
-  Appointment_textConsultant: "Consultant type",
-  Appointment_textErrorSelectTime:
+  //key string màn hình hiển thị đặt khám trước theo ngày
+  Booking_titleHead: "Đặt hẹn khám bệnh",
+  Booking_textAppoitment: "Appointment for",
+  Booking_textConsultant: "Consultant type",
+  Booking_textErrorSelectTime:
     "Sorry, this time is unavailable, Choose from the following:",
-  Appointment_text_phone: "Phone",
-  Appointment_text_video: "Video",
-  Appointment_title_add_note : "Add Note",
-  Appointment_add_note_attach: "Attach notes and photos to help provide you with the best advice",
-  Appointment_text_btn_save: "Đặt hẹn",
-  Appointment_req_appoint_success: "Bạn đã gửi yêu cầu cuộc hẹn thành công!",
-  
-  CustomHeader_title : "Tài khoản",
-  HorizontalItemImage_dialogconfirm_title: "Xác Nhận",
-  HorizontalItemImage_dialogconfirm_content: "Bạn có chắc chắn muốn xoá ảnh này không?",
-  HorizontalItemImage_dialogconfirm_yes: "Đồng ý",
-  HorizontalItemImage_dialogconfirm_cancel: "Huỷ",
+  Booking_text_phone: "Phone",
+  Booking_text_video: "Video",
+  Booking_title_add_note : "Add Note",
+  Booking_add_note_attach: "Attach notes and photos to help provide you with the best advice",
+  Booking_text_btn_save: "Đặt hẹn",
+  Booking_req_appoint_success: "Bạn đã gửi yêu cầu cuộc hẹn thành công!",
 
-  AppointNameModal_text_add:"Thêm thành viên gia đình",
-  AddNewMemberModal_text_save: "Thêm mới",
-  AddNewMemberModal_text_first_name: "Họ",
-  AddNewMemberModal_text_last_name:"Tên",
-  AddNewMemberModal_text_relationship:"Mối quan hệ",
-  AddNewMemberModal_text_email: "Email",
-  AddNewMemberModal_text_valid_email: "Chỉ 16 tuổi trở lên",
-  AddNewMemberModal_text_date_of_birth: "Ngày tháng năm sinh",
-  AddNewMemberModal_text_male:"Nam",
-  AddNewMemberModal_text_female:"Nữ",
+  //key string màn hình hiển thị danh sách thành viên gia đình, và thêm mới thành viên
+  Select_name_text_add:"Thêm thành viên gia đình",
+  AddMemberFamilyModal_text_save: "Thêm mới",
+  AddMemberFamilyModal_text_first_name: "Họ",
+  AddMemberFamilyModal_text_last_name:"Tên",
+  AddMemberFamilyModal_text_relationship:"Mối quan hệ",
+  AddMemberFamilyModal_text_email: "Email",
+  AddMemberFamilyModal_text_valid_email: "Chỉ 16 tuổi trở lên",
+  AddMemberFamilyModal_text_date_of_birth: "Ngày tháng năm sinh",
+  AddMemberFamilyModal_text_male:"Nam",
+  AddMemberFamilyModal_text_female:"Nữ",
   EditMemberModal_text_save: "Lưu sửa đổi",
+  AddMemberFamilyModal_text_success: "Thêm mới thành viên gia đình thành công",
 
-  BookExamination_text_button_01:"Thông tin cá nhân",
-  BookExamination_text_button_02:"Sổ bảo hiểm",
-  BookExamination_text_button_03: "Tiền sử khám bệnh",
-  BookExamination_text_button_04: "Tiền sử phẫu thuật",
-  BookExamination_text_button_05: "Bệnh điều trị lâu dài",
-  BookExamination_text_button_06: "Bệnh dị ứng",
-  BookExamination_text_button_07: "Lịch sử tiêm vacxin",
-  BookExamination_text_button_08: "Thói quen ăn uống",
-  BookExamination_text_button_09: "Thói quen sinh hoạt",
-  BookExamination_text_button_10: "Hoạt động thể thao",
-  BookExamination_head_title: "Sổ khám bệnh",
-
+  //key string màn hình hiển thị user profile
   Profile_personal: "Thông tin tài khoản",
   Profile_family: "Gia đình",
-  Profile_membership: "Thành viên",
-  Profile_subcription: "Đăng ký",
-  Profile_faq:"FAQ",
-  Profile_invite:"Mời tham gia",
   Profile_privacy:"Quyền riêng tư",
   Profile_term_of_use:"Điều khoản sử dụng",
   Profile_logout:"Đăng xuất",
   Profile_text_exit: "Thoát",
   Profile_head_title: "Tài khoản",
-
-  //define text dialog
-  DialogWarning_text_ok:"Đồng ý",
-  DialogWarning_text_cancel:"Huỷ",
-  DialogWarning_text_title:"Thông báo",
-  Dialog_title_warning: "Xác Nhận",
-  //define error
-  Deepcare_error_call_service: "Không lấy được dữ liệu, vui lòng kiểm tra lại kết nối!",
-  Deepcare_error_select_time : "Bạn vui lòng chọn thời gian khám bệnh",
+  Profile_change_password: "Đổi mật khẩu",
   
-  //nav menu
-  Main_menu_item_home: "Trang Chủ",
-  Main_menu_item_examination_schedule: "Lịch Khám",
-  Main_menu_item_help: "Trợ giúp",
-  Main_menu_item_term: "Điều khoản sử dụng",
+  // key định nghĩa màn hình cài đặt thông báo cuộc hẹn
+  SETTING_NOTIFICATION_HEADER_TITLE:"Cài đặt thông báo",
+  SETTING_NOTIFICATION_CHECKBOX_TITLE:"Cho phép hiển thị thông báo",
+  SETTING_NOTIFICATION_TIME_TITLE:"Thời gian thông báo lịch đặt hẹn sắp đến",
+  SETTING_NOTIFICATION_BUTTON_SAVE:"Lưu cài đặt",
+  SETTING_NOTIFICATION_SUCCESS_MESSAGE:"Cài đặt thành công",
+  SETTING_NOTIFICATION_ERROR_MESSAGE:"Cài đặt không thành công",
+  SETTING_NOTIFICATION_WARNING_MESSAGE:"Cài đặt không thành công. Thời gian thông báo phải từ 5-30 phút",
+  SETTING_NOTIFICATION_DISABLE_MESSAGE:"Bạn sẽ không còn nhận được thông báo cuộc hẹn",
+  
+  // key for family manager screen
+  FAMILY_MANAGER_HEADER_TITLE:"Quản lý thành viên gia đình",
+  FAMILY_MANAGER_HEADER_EDIT_TITLE:"Chỉnh sửa thông tin",
+  FAMILY_MANAGER_SUCCESS_DELETE_MEMBER_TEXT:"Xóa thành viên thành công",
+  FAMILY_MANAGER_ERROR_DELETE_MEMBER_TEXT:"Xóa thành viên không thành công",
+  FAMILY_MANAGER_SUCCESS_UPDATE_MEMBER_TEXT:"Cập nhật thông tin thành viên thành công",
+  FAMILY_MANAGER_ERROR_UPDATE_MEMBER_TEXT:"Cập nhật thông tin thành viên không thành công",
+  Family_Manager_Delete_Member_Title:"Xác nhận xóa",
+  Family_Manager_Delete_Member_Content:"Bạn có muốn xóa không?",
+  Family_Manager_Update_Member_Button:"Sửa",
+  
+  // key màn hình cập nhật thông tin tài khoản đăng nhập bệnh nhân
+  USER_PROFILE_HEADER_TITLE:"Thông tin cá nhân",
+  USER_MANAGER_EDIT_HEADER_TITLE:"Cập nhật thông tin",
+  USER_MANAGER_EDIT_SUCCESS_TEXT:"Cập nhật thông tin thành công",
 
-  //schedule manager screen
-  Schedule_manager_title: "Lịch Khám Bệnh",
-  Schedule_manager_confirm_dialog: "Bạn có chắc chắn muốn huỷ cuộc hẹn này không?",
-  Schedule_manager_title_video_call: "Cuộc gọi video",
-  Schedule_manager_title_voice_call: "Cuộc gọi thoại",
-  Schedule_manager_confirm_pending: "Đang chờ xác nhận",
-  Schedule_manager_confirm_accepted: "Đồng ý cuộc gọi",
-  Schedule_manager_confirm_decline: "Đã Từ chối",
-  Schedule_manager_text_doctor: "Bs.",
-  Schedule_manager_text_speciality: "Chuyên khoa",
-  Schedule_manager_text_select_examination: "Chọn khám:",
-  Schedule_manager_text_selected_disease: "Bệnh đã chọn:",
-
-  //string notifycation
-  Notifycation_title: "Thông Báo",
-  Notifycation_doctor_accepted_call_01: "Chúc mừng bạn, Bác sĩ ",
-  Notifycation_doctor_accepted_call_02: " đã chấp nhận lịch hẹn khám videocall của bạn vào lúc ",
-  Notifycation_doctor_accepted_call_03: " , ngày ",
-  Notifycation_doctor_accepted_call_04: " vui lòng vào lịch khám để xem chi tiết. ",
-  Notifycation_doctor_decline_call_01: "Bác sĩ ",
-  Notifycation_doctor_decline_call_02: " đã từ chối lịch hẹn khám videocall của bạn vào lúc ",
-  Notifycation_doctor_decline_call_03: " , ngày ",
-
+  // key for request reset change password screen
   RESET_PASSWORD_HEADER_TITLE:"Yêu cầu đổi mật khẩu",
   RESET_PASSWORD_SUCCSESS_TEXT:"Yêu cầu reset mật khẩu thành công. Chúng tôi đã gửi mật khẩu mới vào mail của bạn. Vui lòng kiểm tra để đăng nhập.",
   RESET_PASSWORD_FALSE_TEXT:"Yêu cầu reset mật khẩu không thành công.",
@@ -176,6 +162,7 @@ export default {
   RESET_PASSWORD_EMAIL_ERROR:"Email không hợp lệ.",
   ERROR_CONNECT:"Lỗi kết nối.",
 
+  // key for request reset password screen
   CHANGE_PASSWORD_HEADER_TITLE:"Dổi mật khẩu",
   CHANGE_PASSWORD_SUCCSESS_TEXT:"Dổi mật khẩu thành công.",
   CHANGE_PASSWORD_FALSE_TEXT:"Dổi mật khẩu không thành công.",
@@ -189,28 +176,4 @@ export default {
   CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL:"Yêu cầu nhập đủ các trường",
   CHANGE_PASSWORD_ERROR_PASSWORD:"Sai mật khẩu",
 
-  FAMILY_MANAGER_HEADER_TITLE:"Quản lý thành viên gia đình",
-  FAMILY_MANAGER_HEADER_EDIT_TITLE:"Chỉnh sửa thông tin",
-  FAMILY_MANAGER_SUCCESS_DELETE_MEMBER_TEXT:"Xóa thành viên thành công",
-  FAMILY_MANAGER_ERROR_DELETE_MEMBER_TEXT:"Xóa thành viên không thành công",
-  FAMILY_MANAGER_SUCCESS_UPDATE_MEMBER_TEXT:"Cập nhật thông tin thành viên thành công",
-  FAMILY_MANAGER_ERROR_UPDATE_MEMBER_TEXT:"Cập nhật thông tin thành viên không thành công",
-
-  USER_PROFILE_HEADER_TITLE:"Thông tin cá nhân",
-  USER_MANAGER_EDIT_HEADER_TITLE:"Cập nhật thông tin",
-  USER_MANAGER_EDIT_SUCCESS_TEXT:"Cập nhật thông tin thành công",
-    
-  SETTING_NOTIFICATION_HEADER_TITLE:"Cài đặt thông báo",
-  SETTING_NOTIFICATION_CHECKBOX_TITLE:"Cho phép hiển thị thông báo",
-  SETTING_NOTIFICATION_TIME_TITLE:"Thời gian thông báo lịch đặt hẹn sắp đến",
-  SETTING_NOTIFICATION_BUTTON_SAVE:"Lưu cài đặt",
-  SETTING_NOTIFICATION_SUCCESS_MESSAGE:"Cài đặt thành công",
-  SETTING_NOTIFICATION_ERROR_MESSAGE:"Cài đặt không thành công",
-  SETTING_NOTIFICATION_WARNING_MESSAGE:"Cài đặt không thành công. Thời gian thông báo phải từ 5-30 phút",
-  SETTING_NOTIFICATION_DISABLE_MESSAGE:"Bạn sẽ không còn nhận được thông báo cuộc hẹn",
-
-
-  
-
- 
 };

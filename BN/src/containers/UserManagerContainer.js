@@ -1,7 +1,5 @@
 import { connect } from "react-redux";
-import userManagerScr from "../screen/profile/userManager/userManagerScr";
-
-// import { doDeleteMember,doLoadAllFamilyMember,addNewMember } from '../actions/FamilyManagerAction';
+import UserManager from "../screen/profile/usermanager/UserManager";
 
 const mapStateToProps = (state) => {
 
@@ -25,12 +23,7 @@ const mapDispatchToProps = (dispatch) => {
         //     dispatch(doLoadAllFamilyMember(userId));
         // }, 
 
-        // onDeleteMember: (memberID) => {
-        //     dispatch(doDeleteMember(memberID));
-        // },
-
-        
     };
 }
-const UserManagerContainer =  connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(userManagerScr);
+const UserManagerContainer =  connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(UserManager);
 export default UserManagerContainer;

@@ -68,6 +68,12 @@ const styles = StyleSheet.create({
     width:25,
     height:25,
   },
+  txt_edit:{
+    fontSize: Dimens.size_15,
+    color: Colors.lightblue,
+    fontFamily: Fonts.RobotoRegular,
+ 
+  },
   
   txtNameSelected:{
     flex: 8,

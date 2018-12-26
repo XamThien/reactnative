@@ -11,7 +11,7 @@ export const _INITIAL_STATE_ = {
   hasError: false
 };
 
-export const resultRegisterReducer = (state = _INITIAL_STATE_, action) => {
+export const registerReducer = (state = _INITIAL_STATE_, action) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
         console.log("nvTien - REGISTER_SUCCESS");

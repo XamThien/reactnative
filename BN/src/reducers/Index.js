@@ -1,45 +1,30 @@
 import { combineReducers } from "redux";
-import { specializedReducers, getProfilesReducers } from "./ScheduleReducers";
-import {
-    saveDataAppointReducer
-} from "./AppointmentReducers";
-import { getDatatypeReducer } from "./ConsultantTypeReducer";
-import {getDataNameReducer} from "./ModalNameReducer";
-import {addNewMemberReducer} from "./AddNewMemberReducer";
-import {loginSocialReducers} from "./StartScreenReducer";
-import {resultLoginReducer} from "./LoginReducer";
-import {resultRegisterReducer} from "./RegisterReducer";
-import {scheduleManagerReducer} from "./ScheduleManagerReducer";
-import {listenerVideocallReducers} from "./VideoCallReducer";
-import {resultResetPasswordReducer} from "./ResetPasswordReducer";
-import { resultChangePasswordReducer } from "./ChangePasswordReducer";
-import { resultFamilyManagerReducer } from "./FamilyManagerReducer"
-import {editUserInfoReducer} from "./EditUserInfoReducer.js"
-import { resultSettingNotificationReducer } from "./SettingNotificationReducer";
+import {loginReducer} from "./LoginReducer";
+import {registerReducer} from "./RegisterReducer";
+import {doctorListReducers} from "./DoctorListReducers";
+import {bookingReducers} from "./BookingReducers";
+import {addMemberFamilyReducer} from "./AddMemberFamilyReducer";
+import {selectDiseaseReducer} from "./SelectDiseaseReducer";
+import {selectNameReducer} from "./SelectNameReducer";
+import { settingNotificationReducer } from "./SettingNotificationReducer";
+import { familyManagerReducer } from "./FamilyManagerReducer";
+import {editUserInfoReducer} from "./EditUserInfoReducer.js";
+import {resetPasswordReducer} from "./ResetPasswordReducer";
+import { changePasswordReducer } from "./ChangePasswordReducer";
 
 const allReducers = combineReducers({
-    specializedReducers,
-    getProfilesReducers,
-    saveDataAppointReducer,
-    getDatatypeReducer,
-    getDataNameReducer,
-    addNewMemberReducer,
-    loginSocialReducers,
-    resultLoginReducer,
-    resultRegisterReducer,
-    scheduleManagerReducer,
-    listenerVideocallReducers,
-    resultResetPasswordReducer,
-    resultChangePasswordReducer,
-    resultFamilyManagerReducer,
+    loginReducer,
+    registerReducer,
+    doctorListReducers,
+    bookingReducers,
+    addMemberFamilyReducer,
+    selectDiseaseReducer,
+    selectNameReducer,
+    settingNotificationReducer,
+    familyManagerReducer,
     editUserInfoReducer,
-    resultSettingNotificationReducer,
-
-
-
-
-    
-
+    resetPasswordReducer,
+    changePasswordReducer,
 
 });
 export default allReducers;

@@ -16,7 +16,6 @@ import ScreenName from '../../commons/ScreenName';
 import {Translate} from "../../utils/Language";
 import DefineKey from "../../config/language/DefineKey";
 import DialogLoading from "../../components/DialogLoading";
-// import DialogWarning from "../../components/DialogWarning";
 import WarningDialog from '../../components/WarningDialog';
 
 export default class Register extends Component {
@@ -56,13 +55,13 @@ export default class Register extends Component {
     this.setState({ warningdialogvisible: false });
   }
 
-  redirectToHelpScreen() {
-    this.props.navigation.navigate(ScreenName.Screen_Help);
+  onPressHelpScreen() {
+    //this.props.navigation.navigate(ScreenName.Screen_Help);
   }
 
-  redirectToLoginScreen() {
+  onPressLoginScreen() {
     this.props.navigation.pop();
-    this.props.navigation.navigate(ScreenName.Screen_Login);
+    this.props.navigation.navigate(ScreenName.Screen_LoginScreen);
    
   }
 
@@ -71,7 +70,7 @@ export default class Register extends Component {
     var errorRegister = props.lastError;
     console.log("componentWillReceiveProps: " + hasError);
     if(!hasError && errorRegister === "") {
-      this.redirectToLoginScreen();
+      this.onPressLoginScreen();
     } else {
       if(errorRegister != null && errorRegister !== '') {
        let errTitle = Translate(DefineKey.DialogWarning_text_title);
@@ -163,6 +162,7 @@ export default class Register extends Component {
                     <Text style={styles.textTop}>{Translate(DefineKey.Register_title)}</Text>
                   </View>
 
+                  {/* layout hiển thị các ô inputtext để nhập dữ liệu */}
                   <View style={styles.layoutContent}>
                     <Text style={styles.textTitleInput}>{Translate(DefineKey.Register_fist_name)}</Text>
                     <View style={styles.layoutInput}>
@@ -274,10 +274,11 @@ export default class Register extends Component {
                 </ScrollView>
               </View>
 
+               {/* layout footer, hiển thị nút đi đến màn hình help*/}
               <View style={styles.layoutFooter}>
                 <View style={styles.layoutLeftFooter}>
                   <TouchableOpacity
-                    onPress={() => this.redirectToHelpScreen()}
+                    onPress={() => this.onPressHelpScreen()}
                   >
                     <Image
                       source={require("../../../assets/icon_help.png")}
