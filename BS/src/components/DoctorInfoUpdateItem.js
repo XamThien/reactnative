@@ -1,7 +1,7 @@
 /**
  * author: nv HuyTV
 
-param: Doctor Info Item
+param: Doctor Update Info Item card view
   title, 
   content
 
@@ -16,25 +16,31 @@ import {
   Dimensions,
   TouchableOpacity,
   Platform,
-  PixelRatio
+  PixelRatio,
+  TextInput,
+  KeyBoard
 } from "react-native";
 import Colors from "../commons/Colors";
 import Dimens from "../commons/Dimensions";
 import Fonts from "../commons/Fonts";
 
-export default class DoctorInfoItem extends Component {
+export default class DoctorInfoUpdateItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: true
+      show: true,
+      input_value:""
     };
     this.onPressShow = this.onPressShow.bind(this);
+    this.onChangeValue = this.onChangeValue.bind(this);
     this.showIcon = this.showIcon.bind(this);
   }
 
   componentDidMount() {
     // console.log('will mount');
     // alert('will mout');
+    this.setState({input_value: this.props.content});
+    // alert('From item update: '+this.props.content);
   }
   onPressShow() {
     var show = this.state.show;
@@ -53,33 +59,44 @@ export default class DoctorInfoItem extends Component {
       return require("../../assets/arrow_right.png");
     }
   }
+  onChangeValue(value) {
+    this.setState({ input_value: value});
+    this.props.onChange(value);
+    
+  }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.title}>
-          <Image
-            style={styles.info}
-            source={require("../../assets/information.png")}
-          />
+          
           <Text style={styles.text_title} onPress={() => this.onPressShow()}>
-            {this.props.title}
+            {this.props.title+":"}
           </Text>
-          <TouchableOpacity
-            style={styles.arrow}
-            onPress={() => this.onPressShow()}
-          >
-            <Image style={styles.icon_arrow} source={this.showIcon()} />
-          </TouchableOpacity>
+          
         </View>
         <View
           style={this.state.show === true ? styles.content : styles.hideContent}
         >
-          <Text style={styles.text_content}>
-            {
-              this.props.content
+          {/* <Text style={styles.text_content}>{this.props.content}</Text> */}
+          <TextInput
+            style={styles.textInput}
+            placeholder={
+              this.props.title +
+              "..."
             }
-          </Text>
+            autoCapitalize="none"
+            editable={this.props.editable}
+            autoCorrect={false}
+            autoFocus={true}
+            multiline={true}
+            keyboardType="default"
+            onSubmitEditing={() => KeyBoard.dismiss()}
+            value={this.state.input_value}
+            onChangeText={text => {
+              this.onChangeValue(text.trim())
+               }}
+          />
         </View>
       </View>
     );
@@ -97,63 +114,51 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: Dimensions.get("screen").width,
     backgroundColor: Colors.white,
-    marginBottom: 1,
-    height: normalize(50),
+    paddingBottom: 1,
+    height: normalize(20),
     alignItems: "center",
-    alignSelf: "center"
-  },
-  info: {
-    flexDirection: "column",
     alignSelf: "center",
-    // marginTop: Dimens.size_10,
-    marginRight: Dimens.size_10,
-    marginLeft: Dimens.size_10,
-    height: normalize(20),
-    width: normalize(20)
-    // alignSelf: "flex-start",
-    // borderColor: "gray",
-    // borderWidth: 1,
+
   },
-  arrow: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: Dimens.size_10
-    // borderColor: "gray",
-    // borderWidth: 1,
-  },
-  icon_arrow: {
-    height: normalize(20),
-    width: normalize(20)
-  },
+ 
   text_title: {
     flex: 2,
-    fontSize: Dimens.size_20,
+    marginLeft: Dimens.size_10,
+    fontSize: Dimens.size_15,
     color: Colors.black,
     flexDirection: "column",
     alignSelf: "center",
     fontFamily: Fonts.RobotoRegular
-    // borderColor: "gray",
-    // borderWidth: 1,
   },
   content: {
     width: Dimensions.get("screen").width,
-    flexDirection:"row",
-    justifyContent:"flex-start",
-    paddingLeft: Dimens.size_10,
-    paddingRight: Dimens.size_10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems:"center",
+    paddingLeft: 5,
+    paddingRight: 5,
     backgroundColor: Colors.white,
-    paddingTop: Dimens.size_10,
-    paddingBottom: Dimens.size_15,
+    // paddingTop: Dimens.size_10,
+    paddingBottom: Dimens.size_15
   },
-  text_content:{
-    fontStyle: 'italic',
+  text_content: {
+    fontStyle: "italic"
   },
   hideContent: {
     width: 0,
     height: 0,
     paddingLeft: Dimens.size_10,
     backgroundColor: Colors.white
-  }
+  },
+  textInput: {
+    width: '100%',
+    borderRadius: Dimens.size_10,
+    fontSize: Dimens.size_15,
+    fontFamily: Fonts.RobotoRegular,
+    borderColor: "gray",
+    borderWidth: 1,
+    textAlign:"left",
+  },
 });
 export function normalize(size) {
   if (Platform.OS === "ios") {

@@ -37,8 +37,9 @@ async function saveUserProfileLogin(responseProfile) {
     if(responseProfile !== null) {
         let user = responseProfile.user;
         let token = responseProfile.token;
-       
         var profile = {
+            first_name:user.first_name,
+            last_name: user.last_name,
             userName: user.name,
             age: user.age,
             education: user.education,
@@ -49,7 +50,6 @@ async function saveUserProfileLogin(responseProfile) {
             image:"",
             phoneNumber: user.phone
         }
-        alert("From login saga: "+JSON.stringify(profile));
         saveDataStorage(Constants.KEY_STORE_TOKEN, token);
         saveDataStorage(Constants.KEY_DOCTOR_ID, user.doctor_id);
         //let gettoken = getDataStorage(Constants.KEY_STORE_TOKEN);  

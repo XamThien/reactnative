@@ -144,6 +144,8 @@ export default {
   // key for show doctor profile screen 
   DOCTOR_PROFILE_HEADER_TITLE: "Thông tin bác sỹ",
   Doctor_Info_Update_Header_Title:"Cập nhật thông tin",
+  Doctor_Info_Manager_Last_Name:"Họ Đệm",
+  Doctor_Info_Manager_First_Name:"Tên",
   Doctor_Info_Manager_Speciality: "Chuyên ngành",
   Doctor_Info_Manager_Birthday:"Ngày sinh",
   Doctor_Info_Manager_Birth_Place:"Nơi sinh",

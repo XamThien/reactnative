@@ -142,6 +142,8 @@ export default {
   // key for show doctor profile screen
   DOCTOR_PROFILE_HEADER_TITLE:"DOCTOR_PROFILE_HEADER_TITLE",
   Doctor_Info_Update_Header_Title:"Doctor_Info_Update_Header_Title",
+  Doctor_Info_Manager_Last_Name:"Doctor_Info_Manager_Last_Name",
+  Doctor_Info_Manager_First_Name:"Doctor_Info_Manager_First_Name",
   Doctor_Info_Manager_Speciality: "Doctor_Info_Manager_Speciality",
   Doctor_Info_Manager_Birthday:"Doctor_Info_Manager_Birthday",
   Doctor_Info_Manager_Birth_Place:"Doctor_Info_Manager_Birth_Place",

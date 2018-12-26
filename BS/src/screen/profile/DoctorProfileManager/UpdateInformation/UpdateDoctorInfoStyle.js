@@ -54,15 +54,15 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignSelf: "flex-end",
 
-    width: Dimensions.get("screen").width * 0.5
+    width: Dimensions.get("screen").width 
     // borderColor: "gray",
     // borderWidth: 1,
   },
   avatar: {
-    height: normalize(90),
-    width: normalize(90),
+    height: normalize(100),
+    width: normalize(100),
     borderRadius: normalize(90) / 2,
-    alignSelf: "flex-start"
+    alignSelf: "center"
   },
   userNameContainer: {
     flexDirection: "row",
@@ -72,56 +72,77 @@ const styles = StyleSheet.create({
   textUserName: {
     fontSize: Dimens.size_20,
     color: Colors.black,
-    alignSelf: "flex-start",
+    alignSelf: "center",
     fontFamily: Fonts.RobotoRegular,
     fontWeight:"bold"
   },
-  rating_container: {
-    flexDirection: "column",
-    alignSelf: "flex-end",
-    justifyContent: "flex-end",
-    width: Dimensions.get("screen").width * 0.5
-    // borderColor: "gray",
-    // borderWidth: 1,
-  },
-  rating: {
-    flexDirection: "row",
-    alignSelf: "flex-end"
-  },
-  // interactive
-  interactive: {
-    marginTop:Dimens.size_10,
-    backgroundColor: Colors.white,
-    flexDirection: "row",
-    height:50
-  },
-  right: {
-    flexDirection:"column",
-    width: Dimensions.get("screen").width * 0.5,
-    justifyContent:"center",
-    alignItems:"center"
-  },
-  left: {
-    flexDirection:"column",
-    width: Dimensions.get("screen").width * 0.5,
-    justifyContent:"center",
-    alignItems:"center"
-  },
-  number:{
-    fontWeight: 'bold',
-    fontSize: Dimens.size_20,
-    color: Colors.black,
-    fontFamily: Fonts.RobotoRegular
-  },
-  interactive_item:{
+  textInput: {
+    width: '100%',
+    borderRadius: Dimens.size_10,
     fontSize: Dimens.size_15,
-    color: Colors.black,
-    fontFamily: Fonts.RobotoRegular
+    fontFamily: Fonts.RobotoRegular,
+    borderColor: "gray",
+    borderWidth: 1,
+    textAlign:"left",
+    marginLeft: 5,
+    marginRight: 5,
   },
+  // list doctor info item
   info:{
     flexDirection:"column",
     paddingTop: Dimens.size_10,
     marginBottom: Dimens.size_15,
+  },
+  // row card view
+  row_container: {
+    flexDirection: "column",
+    marginBottom: Dimens.size_10,
+    alignItems: "center",
+    width: Dimensions.get("screen").width
+  },
+  title: {
+    flexDirection: "row",
+    width: Dimensions.get("screen").width,
+    backgroundColor: Colors.white,
+    paddingBottom: 1,
+    height: normalize(20),
+    alignItems: "center",
+    alignSelf: "center",
+
+  },
+ 
+  text_title: {
+    flex: 2,
+    marginLeft: Dimens.size_10,
+    fontSize: Dimens.size_15,
+    color: Colors.black,
+    flexDirection: "column",
+    alignSelf: "center",
+    fontFamily: Fonts.RobotoRegular
+  },
+  row_content: {
+    width: Dimensions.get("screen").width,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems:"center",
+    paddingLeft: 5,
+    paddingRight: 5,
+    backgroundColor: Colors.white,
+    // paddingTop: Dimens.size_10,
+    paddingBottom: Dimens.size_15
+  },
+  text_content: {
+    fontStyle: "italic"
+  },
+
+  textInput: {
+    width: '100%',
+    borderRadius: Dimens.size_10,
+    fontSize: Dimens.size_15,
+    fontFamily: Fonts.RobotoRegular,
+    borderColor: "gray",
+    borderWidth: 1,
+    textAlign:"left",
   },
 
   // //layout all item
@@ -143,25 +164,25 @@ const styles = StyleSheet.create({
   //   color: Colors.black
   // },
 
-  // //style layout footer
-  // layoutFooter: {
-  //   flex: 1,
-  //   flexDirection: "row",
-  //   justifyContent: "center"
-  // },
-  // layoutButton: {
-  //   height: normalize(45),
-  //   width: normalize(150),
-  //   backgroundColor: Colors.button_default,
-  //   borderRadius: normalize(5),
-  //   justifyContent: "center"
-  // },
-  // textButton: {
-  //   fontSize: Dimens.size_20,
-  //   color: Colors.white,
-  //   alignSelf: "center",
-  //   fontFamily: Fonts.RobotoRegular,
-  // }
+  //style layout footer
+  layoutFooter: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center"
+  },
+  layoutButton: {
+    height: normalize(45),
+    width: normalize(150),
+    backgroundColor: Colors.button_default,
+    borderRadius: normalize(5),
+    justifyContent: "center"
+  },
+  textButton: {
+    fontSize: Dimens.size_20,
+    color: Colors.white,
+    alignSelf: "center",
+    fontFamily: Fonts.RobotoRegular,
+  }
 });
 
 export default styles;

@@ -15,6 +15,7 @@ import { Translate } from "../../../../utils/Language";
 import DefineKey from "../../../../config/language/DefineKey";
 import ScreenName from "../../../../commons/ScreenName";
 import DoctorInfoItem from "../../../../components/DoctorInfoItem";
+// import DoctorInfoUpdateItem from "../../../../components/DoctorInfoUpdateItem";
 import { StackActions, NavigationActions } from "react-navigation";
 import DialogLoading from "../../../../components/DialogLoading";
 
@@ -22,21 +23,9 @@ export default class ShowDoctorInfoSrc extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userProfile:{}
+      userProfile: {}
     };
   }
-  // onPressFinish() {
-  //   this.props.navigation.pop();
-  // }
-
-  // onPressLogout() {
-  //   this.props.doLogoutApp();
-  //   const resetAction = StackActions.reset({
-  //     index: 0,
-  //     actions: [NavigationActions.navigate({ routeName: ScreenName.Screen_Login })],
-  //   });
-  //   this.props.navigation.dispatch(resetAction);
-  // }
 
   componentDidMount = () => {
     this.props.doGetDoctorProfile();
@@ -51,9 +40,9 @@ export default class ShowDoctorInfoSrc extends Component {
   componentWillReceiveProps(props) {
     let hasError = props.hasError;
     let errorLogin = props.lastError;
-    // let userProfile = props.userProfile;
-    // this.setState({userProfile: userProfile});
-    // alert("From doctor SCR: "+JSON.stringify(this.state.userProfile));
+    let userProfile = props.userProfile;
+    this.setState({ userProfile: userProfile });
+
     if (!hasError && errorLogin === "") {
       // this.props.navigation.navigate(ScreenName.Screen_Main, {
       //   intent_userID: props.userProfile.doctor_id,
@@ -67,10 +56,13 @@ export default class ShowDoctorInfoSrc extends Component {
     }
   }
 
-  updateProfile(){
-    this.props.navigation.navigate(ScreenName.Screen_UpdateDoctorProfile {
-      // profile: item
-    });
+  updateProfile() {
+    this.props.navigation.navigate(ScreenName.Screen_UpdateDoctorProfile
+    //   , {
+    //   profile: doctorProfile,
+    //   loginResponse: loginResponse
+    // }
+    );
   }
 
   render() {
@@ -107,7 +99,9 @@ export default class ShowDoctorInfoSrc extends Component {
                         style={styles.avatar}
                         source={require("../../../../../assets/profiles/user.png")}
                       />
-                      <Text style={styles.textUserName}>{this.props.userProfile.name}</Text>
+                      <Text style={styles.textUserName}>
+                        {this.props.userProfile.name}
+                      </Text>
                     </View>
                     <View style={styles.rating_container}>
                       <Image
@@ -130,12 +124,15 @@ export default class ShowDoctorInfoSrc extends Component {
                   </View>
                 </View>
                 <View style={styles.info}>
-                    <FlatList
-                      data={this.props.doctorData}
-                      renderItem={({ item }) => (
-                        <DoctorInfoItem title={Translate(item.key)} content={item.value} />
-                      )}
-                    />
+                  <FlatList
+                    data={this.props.doctorData}
+                    renderItem={({ item }) => (
+                      <DoctorInfoItem
+                        title={Translate(item.key)}
+                        content={item.value}
+                      />
+                    )}
+                  />
                   <DialogLoading loading={this.props.showLoading} />
                 </View>
               </View>
