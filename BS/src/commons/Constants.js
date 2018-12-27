@@ -1,5 +1,6 @@
 export default {
     KEY_STORE_USER_PROFILE : "key_store_user_profile",
+    KEY_STORE_SETTING_NOTIFICATION: "key_store_setting_notify",
     //using just ios
     KEY_CLIENT_ID_LOGIN_GOOGLE: "79233148802-k4or16n5ki5ejmtqogut9d96ejvg7hse.apps.googleusercontent.com",
     VALIDATE_PASSWORD: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$",
@@ -40,5 +41,5 @@ export default {
     VIDEOCALL_SEND_MSG_REQ_APPOINT: "VIDEOCALL_SEND_MSG_REQ_APPOINT",
     WORK_SCHEDULE_MESSAGE_UPDATE_PATIENTS: "WORK_SCHEDULE_MESSAGE_UPDATE_PATIENTS",
     
-
+    KEY_STORE_DOCTOR_SPECIALITY_ID : "key_store_doctor_speciality_id",
 };

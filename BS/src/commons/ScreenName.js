@@ -11,5 +11,6 @@ export default {
     Screen_ChangePassword:"ChangePassword",
     Screen_ShowDoctorProfile:"DoctorProfile",
     Screen_UpdateDoctorProfile:"UpdateDoctorProfile",
+    Screen_SettingNotification:"SettingNotification",
  
 };

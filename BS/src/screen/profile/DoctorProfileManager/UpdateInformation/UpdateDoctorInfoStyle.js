@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   info:{
     flexDirection:"column",
     paddingTop: Dimens.size_10,
-    marginBottom: Dimens.size_15,
+    marginBottom: 40,
   },
   // row card view
   row_container: {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     backgroundColor: Colors.white,
     // paddingTop: Dimens.size_10,
-    paddingBottom: Dimens.size_15
+    paddingBottom: Dimens.size_5
   },
   text_content: {
     fontStyle: "italic"
@@ -168,14 +168,19 @@ const styles = StyleSheet.create({
   layoutFooter: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
+    position:"absolute",
+    left: 0,
+    right: 0,
+    bottom: 0
   },
   layoutButton: {
     height: normalize(45),
     width: normalize(150),
     backgroundColor: Colors.button_default,
     borderRadius: normalize(5),
-    justifyContent: "center"
+    justifyContent: "center",
+    marginBottom:Dimens.size_5
   },
   textButton: {
     fontSize: Dimens.size_20,

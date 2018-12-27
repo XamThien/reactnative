@@ -12,6 +12,8 @@ import ResetPasswordContainer from "./containers/ResetPasswordContainner";
 import ChangePasswordContainer from "./containers/ChangePasswordContainer";
 import ShowDoctorProfileContainer from "./containers/ShowDoctorProfileContainer";
 import UpdateDoctorInfoContainer from "./containers/UpdateDoctorInfoContainer";
+import SettingNotifycationContainer from "./containers/SettingNotifycationContainer";
+
 
 
 
@@ -242,6 +244,13 @@ export const RootStack = createStackNavigator(
         headerBackTitle: null
       }
     },
+   SettingNotification:{
+      screen: SettingNotifycationContainer,
+      navigationOptions: {
+      title: Translate(DefineKey.SETTING_NOTIFICATION_HEADER_TITLE),
+      headerBackTitle: null
+      }
+    },
 
 
     
@@ -253,7 +262,7 @@ export const RootStack = createStackNavigator(
     initialRouteName: ScreenName.Screen_Login
     //initialRouteName: ScreenName.Screen_Appointment
     //initialRouteName: "VideoCallContainer"
-    // initialRouteName: ScreenName.Screen_ShowDoctorProfile
+    // initialRouteName: ScreenName.Screen_Profile
   }
 );
 

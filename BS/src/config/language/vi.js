@@ -178,7 +178,21 @@ export default {
   Doctor_Info_Manager_Certificate:"Chứng chỉ",
   Doctor_Info_Manager_Organization:"Tổ chức",
   Doctor_Info_Manager_Day_Off:"Ngày nghỉ",
+  Doctor_Info_Manager_Update_Success_Message:"Cập nhật thông tin thành công",
+  Doctor_Info_Manager_Update_Error_Message:"Cập nhật thông tin không thành công",
+  Doctor_Info_Manager_Update_Input_Require_Text:"Yêu cầu nhập!",
+  Doctor_Info_Manager_Update_Input_Require_Error_Text:"Yêu cầu nhập đủ các trường bắt buộc",
+  Doctor_Info_Manager_Update_Save_Button:"Lưu cập nhật",
 
+  // key định nghĩa màn hình cài đặt thông báo cuộc hẹn
+  SETTING_NOTIFICATION_HEADER_TITLE:"Cài đặt thông báo",
+  SETTING_NOTIFICATION_CHECKBOX_TITLE:"Cho phép hiển thị thông báo",
+  SETTING_NOTIFICATION_TIME_TITLE:"Thời gian thông báo lịch đặt hẹn sắp đến",
+  SETTING_NOTIFICATION_BUTTON_SAVE:"Lưu cài đặt",
+  SETTING_NOTIFICATION_SUCCESS_MESSAGE:"Cài đặt thành công",
+  SETTING_NOTIFICATION_ERROR_MESSAGE:"Cài đặt không thành công",
+  SETTING_NOTIFICATION_WARNING_MESSAGE:"Cài đặt không thành công. Thời gian thông báo phải từ 5-30 phút",
+  SETTING_NOTIFICATION_DISABLE_MESSAGE:"Bạn sẽ không còn nhận được thông báo cuộc hẹn",
 
 
 

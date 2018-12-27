@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import UpdateDoctorInfoScr from "../screen/profile/DoctorProfileManager/UpdateInformation/UpdateDoctorInfoScr";
 import {
-    doGetDoctorInfo,
+    doUpdateDoctorInfo,
 } from "../actions/DoctorInfoManagerAction";
 
 const mapStateToProps = (state) => {
@@ -16,8 +16,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {    
-        doGetDoctorProfile: () => {                        
-            dispatch(doGetDoctorInfo());
+        doUpdateDoctorProfile: (doctorData) => {                        
+            dispatch(doUpdateDoctorInfo(doctorData));
         },
     };
 }

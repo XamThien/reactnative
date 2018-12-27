@@ -167,5 +167,19 @@ export default {
   Doctor_Info_Manager_Certificate:"Doctor_Info_Manager_Certificate",
   Doctor_Info_Manager_Organization:"Doctor_Info_Manager_Organization",
   Doctor_Info_Manager_Day_Off:"Doctor_Info_Manager_Day_Off",
+  Doctor_Info_Manager_Update_Success_Message:"Doctor_Info_Manager_Update_Success_Message",
+  Doctor_Info_Manager_Update_Error_Message:"Doctor_Info_Manager_Update_Error_Message",
+  Doctor_Info_Manager_Update_Input_Require_Text:"Doctor_Info_Manager_Update_Input_Require_Text",
+  Doctor_Info_Manager_Update_Input_Require_Error_Text:"Doctor_Info_Manager_Update_Input_Require_Error_Text",
+  Doctor_Info_Manager_Update_Save_Button:"Doctor_Info_Manager_Update_Save_Button",
 
+  // key định nghĩa cho màn hình setting notification
+  SETTING_NOTIFICATION_HEADER_TITLE: "SETTING_NOTIFICATION_HEADER_TITLE",
+  SETTING_NOTIFICATION_CHECKBOX_TITLE: "SETTING_NOTIFICATION_CHECKBOX_TITLE",
+  SETTING_NOTIFICATION_TIME_TITLE: "SETTING_NOTIFICATION_TIME_TITLE",
+  SETTING_NOTIFICATION_BUTTON_SAVE: "SETTING_NOTIFICATION_BUTTON_SAVE",
+  SETTING_NOTIFICATION_SUCCESS_MESSAGE: "SETTING_NOTIFICATION_SUCCESS_MESSAGE",
+  SETTING_NOTIFICATION_ERROR_MESSAGE: "SETTING_NOTIFICATION_ERROR_MESSAGE",
+  SETTING_NOTIFICATION_WARNING_MESSAGE: "SETTING_NOTIFICATION_WARNING_MESSAGE",
+  SETTING_NOTIFICATION_DISABLE_MESSAGE: "SETTING_NOTIFICATION_DISABLE_MESSAGE",
 };

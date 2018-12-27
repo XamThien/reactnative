@@ -23,13 +23,16 @@ import {
 import Colors from "../commons/Colors";
 import Dimens from "../commons/Dimensions";
 import Fonts from "../commons/Fonts";
+import { Translate } from "../utils/Language";
+import DefineKey from "../config/language/DefineKey";
 
 export default class DoctorInfoUpdateItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       show: true,
-      input_value:""
+      input_value: "",
+      isNull: false
     };
     this.onPressShow = this.onPressShow.bind(this);
     this.onChangeValue = this.onChangeValue.bind(this);
@@ -39,7 +42,7 @@ export default class DoctorInfoUpdateItem extends Component {
   componentDidMount() {
     // console.log('will mount');
     // alert('will mout');
-    this.setState({input_value: this.props.content});
+    this.setState({ input_value: this.props.content });
     // alert('From item update: '+this.props.content);
   }
   onPressShow() {
@@ -60,20 +63,30 @@ export default class DoctorInfoUpdateItem extends Component {
     }
   }
   onChangeValue(value) {
-    this.setState({ input_value: value});
+    this.setState({ input_value: value });
+    if(value === "" || value === null || value === undefined){
+      this.setState({isNull:true});
+    }
+    else {
+      this.setState({isNull:false});
+    }
     this.props.onChange(value);
-    
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.title}>
-          
           <Text style={styles.text_title} onPress={() => this.onPressShow()}>
-            {this.props.title+":"}
+            {this.props.title + ":"}
           </Text>
-          
+          <View
+            style={
+              this.props.hasRequire === true ? styles.text_require : styles.hide
+            }
+          >
+            <Text style={styles.text_require}>{"(*)"}</Text>
+          </View>
         </View>
         <View
           style={this.state.show === true ? styles.content : styles.hideContent}
@@ -81,10 +94,7 @@ export default class DoctorInfoUpdateItem extends Component {
           {/* <Text style={styles.text_content}>{this.props.content}</Text> */}
           <TextInput
             style={styles.textInput}
-            placeholder={
-              this.props.title +
-              "..."
-            }
+            placeholder={this.props.title + "..."}
             autoCapitalize="none"
             editable={this.props.editable}
             autoCorrect={false}
@@ -94,9 +104,18 @@ export default class DoctorInfoUpdateItem extends Component {
             onSubmitEditing={() => KeyBoard.dismiss()}
             value={this.state.input_value}
             onChangeText={text => {
-              this.onChangeValue(text.trim())
-               }}
+              this.onChangeValue(text);
+            }}
           />
+          <View
+            style={
+              (this.props.hasRequire === true && this.state.isNull === true)
+                ? styles.text_require
+                : styles.hide
+            }
+          >
+            <Text style={styles.text_require}>{Translate(DefineKey.Doctor_Info_Manager_Update_Input_Require_Text)}</Text>
+          </View>
         </View>
       </View>
     );
@@ -116,30 +135,45 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     paddingBottom: 1,
     height: normalize(20),
-    alignItems: "center",
-    alignSelf: "center",
-
+    alignItems: "flex-start",
+    alignSelf: "flex-start",
+    justifyContent:"flex-start"
   },
- 
+
   text_title: {
-    flex: 2,
+    // flex: 1,
     marginLeft: Dimens.size_10,
     fontSize: Dimens.size_15,
     color: Colors.black,
-    flexDirection: "column",
-    alignSelf: "center",
+    flexDirection: "row",
+    alignSelf: "flex-start",
     fontFamily: Fonts.RobotoRegular
   },
+  text_require: {
+    flex: 2,
+    // marginLeft: Dimens.size_10,
+    fontSize: Dimens.size_15,
+    color: Colors.red,
+    flexDirection: "row",
+    alignSelf: "flex-start",
+    fontFamily: Fonts.RobotoRegular,
+    fontStyle: "italic"
+  },
+  hide: {
+    width: 0,
+    height: 0
+  },
+
   content: {
     width: Dimensions.get("screen").width,
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "center",
-    alignItems:"center",
+    alignItems: "center",
     paddingLeft: 5,
     paddingRight: 5,
     backgroundColor: Colors.white,
     // paddingTop: Dimens.size_10,
-    paddingBottom: Dimens.size_15
+    paddingBottom: Dimens.size_5
   },
   text_content: {
     fontStyle: "italic"
@@ -151,14 +185,16 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white
   },
   textInput: {
-    width: '100%',
+    width: "100%",
     borderRadius: Dimens.size_10,
     fontSize: Dimens.size_15,
     fontFamily: Fonts.RobotoRegular,
     borderColor: "gray",
     borderWidth: 1,
-    textAlign:"left",
-  },
+    textAlign: "left"
+    // paddingTop: 0,
+    // paddingBottom: 0,
+  }
 });
 export function normalize(size) {
   if (Platform.OS === "ios") {

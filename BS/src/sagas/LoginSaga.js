@@ -35,6 +35,7 @@ export function* watchDoLoginUserData() {
 
 async function saveUserProfileLogin(responseProfile) {
     if(responseProfile !== null) {
+        
         let user = responseProfile.user;
         let token = responseProfile.token;
         var profile = {
@@ -46,6 +47,7 @@ async function saveUserProfileLogin(responseProfile) {
             email: user.email,
             id: user.doctor_id,
             token: token,
+            password: user.password,
             expire: responseProfile.expires,
             image:"",
             phoneNumber: user.phone

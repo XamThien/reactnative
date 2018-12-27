@@ -16,6 +16,8 @@ import { AsyncStorage } from "react-native";
 import { Translate } from "../utils/Language";
 import DefineKey from "../config/language/DefineKey";
 
+// ======================== Get doctor profile info ===========================================
+
 function* doGetDoctorInfo(action) {
   try {
     yield put({
@@ -27,6 +29,9 @@ function* doGetDoctorInfo(action) {
     const response = yield Api.doGetDoctorInfoApi();
     if (response !== null && response.data !== null) {
       let dataResponse = response.data[0];
+
+      //save doctor speciality id
+      yield saveDataStorage(Constants.KEY_STORE_DOCTOR_SPECIALITY_ID,dataResponse.speciality.id);
       var doctorInfoArr = [
 
         yield getDoctorInfoItem(1,DefineKey.Doctor_Info_Manager_Description,dataResponse.description),
@@ -83,6 +88,51 @@ export function* watchDoGetDoctorInfo() {
   yield takeLatest(DOCTOR_INFO_MANAGER_DO_GET_DATA, doGetDoctorInfo);
 }
 
+// ======================== Update doctor profile info ===========================================
+function* doUpdateDoctorInfo(action) {
+  try {
+    yield put({
+      type: DOCTOR_INFO_MANAGER_DO_GET_DATA_RESET,
+      hasError: false,
+      lastError: undefined
+    });
+    // alert("From update doctor info saga: "+JSON.stringify(action.doctorData));
+    var speciality_id = yield getDataStorage(Constants.KEY_STORE_DOCTOR_SPECIALITY_ID);
+    // alert("From update doctor info saga: "+JSON.stringify(speciality_id));
+
+    const response = yield Api.doUpdateDoctorInfoApi(action.doctorData,speciality_id);
+    alert("From update doctor info saga: "+JSON.stringify(response));
+
+    if (response !== null && response.result === "updated") {
+      yield put({
+        type: DOCTOR_INFO_MANAGER_DO_UPDATE_DATA_SUCCESS,
+        hasError: false,
+        lastError: "",
+        messageSuccess: Translate(DefineKey.Doctor_Info_Manager_Update_Success_Message)
+      });
+    } else {
+      yield put({
+        type: DOCTOR_INFO_MANAGER_DO_GET_DATA_ERROR,
+        lastError: Translate(DefineKey.Doctor_Info_Manager_Update_Error_Message),
+        hasError: true
+      });
+    }
+  } catch (error) {
+    let errorText = Translate(DefineKey.ERROR_CONNECT);
+    yield put({
+      type: DOCTOR_INFO_MANAGER_DO_GET_DATA_ERROR,
+      lastError: errorText,
+      hasError: true
+    });
+  }
+}
+
+export function* watchDoUpdateDoctorInfo() {
+  yield takeLatest(DOCTOR_INFO_MANAGER_DO_UPDATE_DATA, doUpdateDoctorInfo);
+}
+
+// ======================== end Update doctor profile info ===========================================
+
 async function removeDataStorage(key) {
   try {
     await AsyncStorage.removeItem(key);
@@ -99,6 +149,14 @@ async function getDataStorage(key) {
     // Error retrieving data
     console.log("error... " + error.message);
     return null;
+  }
+}
+
+async function saveDataStorage(key,value) {
+  try {
+    await AsyncStorage.setItem(key,value);
+  } catch (error) {
+    console.log("error... " + error.message);
   }
 }
 

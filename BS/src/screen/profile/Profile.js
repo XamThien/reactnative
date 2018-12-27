@@ -33,6 +33,11 @@ export default class Profile extends Component {
     this.props.navigation.dispatch(resetAction);
   }
 
+  // đi đến màn hình cài đặt thông báo
+  onPressSettingNotification() {
+    this.props.navigation.navigate(ScreenName.Screen_SettingNotification);
+  }
+
   componentDidMount = () => {
     this.props.loadDataProfile();
   };
@@ -92,6 +97,23 @@ export default class Profile extends Component {
                 </Text>
               </View>
             </TouchableOpacity>
+
+            {/* layout setting notify */}
+            <TouchableOpacity
+                onPress={() =>
+                  this.onPressSettingNotification()
+                }
+              >
+                <View style={styles.layoutItem}>
+                  <Image
+                    style={styles.itemImage}
+                    source={require("../../../assets/icon_password.png")}
+                  />
+                  <Text style={styles.itemText}>
+                    {Translate(DefineKey.SETTING_NOTIFICATION_HEADER_TITLE)}
+                  </Text>
+                </View>
+              </TouchableOpacity>
 
             {/* layout item logout */}
             <TouchableOpacity onPress={() => this.onPressLogout()}>
