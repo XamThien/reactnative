@@ -1,0 +1,148 @@
+export default {
+  //key text chung
+  Common_text_save: "Common_text_save",
+
+  //màn hình dialog cảnh báo, thông báo lỗi
+  DialogWarning_text_ok: "DialogWarning_text_ok",
+  DialogWarning_text_cancel: "DialogWarning_text_cancel",
+  DialogWarning_text_title: "DialogWarning_text_title",
+  Dialog_title_warning: "Dialog_title_warning",
+  CustomHeader_title : "CustomHeader_title",
+  Deepcare_error_select_time : "Deepcare_error_select_time",
+  Deepcare_error_call_service: "Deepcare_error_call_service",
+
+  //key tiêu đề phần header của các màn hình
+  Header_title_login: "Header_title_login",
+  Header_title_help: "Header_title_help",
+  Header_title_term_of_service: "Header_title_term_of_service",
+  Header_title_user_profile: "Header_title_user_profile",
+
+  //key định nghĩa main navigation tabs
+  MainNavigation_tab_work_schedule: "MainNavigation_tab_work_schedule",
+  MainNavigation_tab_examination_schedule: "MainNavigation_tab_examination_schedule",
+  MainNavigation_tab_user_note: "MainNavigation_tab_user_note",
+  MainNavigation_tab_statistic: "MainNavigation_tab_statistic",
+  
+  //Màn hình user profile, hiển thị danh sách các tuỳ chọn
+  Profile_privacy: "Profile_privacy",
+  Profile_term_of_use: "Profile_term_of_use",
+  Profile_logout: "Profile_logout",
+  Profile_text_exit: "Profile_text_exit",
+  Profile_change_password: "Profile_change_password",
+
+  //màn hình điều khoản sử dụng dịch vụ
+  TermOfService_textTitle: "TermOfService_textTitle",
+  TermOfService_BtnSave: "TermOfService_BtnSave",
+
+  //màn hình login
+  Login_text_btn_login: "Login_text_btn_login",
+  Login_title: "Login_title",
+  Login_username: "Login_username",
+  Login_password: "Login_password",
+  Login_text_register: "Login_text_register",
+  Login_text_forgotten: "Login_text_forgotten",
+  Login_text_help: "Login_text_help",
+  Login_text_login_fail: "Login_text_login_fail",
+  Login_text_login_error_connect: "Login_text_login_error_connect",
+  Login_text_valid_empty: "Login_text_valid_empty",
+  Login_text_valid_username: "Login_text_valid_username",
+
+  //màn hình quản lí lịch làm việc của bác sĩ
+  Work_schedule_titleHead: "Work_schedule_titleHead",
+  Work_schedule_create_work_schedule: "Work_schedule_create_work_schedule",
+  Work_schedule_details_work_schedule: "Work_schedule_details_work_schedule",
+    StartScreen_title_welcome: "StartScreen_title_welcome",
+    StartScreen_text_btn_login: "StartScreen_text_btn_login",
+    StartScreen_text_btn_login_face: "StartScreen_text_btn_login_face",
+    StartScreen_text_btn_login_google: "StartScreen_text_btn_login_google",
+    StartScreen_text_btn_register: "StartScreen_text_btn_register",
+    StartScreen_text_or: "StartScreen_text_or",
+    StartScreen_text_content: "StartScreen_text_content",
+    StartScreen_text_footer:"StartScreen_text_footer",
+    TermOfService_textTitle: "TermOfService_textTitle",
+    TermOfService_BtnSave: "TermOfService_BtnSave",
+
+  // key for show doctor profile screen
+  DOCTOR_PROFILE_HEADER_TITLE:"DOCTOR_PROFILE_HEADER_TITLE",
+  Doctor_Info_Update_Header_Title:"Doctor_Info_Update_Header_Title",
+  Doctor_Info_Manager_Last_Name:"Doctor_Info_Manager_Last_Name",
+  Doctor_Info_Manager_First_Name:"Doctor_Info_Manager_First_Name",
+  Doctor_Info_Manager_Speciality: "Doctor_Info_Manager_Speciality",
+  Doctor_Info_Manager_Birthday:"Doctor_Info_Manager_Birthday",
+  Doctor_Info_Manager_Birth_Place:"Doctor_Info_Manager_Birth_Place",
+  Doctor_Info_Manager_Age:"Doctor_Info_Manager_Age",
+  Doctor_Info_Manager_Place:"Doctor_Info_Manager_Place",
+  Doctor_Info_Manager_Home_Town: "Doctor_Info_Manager_Home_Town",
+  Doctor_Info_Manager_Phone:"Doctor_Info_Manager_Phone",
+  Doctor_Info_Manager_Email:"Doctor_Info_Manager_Email",
+  Doctor_Info_Manager_Avatar:"Doctor_Info_Manager_Avatar",
+  Doctor_Info_Manager_Degree_Name:"Doctor_Info_Manager_Degree_Name",
+  Doctor_Info_Manager_Academic_Rank_Name:"Doctor_Info_Manager_Academic_Rank_Name",
+  Doctor_Info_Manager_Position_Name:"Doctor_Info_Manager_Position_Name",
+  Doctor_Info_Manager_Department_Name:"Doctor_Info_Manager_Department_Name",
+  Doctor_Info_Manager_Working_Process:"Doctor_Info_Manager_Working_Process",
+  Doctor_Info_Manager_Disease_Name:"Doctor_Info_Manager_Disease_Name",
+  Doctor_Info_Manager_Language_Name:"Doctor_Info_Manager_Language_Name",
+  Doctor_Info_Manager_Training_Process:"Doctor_Info_Manager_Training_Process",
+  Doctor_Info_Manager_Experience:"Doctor_Info_Manager_Experience",
+  Doctor_Info_Manager_Reseach_Work:"Doctor_Info_Manager_Reseach_Work",
+  Doctor_Info_Manager_Description:"Doctor_Info_Manager_Description",
+  Doctor_Info_Manager_Certificate:"Doctor_Info_Manager_Certificate",
+  Doctor_Info_Manager_Organization:"Doctor_Info_Manager_Organization",
+  Doctor_Info_Manager_Day_Off:"Doctor_Info_Manager_Day_Off",
+  Doctor_Info_Manager_Update_Success_Message:"Doctor_Info_Manager_Update_Success_Message",
+  Doctor_Info_Manager_Update_Error_Message:"Doctor_Info_Manager_Update_Error_Message",
+  Doctor_Info_Manager_Update_Input_Require_Text:"Doctor_Info_Manager_Update_Input_Require_Text",
+  Doctor_Info_Manager_Update_Input_Require_Error_Text:"Doctor_Info_Manager_Update_Input_Require_Error_Text",
+  Doctor_Info_Manager_Update_Save_Button:"Doctor_Info_Manager_Update_Save_Button",
+
+  // key định nghĩa cho màn hình setting notification
+  SETTING_NOTIFICATION_HEADER_TITLE: "SETTING_NOTIFICATION_HEADER_TITLE",
+  SETTING_NOTIFICATION_CHECKBOX_TITLE: "SETTING_NOTIFICATION_CHECKBOX_TITLE",
+  SETTING_NOTIFICATION_TIME_TITLE: "SETTING_NOTIFICATION_TIME_TITLE",
+  SETTING_NOTIFICATION_BUTTON_SAVE: "SETTING_NOTIFICATION_BUTTON_SAVE",
+  SETTING_NOTIFICATION_SUCCESS_MESSAGE: "SETTING_NOTIFICATION_SUCCESS_MESSAGE",
+  SETTING_NOTIFICATION_ERROR_MESSAGE: "SETTING_NOTIFICATION_ERROR_MESSAGE",
+  SETTING_NOTIFICATION_WARNING_MESSAGE: "SETTING_NOTIFICATION_WARNING_MESSAGE",
+  SETTING_NOTIFICATION_DISABLE_MESSAGE: "SETTING_NOTIFICATION_DISABLE_MESSAGE",
+  
+  //màn hình custom hiển thi chi tiết lịch làm việc
+  Custom_detail_view_time_detail: "Custom_detail_view_time_detail",
+  Custom_detail_hidden_time: "Custom_detail_hidden_time",
+  Custom_detail_title: "Custom_detail_title",
+  Custom_detail_time_length: "Custom_detail_time_length",
+  Custom_detail_minute: "Custom_detail_minute",
+  Custom_detail_address: "Custom_detail_address",
+  Custom_detail_list_disease: "Custom_detail_list_disease",
+  Custom_detail_note: "Custom_detail_note",
+  Custom_detail_edit_schedule: "Custom_detail_edit_schedule",
+  Disease_modal_title_list: "Disease_modal_title_list",
+  Item_time_schedule_morning: "Item_time_schedule_morning",
+  Item_time_schedule_afternoon: "Item_time_schedule_afternoon",
+
+  //màn hình nhập dữ liệu tạo lịch làm việc của bác sĩ
+  Create_schedule_show_list_time: "Create_schedule_show_list_time",
+  Create_schedule_hidden_list_time: "Create_schedule_hidden_list_time",
+  Create_schedule_content_time_notify: "Create_schedule_content_time_notify",
+  Create_schedule_content_title_notify: "Create_schedule_content_title_notify",
+  Create_schedule_content_time_error_1: "Create_schedule_content_time_error_1",
+  Create_schedule_content_time_error_2: "Create_schedule_content_time_error_2",
+  Create_schedule_content_time_error_3: "Create_schedule_content_time_error_3",
+  Create_schedule_content_time_error_4: "Create_schedule_content_time_error_4",
+  Create_schedule_placeholder_title: "Create_schedule_placeholder_title",
+  Create_schedule_select_all_current_date: "Create_schedule_select_all_current_date",
+  Create_schedule_start_time: "Create_schedule_start_time",
+  Create_schedule_end_time: "Create_schedule_end_time",
+  Create_schedule_afternoon_working_time: "Create_schedule_afternoon_working_time",
+  Create_schedule_length_examination_input_title: "Create_schedule_length_examination_input_title",
+  Create_schedule_examination_time_list:  "Create_schedule_examination_time_list",
+  Create_schedule_other_option: "Create_schedule_other_option",
+  Create_schedule_display_selected_benh_count_1: "Create_schedule_display_selected_benh_count_1",
+  Create_schedule_display_selected_benh_count_2: "Create_schedule_display_selected_benh_count_2",
+  Create_schedule_note_title: "Create_schedule_note_title",
+  Create_schedule_note_palaceholder: "Create_schedule_note_palaceholder",
+  Create_schedule_text_chedule_morning:"Create_schedule_text_chedule_morning",
+
+
+
+};

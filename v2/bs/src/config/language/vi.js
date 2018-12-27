@@ -1,0 +1,137 @@
+export default {
+  //key string common 
+  Common_text_save: "Lưu",
+  
+  //key string màn hình dialog cảnh báo, thông báo lỗi
+  DialogWarning_text_ok:"Đồng ý",
+  DialogWarning_text_cancel:"Huỷ",
+  DialogWarning_text_title:"Thông báo",
+  Dialog_title_warning: "Xác Nhận",
+  Deepcare_error_select_time : "Bạn vui lòng chọn thời gian khám bệnh",
+  Deepcare_error_call_service: "Không lấy được dữ liệu, vui lòng kiểm tra lại kết nối!",
+  
+  //key string tiêu đề phần header của các màn hình
+  Header_title_login: "Đăng Nhập",
+  Header_title_term_of_service: "Điều Khoản Sử Dụng",
+  Header_title_help: "Trợ Giúp",
+  CustomHeader_title : "Tài khoản",
+  Header_title_user_profile: "Hồ Sơ",
+ 
+  //key string tiêu đề tab main
+  MainNavigation_tab_work_schedule: "Lịch làm việc",
+  MainNavigation_tab_examination_schedule: "Lịch khám",
+  MainNavigation_tab_user_note: "Ghi chú",
+  MainNavigation_tab_statistic: "Thống kê",
+ 
+  //key string màn hình hiển thị user profile
+  Profile_privacy:"Quyền riêng tư",
+  Profile_term_of_use:"Điều khoản sử dụng",
+  Profile_logout:"Đăng xuất",
+  Profile_text_exit: "Thoát",
+  Profile_head_title: "Tài khoản",
+  Profile_change_password: "Đổi mật khẩu",
+ 
+  //key string màn hình điều khoản dịch vụ
+  TermOfService_textTitle: "Điều khoản sử dụng ứng dụng \nDeepCare",
+  TermOfService_BtnSave: "Lưu điều khoản",
+ 
+  //key string màn hình login
+  Login_text_btn_login: "Đăng nhập",
+  Login_title: "ĐĂNG NHẬP",
+  Login_username: "Email hoặc số điện thoại",
+  Login_password: "Mật khẩu",
+  Login_text_register: "Đăng ký Deepcare",
+  Login_text_forgotten: "Quên mật khẩu?",
+  Login_text_help: "Trợ giúp",
+  Login_text_login_fail: "Tên đăng nhập hoặc mật khẩu chưa đúng.",
+  Login_text_login_error_connect: "Đặng nhập không thành công, vui lòng kiểm tra lại kết nối!",
+  Login_text_valid_empty : "Vui lòng nhập vào giá trị",
+  Login_text_valid_username : "Bạn phải nhập vào email hoặc số điện thoại",
+ 
+  //key string màn hình quản lí lịch làm việc của bác sĩ
+  Work_schedule_titleHead: "Lịch Làm Việc",
+  Work_schedule_create_work_schedule: "+ Tạo lịch làm việc",
+  Work_schedule_details_work_schedule: "Chi tiết lịch làm việc",
+ 
+  //key string màn hình cuscom lịch làm việc của bác sĩ
+  Custom_detail_view_time_detail:"Xem chi tiết thời gian",
+  Custom_detail_hidden_time:"Ẩn thời gian khám",
+  Custom_detail_title:"Tiêu đề",
+  Custom_detail_time_length:"Thời gian mỗi ca",
+  Custom_detail_minute:"phút",
+  Custom_detail_address:"Địa điểm",
+  Custom_detail_list_disease:"Khám các bệnh",
+  Custom_detail_note:"Ghi chú",
+  Custom_detail_edit_schedule: "Sửa lịch",
+  Disease_modal_title_list:"Danh sách loại bệnh",
+  Item_time_schedule_morning:"Ca Sáng",
+  Item_time_schedule_afternoon:"Ca Chiều",
+ 
+  //key string màn hình nhập dữ liệu tạo lịch làm việc của bác sĩ
+  Create_schedule_show_list_time:"Tuỳ chọn thời gian",
+  Create_schedule_hidden_list_time:"Ẩn tuỳ chọn thời gian",
+  Create_schedule_content_time_notify:"Mời bạn nhập vào số phút khám",
+  Create_schedule_content_title_notify:"Mời bạn nhập vào tiêu đề",
+  Create_schedule_content_time_error_1:"Thời gian bắt đầu ca sáng, không được vượt quá thời gian kết thúc ca sáng! ",
+  Create_schedule_content_time_error_2:"Thời gian bắt đầu ca chiều, không được vượt quá thời gian kết thúc ca chiều! ",
+  Create_schedule_content_time_error_3:"Thời gian bắt đầu ca chiều, không được nhỏ hơn thời gian kết thúc ca sáng! ",
+  Create_schedule_content_time_error_4:"Mời bạn nhập vào số phút khám",
+  Create_schedule_placeholder_title:"Nhập Tiêu Đề",
+  Create_schedule_select_all_current_date:"Chọn cho tất cả cho thứ 3",
+  Create_schedule_start_time:"Từ: ",
+  Create_schedule_end_time:"Đến: ",
+  Create_schedule_afternoon_working_time:"Lịch ca chiều",
+  Create_schedule_length_examination_input_title:"Nhập số phút khám",
+  Create_schedule_examination_time_list:"Danh sách thời gian khám",
+  Create_schedule_other_option:"Tuỳ chọn khác",
+  Create_schedule_display_selected_benh_count_1:"Bạn đã chọn",
+  Create_schedule_display_selected_benh_count_2:"bệnh",
+  Create_schedule_note_title:"Ghi chú",
+  Create_schedule_note_palaceholder:"Thêm ghi chú...",
+  Create_schedule_text_chedule_morning:"Lịch ca sáng",
+ 
+ // key for show doctor profile screen 
+   DOCTOR_PROFILE_HEADER_TITLE: "Thông tin bác sỹ",
+   Doctor_Info_Update_Header_Title:"Cập nhật thông tin",
+   Doctor_Info_Manager_Last_Name:"Họ Đệm",
+   Doctor_Info_Manager_First_Name:"Tên",
+   Doctor_Info_Manager_Speciality: "Chuyên ngành",
+   Doctor_Info_Manager_Birthday:"Ngày sinh",
+   Doctor_Info_Manager_Birth_Place:"Nơi sinh",
+   Doctor_Info_Manager_Age:"Tuổi",
+   Doctor_Info_Manager_Place:"Nơi làm việc",
+   Doctor_Info_Manager_Home_Town: "Thành phố",
+   Doctor_Info_Manager_Phone:"Điện thoại",
+   Doctor_Info_Manager_Email:"Email",
+   Doctor_Info_Manager_Avatar:"Ảnh đại diện",
+   Doctor_Info_Manager_Degree_Name:"Học vị",
+   Doctor_Info_Manager_Academic_Rank_Name:"Học hàm",
+   Doctor_Info_Manager_Position_Name:"Chức vụ",
+   Doctor_Info_Manager_Department_Name:"Phòng ban",
+   Doctor_Info_Manager_Working_Process:"Qúa trình làm việc",
+   Doctor_Info_Manager_Disease_Name:"Điều trị các bệnh",
+   Doctor_Info_Manager_Language_Name:"Ngôn ngữ",
+   Doctor_Info_Manager_Training_Process:"Quá trình đào tạo",
+   Doctor_Info_Manager_Experience:"Kinh nghiệm",
+   Doctor_Info_Manager_Reseach_Work:"Công trình nghiên cứu",
+   Doctor_Info_Manager_Description:"Mô tả",
+   Doctor_Info_Manager_Certificate:"Chứng chỉ",
+   Doctor_Info_Manager_Organization:"Tổ chức",
+   Doctor_Info_Manager_Day_Off:"Ngày nghỉ",
+   Doctor_Info_Manager_Update_Success_Message:"Cập nhật thông tin thành công",
+   Doctor_Info_Manager_Update_Error_Message:"Cập nhật thông tin không thành công",
+   Doctor_Info_Manager_Update_Input_Require_Text:"Yêu cầu nhập!",
+   Doctor_Info_Manager_Update_Input_Require_Error_Text:"Yêu cầu nhập đủ các trường bắt buộc",
+   Doctor_Info_Manager_Update_Save_Button:"Lưu cập nhật",
+ 
+   // key định nghĩa màn hình cài đặt thông báo cuộc hẹn
+   SETTING_NOTIFICATION_HEADER_TITLE:"Cài đặt thông báo",
+   SETTING_NOTIFICATION_CHECKBOX_TITLE:"Cho phép hiển thị thông báo",
+   SETTING_NOTIFICATION_TIME_TITLE:"Thời gian thông báo lịch đặt hẹn sắp đến",
+   SETTING_NOTIFICATION_BUTTON_SAVE:"Lưu cài đặt",
+   SETTING_NOTIFICATION_SUCCESS_MESSAGE:"Cài đặt thành công",
+   SETTING_NOTIFICATION_ERROR_MESSAGE:"Cài đặt không thành công",
+   SETTING_NOTIFICATION_WARNING_MESSAGE:"Cài đặt không thành công. Thời gian thông báo phải từ 5-30 phút",
+   SETTING_NOTIFICATION_DISABLE_MESSAGE:"Bạn sẽ không còn nhận được thông báo cuộc hẹn",
+ };
+ 

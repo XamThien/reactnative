@@ -404,20 +404,20 @@ function* doUpdateDoctorInfoApi(doctorData,speciality_id) {
   });
 
   alert("From update infor saga: "+dataBody+"====>"+urlUpdateDoctorInfo.concat(doctor_id));
-  // return yield handlePostRequest(urlUpdateDoctorInfo.concat(doctor_id), headers, dataBody);
+   return yield handlePostRequest(urlUpdateDoctorInfo.concat(doctor_id), headers, dataBody);
   // return {result:"update"};
-  return yield fetch(urlUpdateDoctorInfo.concat(doctor_id), {
-    method: "POST",
-    headers: headers,
-    body: dataBody
-  })
-    .then(response => response.json())
-    .then(responseJson => {
-      return responseJson;
-    })
-    .catch(error => {
-      console.error("error..." + error);
-    });
+  // return yield fetch(urlUpdateDoctorInfo.concat(doctor_id), {
+  //   method: "POST",
+  //   headers: headers,
+  //   body: dataBody
+  // })
+  //   .then(response => response.json())
+  //   .then(responseJson => {
+  //     return responseJson;
+  //   })
+  //   .catch(error => {
+  //     console.error("error..." + error);
+  //   });
 
 }
 

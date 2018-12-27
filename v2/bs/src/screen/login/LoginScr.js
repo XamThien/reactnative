@@ -26,13 +26,13 @@ export default class Login extends Component {
       password: "",
       errTitle: "",
       errContent: "",
-      show_pass:false
-
+      show_pass: false
     };
     this.onOpenDialogWarning = this.onOpenDialogWarning.bind(this);
     this.onWarningOk = this.onWarningOk.bind(this);
   }
 
+  //xử lí xự kiện click nút login
   onPressLoginScreen() {
     let errTitle = Translate(DefineKey.DialogWarning_text_title);
     var userData = {};
@@ -56,21 +56,17 @@ export default class Login extends Component {
     }
   }
 
-  onPressRegisterScreen() {
-    this.props.navigation.navigate(ScreenName.Screen_RegisterScreen)
+  onPressHelpScreen() {
+    //this.props.navigation.navigate(ScreenName.Screen_HelpScreen);
   }
 
-  onPressHelpScreen() {
-    this.props.navigation.navigate(ScreenName.Screen_HelpScreen)
-  }
-  
   onPressResetPassword() {
-    this.props.navigation.navigate(ScreenName.Screen_ResetPassword)
+
   }
+
   //chuyển sang màn hình main khi login thành công
-  redirectToMainScreen(user_id) {
-  this.props.navigation.navigate(ScreenName.Screen_MainScreen, {
-          intent_userID: user_id});
+  redirectToMainScreen() {
+    this.props.navigation.navigate(ScreenName.Screen_MainScreen);
   }
 
   onOpenDialogWarning(errTitle, errContent) {
@@ -98,7 +94,7 @@ export default class Login extends Component {
   componentWillReceiveProps(props) {
     let errorLogin = props.lastError;
     if (errorLogin === "") {
-        this.redirectToMainScreen(props.userProfile.user_id);
+      this.redirectToMainScreen();
     } else {
       if (errorLogin != null && errorLogin !== "") {
         let errTitle = Translate(DefineKey.DialogWarning_text_title);
@@ -106,71 +102,116 @@ export default class Login extends Component {
       }
     }
   }
+  
   _getIconPassword() {
     if (this.state.show_pass === true) {
-        return (require("../../../assets/pass_show.png"));
+      return require("../../../assets/pass_show.png");
     } else {
-        return (require("../../../assets/pass_hide.png"))
+      return require("../../../assets/pass_hide.png");
     }
-}
+  }
   render() {
     return (
-    <SafeAreaView style={styles.container}>
-        <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
+      <SafeAreaView style={styles.container}>
+        <TouchableWithoutFeedback
+          style={styles.container}
+          onPress={Keyboard.dismiss}
+        >
           <View style={styles.container}>
             <View style={styles.layoutTop}>
-              <Image resizeMode="contain" source={require("../../../assets/icon_start.png")} style={styles.imageTop} />
+              <Image
+                resizeMode="contain"
+                source={require("../../../assets/icon_start.png")}
+                style={styles.imageTop}
+              />
               <Text style={styles.textTop}>
                 {Translate(DefineKey.Login_title)}
               </Text>
             </View>
 
+            {/* layout hiển thị input text nhập username và password*/}
             <View style={styles.layoutContent}>
               <Text style={styles.textTitleInput}>
                 {Translate(DefineKey.Login_username)}
               </Text>
               <View style={styles.layoutInput}>
-                <TextInput style={styles.input} placeholder="Username..." autoCapitalize="none" autoCorrect={false} autoFocus={true} returnKeyType="next" keyboardType="email-address" value={this.state.username} placeholderTextColor="gray" ref="userName" onSubmitEditing={() => this.refs.passWord.focus()} onChangeText={text => this.setState(
-                      { username: text }
-                    )} />
-                <Image source={require("../../../assets/icon_username.png")} style={styles.imageInput} />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Username..."
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoFocus={true}
+                  returnKeyType="next"
+                  keyboardType="email-address"
+                  value={this.state.username}
+                  placeholderTextColor="gray"
+                  ref="userName"
+                  onSubmitEditing={() => this.refs.passWord.focus()}
+                  onChangeText={text => this.setState({ username: text })}
+                />
+                <Image
+                  source={require("../../../assets/icon_username.png")}
+                  style={styles.imageInput}
+                />
               </View>
               <Text style={styles.textTitleInput}>
                 {Translate(DefineKey.Login_password)}
               </Text>
               <View style={styles.layoutInput}>
-                <TextInput style={styles.input} placeholder="Password..." autoCapitalize="none" autoCorrect={false} secureTextEntry={!this.state.show_pass} value={this.state.password} placeholderTextColor="gray" ref="passWord" onChangeText={text => this.setState(
-                      { password: text }
-                    )} />
-                <TouchableOpacity style={styles.imageInput} onPress={() => {
+                <TextInput
+                  style={styles.input}
+                  placeholder="Password..."
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  secureTextEntry={!this.state.show_pass}
+                  value={this.state.password}
+                  placeholderTextColor="gray"
+                  ref="passWord"
+                  onChangeText={text => this.setState({ password: text })}
+                />
+                <TouchableOpacity
+                  style={styles.imageInput}
+                  onPress={() => {
                     if (this.state.show_pass === true) {
                       this.setState({ show_pass: false });
                     } else {
                       this.setState({ show_pass: true });
                     }
-                  }}>
-                  <Image source={this._getIconPassword()} style={styles.imageInput} />
+                  }}
+                >
+                  <Image
+                    source={this._getIconPassword()}
+                    style={styles.imageInput}
+                  />
                 </TouchableOpacity>
               </View>
               <View />
-              <TouchableOpacity style={styles.btnLogin} onPress={() => this.onPressLoginScreen()}>
+
+              {/* hiển thị nút login*/}
+              <TouchableOpacity
+                style={styles.btnLogin}
+                onPress={() => this.onPressLoginScreen()}
+              >
                 <Text style={styles.textButton}>
-                  {Translate(DefineKey.StartScreen_text_btn_login)}
+                  {Translate(DefineKey.Login_text_btn_login)}
                 </Text>
               </TouchableOpacity>
-
-              <Text style={styles.textRegister} onPress={() => this.onPressRegisterScreen()}>
-                {Translate(DefineKey.Login_text_register)}
-              </Text>
-              <Text style={styles.textRegister} onPress={() => this.onPressResetPassword()}>
+              <Text
+                style={styles.textRegister}
+                onPress={() => this.onPressResetPassword()}
+              >
                 {Translate(DefineKey.Login_text_forgotten)}
               </Text>
             </View>
 
+            {/* layout hiển thị nút chuyển đến màn hình giúp đỡ*/}
             <View style={styles.layoutFooter}>
               <View style={styles.layoutFooterHelp}>
                 <TouchableOpacity onPress={() => this.onPressHelpScreen()}>
-                  <Image source={require("../../../assets/icon_help.png")} style={styles.imageHelp} />
+                  <Image
+                    source={require("../../../assets/icon_help.png")}
+                    style={styles.imageHelp}
+                  />
                 </TouchableOpacity>
                 <Text style={styles.textTitleHelp}>
                   {Translate(DefineKey.Login_text_help)}
@@ -178,10 +219,16 @@ export default class Login extends Component {
               </View>
             </View>
             <DialogLoading loading={this.props.showLoading} />
-            <WarningDialog titleDialog={this.state.errTitle} contentDialog={this.state.errContent} onOk={this.onWarningOk.bind()} textOk={Translate(DefineKey.DialogWarning_text_ok)} visible={this.state.warningdialogvisible} />
+            <WarningDialog
+              titleDialog={this.state.errTitle}
+              contentDialog={this.state.errContent}
+              onOk={this.onWarningOk.bind()}
+              textOk={Translate(DefineKey.DialogWarning_text_ok)}
+              visible={this.state.warningdialogvisible}
+            />
           </View>
         </TouchableWithoutFeedback>
       </SafeAreaView>
-      );
+    );
   }
 }
