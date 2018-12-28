@@ -176,11 +176,17 @@ function updateListAfterAdd(newUser) {
 function updateListAfterDeleteMember(memberId) {
   var arrNew = new Array();
   arrNew = [];
-  allMember.forEach(ele => {
-    if (ele.user_id !== memberId) {
-      arrNew.push(ele);
-    }
-  });
+  for(let i = 0 ; i<allMember.length ;i ++) {
+    let object = allMember[i];
+    if(object.user_id !== memberId){
+      arrNew.push(object);
+    } 
+  }
+  // allMember.forEach(ele => {
+  //   if (ele.user_id !== memberId) {
+  //     arrNew.push(ele);
+  //   }
+  // });
   return saveLocal(arrNew);
 }
 

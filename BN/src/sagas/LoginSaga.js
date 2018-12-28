@@ -48,7 +48,7 @@ async function saveUserProfileLogin(responseProfile) {
             relation:'',
             expire: responseProfile.expires,
             image:"",
-            phoneNumber: responseProfile.phone,
+            phoneNumber: user.phone,
             lastName: user.last_name,
             firstName: user.first_name,
             sex: user.sex,

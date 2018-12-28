@@ -2,7 +2,8 @@ import {
   USER_MANAGER_UPDATE_USER,
   USER_MANAGER_UPDATE_USER_SUCCESS,
   USER_MANAGER_UPDATE_USER_FAIL,
-  USER_MANAGER_UPDATE_USER_RESET
+  USER_MANAGER_UPDATE_USER_RESET,
+  EDIT_USER_SUCCESS
 } from "../actions/ActionType";
 
 export const _INITIAL_STATE_ = {
@@ -14,7 +15,6 @@ export const _INITIAL_STATE_ = {
 };
 
 export const editUserInfoReducer = (state = _INITIAL_STATE_, action) => {
-
   switch (action.type) {
     case USER_MANAGER_UPDATE_USER_RESET:
       return {
@@ -22,7 +22,7 @@ export const editUserInfoReducer = (state = _INITIAL_STATE_, action) => {
         lastError: "",
         hasError: undefined,
         isLoading: false,
-        isDissmiss: false,
+        isDissmiss: false
         // dataNewUser: {}
       };
     case USER_MANAGER_UPDATE_USER:
@@ -31,7 +31,7 @@ export const editUserInfoReducer = (state = _INITIAL_STATE_, action) => {
         lastError: "",
         hasError: undefined,
         isLoading: true,
-        isDissmiss: false,
+        isDissmiss: false
         // dataNewUser: {}
       };
     case USER_MANAGER_UPDATE_USER_SUCCESS:
@@ -44,16 +44,21 @@ export const editUserInfoReducer = (state = _INITIAL_STATE_, action) => {
         messageSuccess: action.messageSuccess
         // dataNewUser: action.dataNewUser
       };
+    case EDIT_USER_SUCCESS:
+      return {
+        ...state,
+        userProfile: action.userProfile,
+        lastError: ""
+      };
     case USER_MANAGER_UPDATE_USER_FAIL:
       return {
         ...state,
         lastError: action.lastError,
         hasError: action.hasError,
         isLoading: false,
-        isDissmiss: false,
+        isDissmiss: false
       };
-    default: return state;
+    default:
+      return state;
   }
-}
-
-
+};

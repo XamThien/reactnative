@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import SettingNotification from "../screen/profile/settingnotification/SettingNotification";
+import SettingNotification from "../screen/profile/settingNotification/SettingNotification";
 import {
     updateTimeSettingNotification, doGetTimeSettingNotification
 } from "../actions/SettingNotificationAction";

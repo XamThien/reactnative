@@ -59,7 +59,7 @@ export default class ResetPassword extends Component {
   onWarningOk() {
     this.setState({ warningdialogvisible: false, redirect: false });
     if(this.state.redirect === true){
-      this.props.navigation.navigate(ScreenName.Screen_Login);
+      this.props.navigation.navigate(ScreenName.Screen_LoginScreen);
     }
   }
 

@@ -60,8 +60,8 @@ async function saveUserProfile(dataNewUser,userOldInfo) {
   
   var profile = {
     userName: dataNewUser.last_name + " " + dataNewUser.first_name,
-    last_name: dataNewUser.last_name,
-    first_name: dataNewUser.first_name,
+    lastName: dataNewUser.last_name,
+    firstName: dataNewUser.first_name,
     password: userOldInfo.password,
     email: userOldInfo.email,
     id: userOldInfo.id,

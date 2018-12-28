@@ -209,7 +209,7 @@ export default class FamilyManagerScr extends Component {
           ))}
           <TouchableOpacity
             style={styles.layoutButtonAdd}
-            onPress={() => this._onPressShowAddNewMemberModal()}
+            onPress={() => this.onPressShowAddMemberFamily()}
           >
             <View style={styles.avataContainer}>
               <Image

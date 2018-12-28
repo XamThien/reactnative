@@ -9,6 +9,7 @@ import {watchDoDeleteMember, watchDoUpdateMember, watchFamilyAddNewMember, watch
 import {watchUpdateUser} from "./EditUserInfoSaga";
 import {watchDoResetPassword} from "./ResetPasswordSaga";
 import {watchDoChangePassword} from "./ChangePasswordSaga";
+import {watchGetTimeSettingNotification,watchUpdateTimeSettingNotification} from "./SettingNotificationSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -28,6 +29,8 @@ export default function* rootSaga() {
     fork(watchUpdateUser),
     fork(watchDoResetPassword),
     fork(watchDoChangePassword),
+    fork(watchGetTimeSettingNotification),
+    fork(watchUpdateTimeSettingNotification),
       
   ]);
  
