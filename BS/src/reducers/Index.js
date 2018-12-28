@@ -1,27 +1,20 @@
 import { combineReducers } from "redux";
-import {getListAppointReducer } from "./ExaminationScheduleReducers";
-import {resultLoginReducer} from "./LoginReducer";
+import {loginReducer} from "./LoginReducer";
+import {workScheduleReducers} from "./WorkScheduleReducers";
 import {createScheduleReducers} from "./CreateScheduleReducers";
-import {getProfilesReducers} from "./ProfileReducer";
-import {loadWorkScheduleReducers} from "./WorkScheduleReducers";
-import {listenerVideocallReducers} from "./VideoCallReducer";
-import {resultResetPasswordReducer} from "./ResetPasswordReducer";
-import { resultChangePasswordReducer } from "./ChangePasswordReducer";
-import {resultDoctorInfoManagerReducer} from "./DoctorInfoMangerReducer";
+import {doctorInfoManagerReducer} from "./DoctorInfoMangerReducer";
 import { settingNotificationReducer } from "./SettingNotificationReducer";
-
+import { resetPasswordReducer } from "./ResetPasswordReducer";
+import { changePasswordReducer } from "./ChangePasswordReducer";
 
 const allReducers = combineReducers({
-    getProfilesReducers,
-    getListAppointReducer,
-    resultLoginReducer,
+    loginReducer,
+    workScheduleReducers,
     createScheduleReducers,
-    loadWorkScheduleReducers,
-    listenerVideocallReducers,
-    resultResetPasswordReducer,
-    resultChangePasswordReducer,
-    resultDoctorInfoManagerReducer,
-    settingNotificationReducer
+    doctorInfoManagerReducer,
+    settingNotificationReducer,
+    changePasswordReducer,
+    resetPasswordReducer,
 
 });
 export default allReducers;

@@ -12,10 +12,10 @@ import { AsyncStorage } from "react-native";
 import {Translate} from "../utils/Language"
 import DefineKey from "../config/language/DefineKey";
 
-function* doCreateDataSchedule(action) {
+function* doCreateNewSchedule(action) {
     try {
         yield put({ type: CREATE_SCHEDULE_RESET_DATA});
-        const response = yield Api.doCreateScheduleApi(action.dataSchedule);
+        const response = yield Api.doCreateNewScheduleApi(action.dataSchedule);
         if (response != null && response.data != null && response.result === Constants.TYPE_RESPONSE_API_CREATED) {
             let dataSchedule = response.data;
             yield put({ type: CREATE_SCHEDULE_CREATE_DATA_SUCCESS, hasError: false , lastError: "", dataSchedule: dataSchedule});
@@ -28,8 +28,8 @@ function* doCreateDataSchedule(action) {
         yield put({ type: CREATE_SCHEDULE_CREATE_DATA_FAIL, lastError: errorText, hasError: true, dataSchedule: []  });
     }
 }
-export function* watchDoSaveDataSchedule() { 
-    yield takeLatest(CREATE_SCHEDULE_CREATE_DATA, doCreateDataSchedule);
+export function* watchDoCreateNewSchedule() { 
+    yield takeLatest(CREATE_SCHEDULE_CREATE_DATA, doCreateNewSchedule);
 }
 
 

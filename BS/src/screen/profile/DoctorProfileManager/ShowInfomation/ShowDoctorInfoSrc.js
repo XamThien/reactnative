@@ -82,7 +82,7 @@ export default class ShowDoctorInfoSrc extends Component {
                   <View style={styles.btn_edit}>
                     <Image
                       style={styles.icon_edit}
-                      source={require("../../../../../assets/edit-btn.png")}
+                      source={require("../../../../../assets/edit-btn.jpg")}
                     />
                     <Text
                       style={styles.text_btn_edit}

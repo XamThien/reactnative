@@ -30,8 +30,14 @@ function* doGetDoctorInfo(action) {
     if (response !== null && response.data !== null) {
       let dataResponse = response.data[0];
 
-      //save doctor speciality id
-      yield saveDataStorage(Constants.KEY_STORE_DOCTOR_SPECIALITY_ID,dataResponse.speciality.id);
+      //save doctor speciality id: 
+      var speciality_id = dataResponse.speciality.id;
+      if(speciality_id === null || speciality_id === undefined || speciality_id === "")
+      {
+        yield saveDataStorage(Constants.KEY_STORE_DOCTOR_SPECIALITY_ID,100); // set defalut neu doctor khong co chuyen nganh
+      } else  {
+        yield saveDataStorage(Constants.KEY_STORE_DOCTOR_SPECIALITY_ID,dataResponse.speciality.id);
+      }
       var doctorInfoArr = [
 
         yield getDoctorInfoItem(1,DefineKey.Doctor_Info_Manager_Description,dataResponse.description),
@@ -101,7 +107,7 @@ function* doUpdateDoctorInfo(action) {
     // alert("From update doctor info saga: "+JSON.stringify(speciality_id));
 
     const response = yield Api.doUpdateDoctorInfoApi(action.doctorData,speciality_id);
-    alert("From update doctor info saga: "+JSON.stringify(response));
+    // alert("From update doctor info saga: "+JSON.stringify(response));
 
     if (response !== null && response.result === "updated") {
       yield put({
@@ -162,7 +168,7 @@ async function saveDataStorage(key,value) {
 
 async function getDoctorInfoItem(id, key, value) {
   if (value === null || value === undefined || value === "") {
-    return { id: id, key: key, value: "Null" };
+    return { id: id, key: key, value: "" };
   } else {
     return { id: id, key: key, value: value };
   }

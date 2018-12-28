@@ -4,8 +4,8 @@ import DeepcareApp from "../DeepcareApp";
 
 const mapStateToProps = (state) => {
     return {
-        actionCallback: state.listenerVideocallReducers.actionCallback,
-        newMessage: state.listenerVideocallReducers.newMessage,
+        // actionCallback: state.listenerVideocallReducers.actionCallback,
+        // newMessage: state.listenerVideocallReducers.newMessage,
     }
 };
 

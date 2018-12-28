@@ -6,11 +6,11 @@ import {
 
 const mapStateToProps = (state) => {
     return {
-        hasError: state.resultDoctorInfoManagerReducer.hasError,
-        lastError: state.resultDoctorInfoManagerReducer.lastError,
-        showLoading: state.resultDoctorInfoManagerReducer.isLoading,
-        doctorData: state.resultDoctorInfoManagerReducer.doctorData,
-        userProfile: state.resultLoginReducer.userProfile
+        hasError: state.doctorInfoManagerReducer.hasError,
+        lastError: state.doctorInfoManagerReducer.lastError,
+        showLoading: state.doctorInfoManagerReducer.isLoading,
+        doctorData: state.doctorInfoManagerReducer.doctorData,
+        userProfile: state.loginReducer.userProfile
     }
 };
 

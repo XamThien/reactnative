@@ -27,7 +27,7 @@ export default class Profile extends Component {
     const resetAction = StackActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: ScreenName.Screen_Login })
+        NavigationActions.navigate({ routeName: ScreenName.Screen_LoginScreen })
       ]
     });
     this.props.navigation.dispatch(resetAction);

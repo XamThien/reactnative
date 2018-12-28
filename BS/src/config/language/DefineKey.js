@@ -1,143 +1,67 @@
 export default {
+  //key text chung
+  Common_text_save: "Common_text_save",
+
+  //màn hình dialog cảnh báo, thông báo lỗi
+  DialogWarning_text_ok: "DialogWarning_text_ok",
+  DialogWarning_text_cancel: "DialogWarning_text_cancel",
+  DialogWarning_text_title: "DialogWarning_text_title",
+  Dialog_title_warning: "Dialog_title_warning",
+  CustomHeader_title : "CustomHeader_title",
+  Deepcare_error_select_time : "Deepcare_error_select_time",
+  Deepcare_error_call_service: "Deepcare_error_call_service",
+
+  //key tiêu đề phần header của các màn hình
+  Header_title_login: "Header_title_login",
+  Header_title_help: "Header_title_help",
+  Header_title_term_of_service: "Header_title_term_of_service",
+  Header_title_user_profile: "Header_title_user_profile",
+
+  //key định nghĩa main navigation tabs
+  MainNavigation_tab_work_schedule: "MainNavigation_tab_work_schedule",
+  MainNavigation_tab_examination_schedule: "MainNavigation_tab_examination_schedule",
+  MainNavigation_tab_user_note: "MainNavigation_tab_user_note",
+  MainNavigation_tab_statistic: "MainNavigation_tab_statistic",
+  
+  //Màn hình user profile, hiển thị danh sách các tuỳ chọn
+  Profile_privacy: "Profile_privacy",
+  Profile_term_of_use: "Profile_term_of_use",
+  Profile_logout: "Profile_logout",
+  Profile_text_exit: "Profile_text_exit",
+  Profile_change_password: "Profile_change_password",
+  Profile_head_title: "Profile_head_title",
+
+  //màn hình điều khoản sử dụng dịch vụ
   TermOfService_textTitle: "TermOfService_textTitle",
   TermOfService_BtnSave: "TermOfService_BtnSave",
 
+  //màn hình login
   Login_text_btn_login: "Login_text_btn_login",
   Login_title: "Login_title",
   Login_username: "Login_username",
   Login_password: "Login_password",
   Login_text_register: "Login_text_register",
-  Login_text_forgotten:"Login_text_forgotten",
+  Login_text_forgotten: "Login_text_forgotten",
   Login_text_help: "Login_text_help",
   Login_text_login_fail: "Login_text_login_fail",
   Login_text_login_error_connect: "Login_text_login_error_connect",
   Login_text_valid_empty: "Login_text_valid_empty",
   Login_text_valid_username: "Login_text_valid_username",
 
-  Help_title: "Help_title",
-  Examination_title: "Examination_title",
-  Statistic_title: "Statistic_title",
-  Examination_Schedule_head_title: "Examination_Schedule_head_title",
-  WorkCalendar_titleHead: "WorkCalendar_titleHead",
-
-  HomeNavigation_title_work_calendar: "HomeNavigation_title_work_calendar",
-  HomeNavigation_title_examination_schedule: "HomeNavigation_title_examination_schedule",
-  HomeNavigation_title_examination: "HomeNavigation_title_examination",
-  HomeNavigation_title_statistic: "HomeNavigation_title_statistic",
-
-  AppNavigation_title_login: "AppNavigation_title_login",
-  AppNavigation_title_term_service: "AppNavigation_title_term_service",
-  AppNavigation_title_register: "AppNavigation_title_register",
-
-  CustomHeader_title: "CustomHeader_title",
-  HorizontalItemImage_dialogconfirm_title: "HorizontalItemImage_dialogconfirm_title",
-  HorizontalItemImage_dialogconfirm_content:  "HorizontalItemImage_dialogconfirm_content", 
-  HorizontalItemImage_dialogconfirm_yes: "HorizontalItemImage_dialogconfirm_yes",
-  HorizontalItemImage_dialogconfirm_cancel: "HorizontalItemImage_dialogconfirm_cancel",
-
-  Profile_logout: "Profile_logout",
-  Profile_text_exit: "Profile_text_exit",
-  Profile_head_title: "Profile_head_title",
-
-  DialogWarning_text_ok: "DialogWarning_text_ok",
-  DialogWarning_text_cancel: "DialogWarning_text_cancel",
-  DialogWarning_text_title: "DialogWarning_text_title",
-  //define error
-  Deepcare_error_call_service: "Deepcare_error_call_service",
-  Deepcare_error_select_time: "Deepcare_error_select_time",
-
-  // define lable, name, tile ... in home-schedule-patient
-  Status_request_comfirm: "Status_request_comfirm",
-  Status_request_decline: "Status_request_decline",
-  Status_request_callnow: "Status_request_callnow",
-
-  // define lable, name, tile, button ... in home-schedule-profile
-  Profile_patient_records: "Profile_patient_records",
-  Profile_information: "Profile_information",
-  Profile_medical_examination_detail: "Profile_medical_examination_detail",
-  Profile_insurrance: "Profile_insurrance",
-  Profile_disease_profile: "Profile_disease_profile",
-  Profile_prescription: "Profile_prescription",
-  Profile_medical_examination_history: "Profile_medical_examination_history",
-
-  // define lable, name, tile, button ... in home-schedule-examination_schedule
-  Examination_schedule_patient_list: "Examination_schedule_patient_list",
-  Examination_schedule_confirm_title: "Examination_schedule_confirm_title",
-  Examination_schedule_confirm_content: "Examination_schedule_confirm_content",
-  Examination_schedule_decline_content: "Examination_schedule_decline_content",
-  Examination_schedule_call_now_content: "Examination_schedule_call_now_content",
-
-  // define lable, name, tile, button ... in home-videocall
-  Videocall_Booking_button_comfirm: "Videocall_Booking_button_comfirm",
-  Videocall_Booking_button_cancel: "Videocall_Booking_button_comfirm",
-
-  Videocall_outgoing_waiting_text: "Videocall_outgoing_waiting_text",
-
-  // define lable, name, tile, button ... in home-workcalendar-createschedule
-  Create_schedule_show_list_time: "Create_schedule_show_list_time",
-  Create_schedule_hidden_list_time: "Create_schedule_hidden_list_time",
-  Create_schedule_content_time_notify: "Create_schedule_content_time_notify",
-  Create_schedule_content_title_notify: "Create_schedule_content_title_notify",
-  Create_schedule_content_time_error_1: "Create_schedule_content_time_error_1",
-  Create_schedule_content_time_error_2: "Create_schedule_content_time_error_2",
-  Create_schedule_content_time_error_3: "Create_schedule_content_time_error_3",
-  Create_schedule_content_time_error_4: "Create_schedule_content_time_error_4",
-  Create_schedule_placeholder_title: "Create_schedule_placeholder_title",
-  Create_schedule_select_all_current_date: "Create_schedule_select_all_current_date",
-  Create_schedule_start_time: "Create_schedule_start_time",
-  Create_schedule_end_time: "Create_schedule_end_time",
-  Create_schedule_afternoon_working_time: "Create_schedule_afternoon_working_time",
-  Create_schedule_length_examination_input_title: "Create_schedule_length_examination_input_title",
-  Create_schedule_examination_time_list:  "Create_schedule_examination_time_list",
-  Create_schedule_other_option: "Create_schedule_other_option",
-  Create_schedule_display_selected_benh_count_1: "Create_schedule_display_selected_benh_count_1",
-  Create_schedule_display_selected_benh_count_2: "Create_schedule_display_selected_benh_count_2",
-  Create_schedule_note_title: "Create_schedule_note_title",
-  Create_schedule_note_palaceholder: "Create_schedule_note_palaceholder",
-
-  Item_time_schedule_morning: "Item_time_schedule_morning",
-  Item_time_schedule_afternoon: "Item_time_schedule_afternoon",
-  Item_time_schedule_button_ok: "Item_time_schedule_button_ok",
-  Item_time_schedule_button_cancel: "Item_time_schedule_button_cancel",
-
-  Custom_detail_view_time_detail: "Custom_detail_view_time_detail",
-  Custom_detail_hidden_time: "Custom_detail_hidden_time",
-  Custom_detail_title: "Custom_detail_title",
-  Custom_detail_time_length: "Custom_detail_time_length",
-  Custom_detail_minute: "Custom_detail_minute",
-  Custom_detail_address: "Custom_detail_address",
-  Custom_detail_benh_list: "Custom_detail_benh_list",
-  Custom_detail_note: "Custom_detail_note",
-
-  // define lable, name, tile, button ... in home-workcalendar-diseaseModal
-  Disease_modal_consutant_list: "Disease_modal_consutant_list",
-
-  // define lable, name, tile, button ... in main- DrawerMenu
-  Drawer_Menu_home: "Drawer_Menu_home",
-  Drawer_Menu_infor: "Drawer_Menu_infor",
-  Drawer_Menu_setting: "Drawer_Menu_setting",
-
-  RESET_PASSWORD_HEADER_TITLE:"RESET_PASSWORD_HEADER_TITLE",
-  RESET_PASSWORD_SUCCSESS_TEXT: "RESET_PASSWORD_SUCCSESS_TEXT",
-  RESET_PASSWORD_FALSE_TEXT: "RESET_PASSWORD_FALSE_TEXT",
-  RESET_PASSWORD_FORM_TITLE: "RESET_PASSWORD_FORM_TITLE",
-  RESET_PASSWORD_FORM_CONTENT: "RESET_PASSWORD_FORM_CONTENT",
-  RESET_PASSWORD_FORM_BUTTON: "RESET_PASSWORD_FORM_BUTTON",
-  RESET_PASSWORD_EMAIL_ERROR: "RESET_PASSWORD_EMAIL_ERROR",
-  ERROR_CONNECT: "ERROR_CONNECT",
-
-  CHANGE_PASSWORD_HEADER_TITLE:"CHANGE_PASSWORD_HEADER_TITLE",
-  CHANGE_PASSWORD_SUCCSESS_TEXT: "CHANGE_PASSWORD_SUCCSESS_TEXT",
-  CHANGE_PASSWORD_FALSE_TEXT: "CHANGE_PASSWORD_FALSE_TEXT",
-  CHANGE_PASSWORD_FORM_TITLE: "CHANGE_PASSWORD_FORM_TITLE",
-  CHANGE_PASSWORD_FORM_BUTTON: "CHANGE_PASSWORD_FORM_BUTTON",
-  CHANGE_PASSWORD_FORM_TITLE_OLD_PASSWORD: "CHANGE_PASSWORD_FORM_TITLE_OLD_PASSWORD",
-  CHANGE_PASSWORD_FORM_TITLE_NEW_PASSWORD: "CHANGE_PASSWORD_FORM_TITLE_NEW_PASSWORD",
-  CHANGE_PASSWORD_FORM_TITLE_CONFIRM_PASSWORD: "CHANGE_PASSWORD_FORM_TITLE_CONFIRM_PASSWORD",
-  CHANGE_PASSWORD_ERROR_OLD_PASSWORD: "CHANGE_PASSWORD_ERROR_OLD_PASSWORD",
-  CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD: "CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD",
-  CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL: "CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL",
-  CHANGE_PASSWORD_ERROR_PASSWORD: "CHANGE_PASSWORD_ERROR_PASSWORD",
+  //màn hình quản lí lịch làm việc của bác sĩ
+  Work_schedule_titleHead: "Work_schedule_titleHead",
+  Work_schedule_create_work_schedule: "Work_schedule_create_work_schedule",
+  Work_schedule_details_work_schedule: "Work_schedule_details_work_schedule",
+    StartScreen_title_welcome: "StartScreen_title_welcome",
+    StartScreen_text_btn_login: "StartScreen_text_btn_login",
+    StartScreen_text_btn_login_face: "StartScreen_text_btn_login_face",
+    StartScreen_text_btn_login_google: "StartScreen_text_btn_login_google",
+    StartScreen_text_btn_register: "StartScreen_text_btn_register",
+    StartScreen_text_or: "StartScreen_text_or",
+    StartScreen_text_content: "StartScreen_text_content",
+    StartScreen_text_footer:"StartScreen_text_footer",
+    TermOfService_textTitle: "TermOfService_textTitle",
+    TermOfService_BtnSave: "TermOfService_BtnSave",
 
   // key for show doctor profile screen
   DOCTOR_PROFILE_HEADER_TITLE:"DOCTOR_PROFILE_HEADER_TITLE",
@@ -182,4 +106,68 @@ export default {
   SETTING_NOTIFICATION_ERROR_MESSAGE: "SETTING_NOTIFICATION_ERROR_MESSAGE",
   SETTING_NOTIFICATION_WARNING_MESSAGE: "SETTING_NOTIFICATION_WARNING_MESSAGE",
   SETTING_NOTIFICATION_DISABLE_MESSAGE: "SETTING_NOTIFICATION_DISABLE_MESSAGE",
+  
+  //màn hình custom hiển thi chi tiết lịch làm việc
+  Custom_detail_view_time_detail: "Custom_detail_view_time_detail",
+  Custom_detail_hidden_time: "Custom_detail_hidden_time",
+  Custom_detail_title: "Custom_detail_title",
+  Custom_detail_time_length: "Custom_detail_time_length",
+  Custom_detail_minute: "Custom_detail_minute",
+  Custom_detail_address: "Custom_detail_address",
+  Custom_detail_list_disease: "Custom_detail_list_disease",
+  Custom_detail_note: "Custom_detail_note",
+  Custom_detail_edit_schedule: "Custom_detail_edit_schedule",
+  Disease_modal_title_list: "Disease_modal_title_list",
+  Item_time_schedule_morning: "Item_time_schedule_morning",
+  Item_time_schedule_afternoon: "Item_time_schedule_afternoon",
+
+  //màn hình nhập dữ liệu tạo lịch làm việc của bác sĩ
+  Create_schedule_show_list_time: "Create_schedule_show_list_time",
+  Create_schedule_hidden_list_time: "Create_schedule_hidden_list_time",
+  Create_schedule_content_time_notify: "Create_schedule_content_time_notify",
+  Create_schedule_content_title_notify: "Create_schedule_content_title_notify",
+  Create_schedule_content_time_error_1: "Create_schedule_content_time_error_1",
+  Create_schedule_content_time_error_2: "Create_schedule_content_time_error_2",
+  Create_schedule_content_time_error_3: "Create_schedule_content_time_error_3",
+  Create_schedule_content_time_error_4: "Create_schedule_content_time_error_4",
+  Create_schedule_placeholder_title: "Create_schedule_placeholder_title",
+  Create_schedule_select_all_current_date: "Create_schedule_select_all_current_date",
+  Create_schedule_start_time: "Create_schedule_start_time",
+  Create_schedule_end_time: "Create_schedule_end_time",
+  Create_schedule_afternoon_working_time: "Create_schedule_afternoon_working_time",
+  Create_schedule_length_examination_input_title: "Create_schedule_length_examination_input_title",
+  Create_schedule_examination_time_list:  "Create_schedule_examination_time_list",
+  Create_schedule_other_option: "Create_schedule_other_option",
+  Create_schedule_display_selected_benh_count_1: "Create_schedule_display_selected_benh_count_1",
+  Create_schedule_display_selected_benh_count_2: "Create_schedule_display_selected_benh_count_2",
+  Create_schedule_note_title: "Create_schedule_note_title",
+  Create_schedule_note_palaceholder: "Create_schedule_note_palaceholder",
+  Create_schedule_text_chedule_morning:"Create_schedule_text_chedule_morning",
+
+
+  // key man hinh reset password
+  ERROR_CONNECT: "ERROR_CONNECT",
+  RESET_PASSWORD_HEADER_TITLE:"RESET_PASSWORD_HEADER_TITLE",
+  RESET_PASSWORD_SUCCSESS_TEXT: "RESET_PASSWORD_SUCCSESS_TEXT",
+  RESET_PASSWORD_FALSE_TEXT: "RESET_PASSWORD_FALSE_TEXT",
+  RESET_PASSWORD_FORM_TITLE: "RESET_PASSWORD_FORM_TITLE",
+  RESET_PASSWORD_FORM_CONTENT: "RESET_PASSWORD_FORM_CONTENT",
+  RESET_PASSWORD_FORM_BUTTON: "RESET_PASSWORD_FORM_BUTTON",
+  RESET_PASSWORD_EMAIL_ERROR: "RESET_PASSWORD_EMAIL_ERROR",
+
+
+  // key man hinh change password
+  CHANGE_PASSWORD_HEADER_TITLE:"CHANGE_PASSWORD_HEADER_TITLE",
+  CHANGE_PASSWORD_SUCCSESS_TEXT: "CHANGE_PASSWORD_SUCCSESS_TEXT",
+  CHANGE_PASSWORD_FALSE_TEXT: "CHANGE_PASSWORD_FALSE_TEXT",
+  CHANGE_PASSWORD_FORM_TITLE: "CHANGE_PASSWORD_FORM_TITLE",
+  CHANGE_PASSWORD_FORM_BUTTON: "CHANGE_PASSWORD_FORM_BUTTON",
+  CHANGE_PASSWORD_FORM_TITLE_OLD_PASSWORD: "CHANGE_PASSWORD_FORM_TITLE_OLD_PASSWORD",
+  CHANGE_PASSWORD_FORM_TITLE_NEW_PASSWORD: "CHANGE_PASSWORD_FORM_TITLE_NEW_PASSWORD",
+  CHANGE_PASSWORD_FORM_TITLE_CONFIRM_PASSWORD: "CHANGE_PASSWORD_FORM_TITLE_CONFIRM_PASSWORD",
+  CHANGE_PASSWORD_ERROR_OLD_PASSWORD: "CHANGE_PASSWORD_ERROR_OLD_PASSWORD",
+  CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD: "CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD",
+  CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL: "CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL",
+  CHANGE_PASSWORD_ERROR_PASSWORD: "CHANGE_PASSWORD_ERROR_PASSWORD",
+
 };

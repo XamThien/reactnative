@@ -13,7 +13,7 @@ export const _INITIAL_STATE_ = {
   hasError: false
 };
 
-export const resultDoctorInfoManagerReducer = (
+export const doctorInfoManagerReducer = (
   state = _INITIAL_STATE_,
   action
 ) => {

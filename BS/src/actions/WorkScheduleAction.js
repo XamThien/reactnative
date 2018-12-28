@@ -1,6 +1,5 @@
 import {
-    WORK_SCHEDULE_LOAD_DATA,
-    WORK_SCHEDULE_LOAD_ALL_PATIENTS
+    WORK_SCHEDULE_LOAD_DATA
     } from "./ActionType";
     
     
@@ -10,10 +9,3 @@ import {
         date
       }
   }
-
-  export const loadAllPatients = () => {
-    return {
-      type: WORK_SCHEDULE_LOAD_ALL_PATIENTS,
-      
-    }
-}

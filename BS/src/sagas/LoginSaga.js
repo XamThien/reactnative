@@ -16,16 +16,17 @@ function* doLoginUserData(action) {
     try {
         yield put({ type: LOGIN_RESET_LOGIN, hasError: false , lastError: undefined});
         const response = yield Api.doLoginApi(action.userData);
+        console.log(`LoginSaga doLoginUserData...data response = ${JSON.stringify(response)} `);
         if (response != null && response.token != null) {
-            yield saveUserProfileLogin(response);
-            yield put({ type: LOGIN_SUCCESS, hasError: false , lastError: "", userProfile: response.user});
+            yield saveUserProfileLogin(response)
+            yield put({ type: LOGIN_SUCCESS, lastError: "", userProfile: response.user});
         } else {
             let error =  Translate(DefineKey.Login_text_login_fail)
             yield put({ type: LOGIN_FAIL, lastError: error, hasError: true });
         }
     } catch (error) {
         let errorText =  Translate(DefineKey.Login_text_login_error_connect)
-        yield put({ type: LOGIN_FAIL, lastError: errorText, hasError: true  });
+        yield put({ type: LOGIN_FAIL, lastError: errorText  });
     }
 
 }
@@ -35,29 +36,12 @@ export function* watchDoLoginUserData() {
 
 async function saveUserProfileLogin(responseProfile) {
     if(responseProfile !== null) {
-        
-        let user = responseProfile.user;
+        let userProfile = responseProfile.user;
         let token = responseProfile.token;
-        var profile = {
-            first_name:user.first_name,
-            last_name: user.last_name,
-            userName: user.name,
-            age: user.age,
-            education: user.education,
-            email: user.email,
-            id: user.doctor_id,
-            token: token,
-            password: user.password,
-            expire: responseProfile.expires,
-            image:"",
-            phoneNumber: user.phone
-        }
+
         saveDataStorage(Constants.KEY_STORE_TOKEN, token);
-        saveDataStorage(Constants.KEY_DOCTOR_ID, user.doctor_id);
-        //let gettoken = getDataStorage(Constants.KEY_STORE_TOKEN);  
-        // let getToken = await AsyncStorage.getItem(Constants.KEY_STORE_TOKEN);  
-        // console.log(`saveUserProfileLogin token...` + getToken);   
-        saveDataStorage(Constants.KEY_STORE_USER_PROFILE, JSON.stringify(profile));
+        saveDataStorage(Constants.KEY_DOCTOR_ID, userProfile.doctor_id); 
+        saveDataStorage(Constants.KEY_STORE_USER_PROFILE, JSON.stringify(userProfile));
     
     } 
 }
@@ -70,15 +54,7 @@ async function saveDataStorage(key,value) {
     }
   }
 
-// async function getDataStorage(key) {
-//     try {
-//         const value = await AsyncStorage.getItem(key);
-//         return value;
-//     } catch (error) {
-//         console.log("Error retrieving data" + error);
-//         return {};
-//     }
-// }
+
 
 
 

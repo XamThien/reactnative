@@ -3,7 +3,7 @@ import {
     } from "./ActionType";
     
     
-    export const saveDataSchedule = (dataSchedule) => {
+    export const saveDataCreateSchedule = (dataSchedule) => {
       return {
         type: CREATE_SCHEDULE_CREATE_DATA,
         dataSchedule

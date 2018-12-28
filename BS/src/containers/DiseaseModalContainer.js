@@ -1,11 +1,9 @@
 import { connect } from "react-redux";
-import DiseaseModal from "../screen/home/workcalendar/diseasemodal/DiseaseModal";
+import DiseaseModal from "../screen/main/workschedule/diseasemodal/DiseaseModal";
 import { loadDataDisease} from "../actions/DiseaseModalAction";
-
 
 const mapStateToProps = (state) => {
     return {
-        //userName: state.getProfilesReducers.userName,
      
     }
 };
