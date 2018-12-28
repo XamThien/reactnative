@@ -71,16 +71,7 @@ export default class UpdateDoctorInfoScr extends Component {
       error_department_name: false,
       error_position_name: false,
       error_disease_name: false
-      // error_degree_name: false,
-      // error_academic_rank_name: false,
-      // error_experience: false,
-      // error_language_name: false,
-      // error_working_process: false,
-      // error_training_process: false,
-      // error_research_work: false,
-      // error_certificate: false,
-      // error_organization: false,
-      // error_day_off: false
+
     };
     this._onShowDatePicker = this._onShowDatePicker.bind(this);
     this.onOpenDialogWarning = this.onOpenDialogWarning.bind(this);
@@ -381,64 +372,7 @@ export default class UpdateDoctorInfoScr extends Component {
   componentDidMount = () => {
     let loginResponse = this.props.userProfile;
     let profile = this.props.doctorData;
-    // this.setState({
-    //   doctorProfile: profile,
-    //   loginResponse: loginResponse
-    // });
 
-    // var last_name= (loginResponse.last_name);
-    // var first_name= (loginResponse.first_name);
-    // var description= (profile[0].value);
-    // var birthday= (profile[1].value);
-    // var birthplace= (profile[2].value);
-    // var home_town= (profile[3].value);
-    // var phone= (profile[4].value);
-    // var email= (profile[5].value);
-    // var avata= (loginResponse.image);
-    // var speciality_name= (profile[6].value);
-    // var place= (profile[7].value);
-    // var department_name= (profile[8].value);
-    // var position_name= (profile[9].value);
-    // var disease_name= (profile[10].value);
-    // var degree_name= (profile[11].value);
-    // var academic_rank_name= (profile[12].value);
-    // var experience= (profile[13].value);
-    // var language_name= (profile[14].value);
-    // var working_process= (profile[15].value);
-    // var training_process= (profile[16].value);
-    // var research_work= (profile[17].value);
-    // var certificate= (profile[18].value);
-    // var organization= (profile[19].value);
-    // var day_off= (profile[20].value);
-
-    // this.setState({
-    //   last_name: last_name,
-    //   first_name: first_name,
-    //   description: description,
-    //   birthday: birthday,
-    //   birthplace: birthplace,
-    //   home_town: home_town,
-    //   phone: phone,
-    //   email: email,
-    //   avata: avata,
-    //   speciality_name: speciality_name,
-    //   place: place,
-    //   department_name: department_name,
-    //   position_name: position_name,
-    //   disease_name: disease_name,
-    //   degree_name: degree_name,
-    //   academic_rank_name: academic_rank_name,
-    //   experience: experience,
-    //   language_name: language_name,
-    //   working_process: working_process,
-    //   training_process: training_process,
-    //   research_work: research_work,
-    //   certificate: certificate,
-    //   organization: organization,
-    //   day_off: day_off
-    // });
-
-    // alert('From scr: '+this.state.organization);
   };
 
   getImage() {

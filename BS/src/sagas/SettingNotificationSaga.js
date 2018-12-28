@@ -38,7 +38,7 @@ function* getTimeSettingSaga(action) {
           setting_notify = { status: true, time: (time / 60000) };
         }
         yield saveDataStorage(Constants.KEY_STORE_SETTING_NOTIFICATION,JSON.stringify(setting_notify));
-        alert("From setting notifiy saga:"+JSON.stringify(setting_notify));
+        //alert("From setting notifiy saga:"+JSON.stringify(setting_notify));
         yield put({
           type: SETTING_NOTIFICATION_GET_DATA_SUCCESS,
           setting_notify: setting_notify,

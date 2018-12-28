@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
         lastError: state.doctorInfoManagerReducer.lastError,
         showLoading: state.doctorInfoManagerReducer.isLoading,
         doctorData: state.doctorInfoManagerReducer.doctorData,
+	messageSuccess: state.doctorInfoManagerReducer.messageSuccess,
         userProfile: state.loginReducer.userProfile
     }
 };
