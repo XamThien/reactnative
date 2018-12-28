@@ -154,10 +154,10 @@ const styles = StyleSheet.create({
     userNameContainer: {
         flexDirection: "row",
         justifyContent: "center",
-        
+        marginBottom:10
       },
       textUserName: {
-        fontSize: Dimens.size_20,
+        fontSize: Dimens.size_15,
         color: Colors.black,
         alignSelf: "center",
         fontFamily: Fonts.RobotoRegular,

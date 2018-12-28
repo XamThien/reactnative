@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import EditMember from "../screen/profile/familymanager/editMemberInfor/EditMember";
+import EditMember from "../screen/profile/familiymanager/editmemberinfo/EditMember";
 import {
     doUpdateMember,
 

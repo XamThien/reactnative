@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import UserManager from "../screen/profile/userManager/UserManager";
+import UserManager from "../screen/profile/usermanages/UserManager";
 
 const mapStateToProps = (state) => {
 

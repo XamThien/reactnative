@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import FamilyManager from "../screen/profile/familymanager/FamilyManager";
+import FamilyManager from "../screen/profile/familiymanager/FamilyManager";
 
 import { doDeleteMember,doLoadAllFamilyMember,addNewMember } from '../actions/FamilyManagerAction';
 

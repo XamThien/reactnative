@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, ScrollView, Vibration, AsyncStorage, Alert } from "react-native";
 import { createStackNavigator, NavigationActions } from "react-navigation";
-import StartScreen from "../src/screen/startScreen/StartScreen";
+import StartScreen from "../src/screen/startscreenn/StartScreen";
 import LoginContainer from "./containers/LoginContainer"; 
 import RegisterContainer from "./containers/RegisterContainer";
 import FamilyManagerContainer from "./containers/FamilyManagerContainer";
