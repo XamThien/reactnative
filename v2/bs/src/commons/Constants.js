@@ -1,6 +1,7 @@
 export default {
     KEY_STORE_USER_PROFILE : "key_store_user_profile",
     KEY_STORE_SETTING_NOTIFICATION: "key_store_setting_notify",
+    KEY_STORE_DOCTOR_SPECIALITY_ID:"key_store_speciality_id",
     //using just ios
     VALIDATE_PASSWORD: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$",
     DEFAULT_SYMPLE_DATE: "YYYY-MM-DD",

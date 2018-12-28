@@ -20,12 +20,12 @@ function* getTimeSettingSaga(action) {
     var setting_notify = yield getDataStorage(
       Constants.KEY_STORE_SETTING_NOTIFICATION
     );
-    // if (setting_notify !== null) {
-    //   yield put({
-    //     type: SETTING_NOTIFICATION_GET_DATA_SUCCESS,
-    //     setting_notify: JSON.parse(setting_notify)
-    //   });
-    // } else {
+    if (setting_notify !== null) {
+      yield put({
+        type: SETTING_NOTIFICATION_GET_DATA_SUCCESS,
+        setting_notify: JSON.parse(setting_notify)
+      });
+    } else {
       const response = yield Api.doGetTimeSettingNotificationApi();
       if (response !== null && response.data !== null) {
         let dataResponse = response.data;
@@ -51,7 +51,7 @@ function* getTimeSettingSaga(action) {
           lastError: error
         });
       }
-    // }
+    }
   } catch (error) {
     yield put({ type: SETTING_NOTIFICATION_GET_DATA_FAIL, lastError: error });
   }

@@ -60,8 +60,9 @@ export default class Login extends Component {
     //this.props.navigation.navigate(ScreenName.Screen_HelpScreen);
   }
 
+  // chuyen sang man hinh reset password
   onPressResetPassword() {
-
+    this.props.navigation.navigate(ScreenName.Screen_ResetPassword);
   }
 
   //chuyển sang màn hình main khi login thành công

@@ -6,6 +6,7 @@ import {doctorInfoManagerReducer} from "./DoctorInfoMangerReducer";
 import { settingNotificationReducer } from "./SettingNotificationReducer";
 import { resetPasswordReducer } from "./ResetPasswordReducer";
 import { changePasswordReducer } from "./ChangePasswordReducer";
+import {getProfilesReducers} from "./ProfileReducer";
 
 const allReducers = combineReducers({
     loginReducer,
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
     settingNotificationReducer,
     changePasswordReducer,
     resetPasswordReducer,
+    getProfilesReducers,
 
 });
 export default allReducers;

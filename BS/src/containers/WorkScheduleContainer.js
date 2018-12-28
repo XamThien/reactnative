@@ -6,7 +6,7 @@ import {loadDataWorkSchedule} from "../actions/WorkScheduleAction";
 const mapStateToProps = (state) => {
     return {
        isLoading: state.workScheduleReducers.isLoading,
-       dataNewSchedule: state.createScheduleReducers.dataSchedule,
+       isReloadSchedule: state.workScheduleReducers.isReloadSchedule,
        dataWorkSchedule: state.workScheduleReducers.dataWorkSchedule,
        
     }

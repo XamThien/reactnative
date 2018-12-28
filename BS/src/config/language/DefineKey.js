@@ -63,7 +63,7 @@ export default {
     TermOfService_textTitle: "TermOfService_textTitle",
     TermOfService_BtnSave: "TermOfService_BtnSave",
 
-  // key for show doctor profile screen
+   // key for show doctor profile screen
   DOCTOR_PROFILE_HEADER_TITLE:"DOCTOR_PROFILE_HEADER_TITLE",
   Doctor_Info_Update_Header_Title:"Doctor_Info_Update_Header_Title",
   Doctor_Info_Manager_Last_Name:"Doctor_Info_Manager_Last_Name",
@@ -169,5 +169,45 @@ export default {
   CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD: "CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD",
   CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL: "CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL",
   CHANGE_PASSWORD_ERROR_PASSWORD: "CHANGE_PASSWORD_ERROR_PASSWORD",
+  
+  //màn hình custom hiển thi chi tiết lịch làm việc
+  Custom_detail_view_time_detail: "Custom_detail_view_time_detail",
+  Custom_detail_hidden_time: "Custom_detail_hidden_time",
+  Custom_detail_title: "Custom_detail_title",
+  Custom_detail_time_length: "Custom_detail_time_length",
+  Custom_detail_minute: "Custom_detail_minute",
+  Custom_detail_address: "Custom_detail_address",
+  Custom_detail_list_disease: "Custom_detail_list_disease",
+  Custom_detail_note: "Custom_detail_note",
+  Custom_detail_edit_schedule: "Custom_detail_edit_schedule",
+  Disease_modal_title_list: "Disease_modal_title_list",
+  Item_time_schedule_morning: "Item_time_schedule_morning",
+  Item_time_schedule_afternoon: "Item_time_schedule_afternoon",
+
+  //màn hình nhập dữ liệu tạo lịch làm việc của bác sĩ
+  Create_schedule_show_list_time: "Create_schedule_show_list_time",
+  Create_schedule_hidden_list_time: "Create_schedule_hidden_list_time",
+  Create_schedule_content_time_notify: "Create_schedule_content_time_notify",
+  Create_schedule_content_title_notify: "Create_schedule_content_title_notify",
+  Create_schedule_content_time_error_1: "Create_schedule_content_time_error_1",
+  Create_schedule_content_time_error_2: "Create_schedule_content_time_error_2",
+  Create_schedule_content_time_error_3: "Create_schedule_content_time_error_3",
+  Create_schedule_content_time_error_4: "Create_schedule_content_time_error_4",
+  Create_schedule_placeholder_title: "Create_schedule_placeholder_title",
+  Create_schedule_select_all_current_date: "Create_schedule_select_all_current_date",
+  Create_schedule_hide_work_shedule: "Create_schedule_hide_work_shedule",
+  Create_schedule_start_time: "Create_schedule_start_time",
+  Create_schedule_end_time: "Create_schedule_end_time",
+  Create_schedule_afternoon_working_time: "Create_schedule_afternoon_working_time",
+  Create_schedule_length_examination_input_title: "Create_schedule_length_examination_input_title",
+  Create_schedule_examination_time_list:  "Create_schedule_examination_time_list",
+  Create_schedule_other_option: "Create_schedule_other_option",
+  Create_schedule_display_selected_benh_count_1: "Create_schedule_display_selected_benh_count_1",
+  Create_schedule_display_selected_benh_count_2: "Create_schedule_display_selected_benh_count_2",
+  Create_schedule_note_title: "Create_schedule_note_title",
+  Create_schedule_note_palaceholder: "Create_schedule_note_palaceholder",
+  Create_schedule_text_chedule_morning:"Create_schedule_text_chedule_morning",
+
+
 
 };

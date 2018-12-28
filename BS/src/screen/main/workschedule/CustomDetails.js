@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
-import { StyleSheet, Platform, PixelRatio } from "react-native";
+import { Text, View, Image, TouchableOpacity, ScrollView, FlatList, StyleSheet, Platform, PixelRatio } from "react-native";
+import ItemTimeSchedule from "./createschedule/ItemTimeSchedule";
 import Colors from "../../../commons/Colors";
 import Dimens from "../../../commons/Dimensions";
 import Fonts from "../../../commons/Fonts";
@@ -33,23 +33,32 @@ export default class CustomDetails extends Component {
     }
     return result;
   }
+
   //lấy ra danh sách thời gian khám
   loadDetailsTime(timeAvailable) {
-    let result = "";
+    let arrResult = [];
     if (timeAvailable != null && timeAvailable !== "") {
-      var arrTime = timeAvailable.split(";");
+      var arrTime = timeAvailable.split(",");
       if (arrTime != null && arrTime.length != 0) {
         for (let i = 0; i < arrTime.length; i++) {
           let time = arrTime[i];
-          if (result === "") {
-            result = convertMilliToTime(time);
-          } else {
-            result = result + " , " + convertMilliToTime(time);
-          }
+          let objectTime = this.formatDataTime(time, i);
+          arrResult.push(objectTime);
         }
       }
     }
-    return result;
+    return arrResult;
+  }
+
+  //khởi tạo đối tượng thời gian theo dinh dang hien thi
+  formatDataTime(valueTime, index) {
+    let objectTime = {
+      id: index,
+      time: valueTime,
+      display: true ,
+      showHeader: false
+    }
+    return objectTime;
   }
 
   //hiển thị ẩn hiện layout thời gian
@@ -148,15 +157,22 @@ export default class CustomDetails extends Component {
                 {this.state.titleShowTime}
               </Text>
             </TouchableOpacity>
-            <Text
-              style={
-                this.state.isShowDetailsTime
-                  ? styles.txt_content_details_time
-                  : styles.hideView
-              }
-            >
-              {this.loadDetailsTime(this.props.detailsSchedule.time_available)}
-            </Text>
+            
+            <FlatList
+                style={this.state.isShowDetailsTime ? styles.layout_list_time_schedule : styles.hideView}
+                data={this.loadDetailsTime(this.props.detailsSchedule.doctor_schedule)}
+                renderItem={({ item, index }) => {
+                  return (
+                    <ItemTimeSchedule
+                      item={item}
+                      index={index}
+                      isHideCheckDate = {true}
+                     
+                    />
+                  );
+                }}
+                keyExtractor={(item, index) => index.toString()}
+              />
           </View>
         </View>
       </ScrollView>
@@ -225,6 +241,9 @@ const styles = StyleSheet.create({
     fontSize: Dimens.size_18,
     color: Colors.gray,
     alignSelf: "flex-end"
+  },
+  layout_list_time_schedule:{
+    marginTop: normalize(15),
   },
   txt_content_details_time: {
     fontSize: Dimens.size_18,

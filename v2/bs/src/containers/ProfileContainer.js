@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import Profile from "../screen/profile/Profile";
-import {logOutApp,fetchUserProfile} from "../actions/UserProfileAction";
+import {logOutApp, fetchUserProfile} from "../actions/ProfileAction";
 
 
 const mapStateToProps = (state) => {
-    console.log(`nvTien - UserProfile data = ${JSON.stringify(state.loginReducer.userProfile)}`)
     return {
-        userProfile: state.loginReducer.userProfile,
+        userName: state.getProfilesReducers.userName,
+        image: state.getProfilesReducers.image
     }
 };
 
@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch) => {
         doLogoutApp:() => {
             dispatch(logOutApp());
         }
+        
     };
 }
  const ProfileContainer =  connect(mapStateToProps, mapDispatchToProps)(Profile);

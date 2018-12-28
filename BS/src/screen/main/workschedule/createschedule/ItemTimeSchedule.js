@@ -16,7 +16,6 @@ export default class ItemDoctor extends Component {
   constructor() {
     super();
     this.state = {
-      selectedIndex: 0,
       textHead: "Ca Sáng",
       isShowHeader: false
     };
@@ -24,8 +23,7 @@ export default class ItemDoctor extends Component {
   }
 
   componentWillMount = () => {
-    let state = this.props.item.display ? 0 : 1;
-    this.setState({ selectedIndex: state });
+   
   };
 
   setTexHeader() {
@@ -42,7 +40,7 @@ export default class ItemDoctor extends Component {
   }
 
   render() {
-    const { selectedIndex } = this.props.item.display ? 0 : 1;
+    
     return (
       <View style={styles.container}>
         <View
@@ -58,21 +56,17 @@ export default class ItemDoctor extends Component {
             {this.setTexHeader()}
           </Text>
         </View>
-        <View
-          style={
-            this.props.item.id % 2
-              ? styles.wrap_content_white
-              : styles.wrap_content_blue
-          }
-        >
+        <View style={this.props.item.id % 2 ? styles.wrap_content_white : styles.wrap_content_blue}>
           {/* hiển thị thời gian và checkbox chọn thời gian, huỷ thời gian khám bệnh */}
           <Text style={styles.text_time_schedule}>{this.props.item.time}</Text>
-          <CheckBox
-            style={styles.layout_select_status}
-            checked={this.props.item.display}
-            onPress={() => this.updateIndex(this.props.item.id)}
-            color="green"
-          />
+          <View style = {this.props.isHideCheckDate ? styles.hideView : styles.layout_wrap_checkbox}>
+            <CheckBox
+              style={styles.layout_select_status}
+              checked={this.props.item.display}
+              onPress={() => this.updateIndex(this.props.item.id)}
+              color="green"
+            />
+          </View>
         </View>
       </View>
     );

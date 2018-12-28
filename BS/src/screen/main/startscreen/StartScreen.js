@@ -10,7 +10,7 @@ import {
 import CustomHeader from "../../main/header/CustomHeader";
 import ScreenName from "../../../commons/ScreenName";
 import styles from "./StartScreenStyle";
-import { Translate } from "../../../utils/Language";
+import {Translate} from "../../../utils/Language"
 import DefineKey from "../../../config/language/DefineKey";
 
 export class StartScreen extends Component {
@@ -18,19 +18,30 @@ export class StartScreen extends Component {
     header: null
   };
 
-  componentWillMount() {}
-
-  doHomePage() {}
-
-  componentWillReceiveProps(props) {
-    console.log("nvTien - componentWillReceiveProps login social...");
+  componentWillMount() {
+    
   }
 
-  onPressLoginScreen() {}
+  doHomePage() {
+   
+  }
 
-  onPressRegisterScreen() {}
+  componentWillReceiveProps(props) {
+      console.log("nvTien - componentWillReceiveProps login social...");
+    
+  }
 
-  onPressTermScreen() {}
+  onPressLoginScreen() {
+   
+  }
+
+  onPressRegisterScreen() {
+    
+  }
+
+  onPressTermScreen() {
+   
+  }
 
   render() {
     return (
@@ -42,8 +53,8 @@ export class StartScreen extends Component {
               isShowBack={false}
               navigation={this.props.navigation}
               titleHead={Translate(DefineKey.Work_schedule_titleHead)}
-            />
-
+            /> 
+            
           </View>
         </View>
       </SafeAreaView>

@@ -88,42 +88,23 @@ function* doUpdateDoctorInfoApi(doctorData,speciality_id) {
     "x-access-token": token,
     "x-key": xKey
   };
-  let dataBody = JSON.stringify({
+  // alert("From update doctor api 1: "+JSON.stringify(doctorData));
+
+  let dataBody = {
+    ...doctorData, 
+    doctor_id:doctor_id,
     speciality: {
       id: speciality_id,
       name: doctorData.speciality_name
     },
-    first_name: doctorData.first_name,
-    last_name: doctorData.last_name,
-    name: doctorData.last_name + " "+ doctorData.first_name,
-    home_town: doctorData.home_town,
-    birthplace: doctorData.birthplace,
     age: 11,
     isonline: false,
-    description: doctorData.description,
-    avata: "",
-    email: doctorData.email,
-    phone: "4321",
     password: doctor_profile.password,
-    birthday: doctorData.birthday,
-    training_process: doctorData.training_process,
-    department_name: doctorData.department_name,
-    day_off: doctorData.day_off,
-    certificate: doctorData.certificate,
-    working_process: doctorData.working_process,
-    language_name: doctorData.language_name,
-    experience: doctorData.experience,
-    degree_name: doctorData.degree_name,
-    academic_rank_name: academic_rank_name,
-    disease_name: doctorData.disease_name,
-    organization: doctorData.organization,
-    research_work: doctorData.research_work,
-    place: doctorData.place,
-    position_name: doctorData.position_name
-  });
-  let url = ApiString.URL_UpdateDoctorInfo.concat(doctorId);
-   return yield handlePostRequest(url, headers, dataBody);
-
+    avata: ""
+  };
+  let parseBody = JSON.stringify(dataBody);
+  // alert("From update doctor api 2: "+parseBody);
+   return yield handlePostRequest(ApiString.URL_UpdateDoctorInfo, headers, parseBody);
 }
 
 //api lấy thời gian cài đặt notify trên server
@@ -157,12 +138,45 @@ function* doUpdateTimeSettingNotificationApi(time) {
     "x-key": xKey
   };
   let dataBody = JSON.stringify({
-    user_id: userID,
+    doctor_id: userID,
     notify: time * 60000
   });
   return yield handlePostRequest(ApiString.URL_Update_TimeSettingNotification, headers, dataBody);
 }
 
+// api: reset password
+function* doResetPasswordApi(email) {
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-key": xKey
+  };
+  let dataBody = JSON.stringify({
+    email: email
+  });
+  return yield handlePostRequest(ApiString.URL_Reset_Password, headers, dataBody);
+}
+
+// api: change password
+function* doChangePasswordApi(newPassword, old_password) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let doctor_id = yield getDataStorage(Constants.KEY_DOCTOR_ID);
+  // alert(userID);
+  let xKey = "";
+  let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "x-access-token": token,
+    "x-key": xKey
+  };
+  let dataBody = JSON.stringify({
+    doctor_id: doctor_id,
+    old_password: old_password,
+    new_password: newPassword
+  });
+  return yield handlePostRequest(ApiString.URL_Change_Password, headers, dataBody);
+}
 
 export const Api = {
   doLoginApi,
@@ -171,7 +185,9 @@ export const Api = {
   doGetDoctorInfoApi,
   doUpdateDoctorInfoApi,
   doGetTimeSettingNotificationApi,
-  doUpdateTimeSettingNotificationApi
+  doUpdateTimeSettingNotificationApi,
+  doChangePasswordApi,
+  doResetPasswordApi,
   
 
 };

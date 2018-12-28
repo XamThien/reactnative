@@ -6,6 +6,8 @@ import {watchDoGetDoctorInfo, watchDoUpdateDoctorInfo} from "./DoctorInfoManager
 import {watchGetTimeSettingNotification, watchUpdateTimeSettingNotification} from "./SettingNotificationSaga";
 import {watchDoResetPassword} from "./ResetPasswordSaga";
 import {watchDoChangePassword} from "./ChangePasswordSaga";
+import {watchDoGenerateTimeSchedule} from "./CreateScheduleSaga";
+import {watchDoLogoutApp, watchFetchUserProfiles} from "./ProfileSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -18,7 +20,11 @@ export default function* rootSaga() {
       fork(watchUpdateTimeSettingNotification),
       fork(watchDoResetPassword),
       fork(watchDoChangePassword),
-     
+      fork(watchDoGenerateTimeSchedule),
+      fork(watchFetchUserProfiles),
+      fork(watchDoLogoutApp),
+
+
   ]);
  
 }

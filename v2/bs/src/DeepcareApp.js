@@ -9,6 +9,9 @@ import UserProfileContainer from "./containers/UserProfileContainer";
 import ShowDoctorProfileContainer from "./containers/ShowDoctorProfileContainer";
 import UpdateDoctorInfoContainer from "./containers/UpdateDoctorInfoContainer";
 import SettingNotifycationContainer from "./containers/SettingNotifycationContainer";
+import ResetPasswordContainer from "./containers/ResetPasswordContainner";
+import ChangePasswordContainer from "./containers/ChangePasswordContainer";
+import ProfileContainer from "./containers/ProfileContainer";
 
 import {Translate} from "./utils/Language";
 import DefineKey from "./config/language/DefineKey";
@@ -125,6 +128,28 @@ export const RootStack = createStackNavigator(
       navigationOptions: {
       title: Translate(DefineKey.SETTING_NOTIFICATION_HEADER_TITLE),
       headerBackTitle: null
+      }
+    },
+    Profile: {
+      navigationOptions: {
+        title: Translate(DefineKey.Profile_head_title),
+        headerBackTitle: null,
+        
+      },
+      screen: ProfileContainer
+    },
+    ResetPassword: {
+      screen: ResetPasswordContainer,
+      navigationOptions: {
+        title: Translate(DefineKey.RESET_PASSWORD_HEADER_TITLE),
+        headerBackTitle: null
+      }
+    },
+    ChangePassword: {
+      screen: ChangePasswordContainer,
+      navigationOptions: {
+        title: Translate(DefineKey.CHANGE_PASSWORD_HEADER_TITLE),
+        headerBackTitle: null
       }
     },
   

@@ -23,7 +23,7 @@ import DatePicker from "../../../../components/DatePicker";
 import WarningDialog from '../../../../components/WarningDialog';
 import DiseaseModalContainer from "../../../../containers/DiseaseModalContainer"
 import Colors from "../../../../commons/Colors";
-import {convertDateToMillisecond, convertTimeToMillisecond,isEmptyObject} from "../../../../utils/Utils";
+import {convertDateToMillisecond, convertTimeToMillisecond, convertMilliToTime , convertMillisecondToDate, isEmptyObject} from "../../../../utils/Utils";
 
 export default class CreateScheduleModal extends Component {
   constructor(props) {
@@ -41,15 +41,16 @@ export default class CreateScheduleModal extends Component {
       actionType: "",
 
       txtLocationName: "",
-      txtLocationSubName: "",
+      dataGenerateTimes: [],
       dataTimes: [],
       oldDataSchedule: {},
-      isSelectLocation: false,
-      switchAllDate: false,
-      checked: true,
+      isCheckAllDay: true,
+      isCheckHideDate: false,
       clickTypeTime: 0,
       isShowListTime: false,
       isGeneratedTime: false,
+      isEditData: false,
+      isHideCheckDate: false,//ẩn tuỳ chọn sửa giờ khám, trong trường hợp tạo lịch theo tuần
       textShowListTime: Translate(DefineKey.Create_schedule_show_list_time),
 
       errTitle: "",
@@ -69,15 +70,24 @@ export default class CreateScheduleModal extends Component {
   };
 
   componentWillReceiveProps(props) {
-    if(props.dataSchedule != null && !isEmptyObject(props.dataSchedule) ) {
-        this.dismissCreateSchedule();
-      }
+    if (props.dataSchedule != null && !isEmptyObject(props.dataSchedule)) {
+      this.dismissCreateSchedule();
+    }
+    if (props.dataTimes != null && !isEmptyObject(props.dataTimes)) {
+      this.handlerGenerateTimes(props.dataTimes);
+    }
   }
 
   //check tuỳ chọn apply lịch khám cho tất cả thứ với thứ của ngày hiện tại hay không
   onPressCheckAllDate() {
-    console.log('onPressCheckAllDate isChecked: ' + this.state.checked )
-    this.setState({ checked: !this.state.checked })
+    console.log('onPressCheckAllDate isChecked: ' + this.state.isCheckAllDay )
+    this.setState({ isCheckAllDay: !this.state.isCheckAllDay })
+  }
+
+  //check tuỳ chọn ẩn lịch khám cả ngày
+  onPressCheckHideDate() {
+    console.log('onPressCheckHideDate isCheckHideDate: ' + this.state.isCheckHideDate )
+    this.setState({ isCheckHideDate: !this.state.isCheckHideDate })
   }
 
   //hiển thị dialog tạo lịch làm việc, sửa lịch làm việc
@@ -86,7 +96,7 @@ export default class CreateScheduleModal extends Component {
     this.clearOldData();
     this.setState({selectDate: inputDate, actionType: actionType});
     if(actionType === Constants.TYPE_SCHEDULE_CREATE_WEEK) {
-      this.handleCreateWeeklySchedule();
+      this.handleCreateWeeklySchedule(inputDate);
     } else if(actionType === Constants.TYPE_SCHEDULE_EDIT) {
       this.handleEditSchedule(dataSchedule)
     }
@@ -94,22 +104,98 @@ export default class CreateScheduleModal extends Component {
     this.refs.myModal.open();
   }
 
+  //Đóng màn hình tạo lịch khám bệnh
+  dismissCreateSchedule() {
+    this.refs.myModal.close();
+  }
+
   //xử lí sửa lịch khám bác sĩ, đẩy dữ liệu lên view và hiển thị tuỳ chọn trong màn hình sửa
   handleEditSchedule(dataSchedule) {
-    this.setState({oldDataSchedule: dataSchedule});
+    this.setState({oldDataSchedule: dataSchedule, isHideCheckDate: false});
     this.updateDataToView(dataSchedule);
   }
 
   //Hiển thị dữ liệu cũ lên view để sửa
   updateDataToView(dataSchedule) {
+    console.log(`CreateScheduleModal - updateDataToView data = ${JSON.stringify(dataSchedule)}`)
+    let start_time_am = convertMilliToTime(dataSchedule.start_time_am);
+    let end_time_am = convertMilliToTime(dataSchedule.end_time_am);
+    let start_time_pm = convertMilliToTime(dataSchedule.start_time_pm);
+    let end_time_pm = convertMilliToTime(dataSchedule.end_time_pm);
+    let date = convertMillisecondToDate(dataSchedule.date);
+    let minute = dataSchedule.minute;
+    let txtComment = dataSchedule.description;
+    let txtLocationName = dataSchedule.location;
+    let times = this.loadDetailsTime(dataSchedule.doctor_schedule);
+    
     this.setState({
-      txtTitle: dataSchedule.schedule_name
+      txtTitle: dataSchedule.schedule_name,
+      txtMorningStartTime: start_time_am,
+      txtMorningEndTime: end_time_am,
+      txtAfternoonStartTime: start_time_pm,
+      txtAfternoonEndTime: end_time_pm,
+      txtMinuteExamination: minute,
+      txtComment: txtComment,
+      txtLocationName: txtLocationName,
+      dataTimes: times,
+      isGeneratedTime: true
     })
   }
 
-  //xử lí tạo lịch làm việc theo tuần của bác sĩ, khi bác sĩ chưa có lịch làm việc
-  handleCreateWeeklySchedule() {
+  loadDetailsTime(timeAvailable) {
+    let arrResult = [];
+    if (timeAvailable != null && timeAvailable !== "") {
+      var arrTime = timeAvailable.split(",");
+      if (arrTime != null && arrTime.length != 0) {
+        for (let i = 0; i < arrTime.length; i++) {
+          let time = arrTime[i];
+          let objectTime = this.formatInputTime(time, i);
+          arrResult.push(objectTime);
+        }
+      }
+    }
+    return arrResult;
+  }
 
+  //khởi tạo đối tượng thời gian kiểm tra thời gian đã bỏ chọn trước đó hay chưa
+  formatInputTime(valueTime, index) {
+    let objectTime = {
+      id: index,
+      time: valueTime,
+      display: true ,
+      showHeader: false
+    }
+    return objectTime;
+  }
+
+  //xử lí tạo lịch làm việc theo tuần của bác sĩ, khi bác sĩ chưa có lịch làm việc
+  handleCreateWeeklySchedule(inputDate) {
+    this.setState({isHideCheckDate: true})
+
+  }
+
+  //xử lí thời gian generate từ server
+  handlerGenerateTimes(dataTimes) {
+    let times = dataTimes.doctor_schedule;
+    var arrTimes = times.split(",");
+    var arrObjectTimes = [];
+    for(let i = 0; i < arrTimes.length ; i++) {
+      arrObjectTimes.push(this.formatDataTime(arrTimes[i], i));
+    }
+    this.setState({isGeneratedTime: true, dataGenerateTimes: dataTimes, dataTimes: arrObjectTimes});
+    console.log(`CreateScheduleModal - handlerGenerateTimes data format: ${JSON.stringify(arrObjectTimes)}`)
+  }
+
+  //khởi tạo đối tượng thời gian, dùng để xử lí chọn thời gian khám
+  formatDataTime(valueTime, index) {
+    let time = valueTime.trim();
+    let objectTime = {
+      id: index,
+      time: time,
+      display: true ,
+      showHeader: false
+    }
+    return objectTime;
   }
 
   //xoá dữ liệu cũ khi vào lại để tạo lịch làm việc hoặc update lịch làm việc
@@ -127,19 +213,14 @@ export default class CreateScheduleModal extends Component {
       txtComment: "",
       txtLocationName: "",
 
-      isSelectLocation: false,
-      switchAllDate: false,
-      checked: false,
+      isCheckAllDay: false,
+      isCheckHideDate: false,
       clickTypeTime: 0,
       isShowListTime: false,
+      isGeneratedTime: false,
       textShowListTime: Translate(DefineKey.Create_schedule_show_list_time),
       
     });
-  }
-
-  //Đóng màn hình tạo lịch khám bệnh
-  dismissCreateSchedule() {
-    this.refs.myModal.close();
   }
 
   //Lưu lịch làm việc của bác sĩ, sau khi đã hoàn thành bước nhập dữ liệu
@@ -148,25 +229,8 @@ export default class CreateScheduleModal extends Component {
     var dataSchedule = [];
     let dataTimesGen = [];
     let title = this.state.txtTitle;
-    //kiểm tra thời gian đã được gen mới hay chưa, nếu chưa thì thực hiện gen trước khi 
-    console.log("nvTien-GEN TIME...IS " + this.state.isGeneratedTime)
-    if(!this.state.isGeneratedTime) {
-      var morningStartTime = this.state.txtMorningStartTime;
-      var morningEndTime = this.state.txtMorningEndTime;
-      var afternoonStartTime = this.state.txtAfternoonStartTime;
-      var afternoonEndTime = this.state.txtAfternoonEndTime;
-      var minuteGen = this.state.txtMinuteExamination;
-      if (minuteGen === "") {
-        let contentError = Translate(DefineKey.Create_schedule_content_time_notify);
-        this.onOpenDialogWarning(errTitle,contentError);
-        return;
-      }
-       dataTimesGen = this.generatorDataTimes(morningStartTime, morningEndTime, afternoonStartTime, afternoonEndTime, minuteGen);
-      this.setState({isGeneratedTime: true})
-    } else {
-      dataTimesGen = this.state.dataTimes;
-    }
-
+    
+    //validate title đã nhập hay chưa
     if(title === "") {
         let contentError = Translate(DefineKey.Create_schedule_content_title_notify);
         this.onOpenDialogWarning(errTitle,contentError);
@@ -184,7 +248,7 @@ export default class CreateScheduleModal extends Component {
       let location = this.state.txtLocationName;
       let description = this.state.txtComment;
       let disease = this.loadDiseaseSelected(this.state.dataSelectedDisease);
-
+      let type = Constants.TYPE_WEEK;
       let objectRequest = {
         schedule_name: schedule_name,
         start_time_am: start_time_am,
@@ -193,15 +257,24 @@ export default class CreateScheduleModal extends Component {
         end_time_pm: end_time_pm,
         date: date,
         minute: minute,
-        time_available: "",
         is_available: is_available,
         location: location,
         description: description,
         disease: disease,
-        isGeneratedTime: false
+        isGeneratedTime: false,
+        type:type
       }
+      //set type cho request api
+      if(this.state.actionType === Constants.TYPE_SCHEDULE_CREATE_WEEK) {
+        type = Constants.TYPE_WEEK;
+        objectRequest = {...objectRequest, type: type};
+        this.props.saveDataSchedule(objectRequest);
 
-      this.props.saveDataSchedule(objectRequest);
+      } else if(this.state.actionType === Constants.TYPE_SCHEDULE_EDIT) {
+        
+
+      }
+      
     }
   }
 
@@ -265,23 +338,21 @@ export default class CreateScheduleModal extends Component {
   //cập nhật trạng thái chọn thời gian làm việc, bỏ chọn thời gian làm việc
   onUpdateStatusTime(timeId) {
       let dataTimesInput = this.state.dataTimes;
-      if (
-        dataTimesInput != null &&
-        dataTimesInput != undefined &&
-        dataTimesInput.length != 0
-      ) {
+      var arrNewChange = [];
         for (let i = 0; i < dataTimesInput.length; i++) {
           let objectTime = dataTimesInput[i];
           if (objectTime.id == timeId) {
-            dataTimesInput[i].display = !objectTime.display;
-            break;
+            let display = objectTime.display;
+            objectTime = {...objectTime, display: !display};
           }
+          arrNewChange.push(objectTime);
         }
-        this.setState({ dataTimes: dataTimesInput });
-      }
+        console.log(`CreateScheduleModal - onUpdateStatusTime afterChange = ${JSON.stringify(arrNewChange)}`);
+        this.setState({ dataTimes: arrNewChange });
+      
     }
 
-  //hiển thị danh sách thời gian làm việc, thời gian này sẽ được gen tự động
+  //call service lấy về danh sách thời gian làm việc, thời gian này sẽ được gen tự động
   onShowListTimeSchedule() {
       let errTitle = Translate(DefineKey.DialogWarning_text_title);
       var morningStartTime = this.state.txtMorningStartTime;
@@ -293,13 +364,27 @@ export default class CreateScheduleModal extends Component {
         let contentError = Translate(DefineKey.Create_schedule_content_time_error_4);
         this.onOpenDialogWarning(errTitle,contentError);
       } else {
+        
         let isShowing = !this.state.isShowListTime;
         let text = "";
-        //Caculate and return data
+        console.log("CreateScheduleModal - onShowListTimeSchedule: isShowing: " + isShowing + " isGeneratedTime:  " + this.state.isGeneratedTime)
+       
         if(isShowing) {
           text = Translate(DefineKey.Create_schedule_hidden_list_time);
           if(!this.state.isGeneratedTime) {
-           // this.generatorDataTimes(morningStartTime, morningEndTime, afternoonStartTime, afternoonEndTime, minute);
+            let start_time_am = convertTimeToMillisecond(this.state.txtMorningStartTime);
+            let end_time_am = convertTimeToMillisecond(this.state.txtMorningEndTime);
+            let start_time_pm = convertTimeToMillisecond(this.state.txtAfternoonStartTime);
+            let end_time_pm = convertTimeToMillisecond(this.state.txtAfternoonEndTime);
+            let minute = this.state.txtMinuteExamination;
+            let dataSchedule = {
+              minute: minute,
+              start_time_am: start_time_am,
+              end_time_am: end_time_am,
+              start_time_pm: start_time_pm,
+              end_time_pm: end_time_pm
+            }
+           this.props.onGenerateTimeSchedule(dataSchedule);
           }
           
         } else {
@@ -398,9 +483,9 @@ export default class CreateScheduleModal extends Component {
         <ScrollView>
           <View style={styles.layout_wrap_content}>
             <View style={styles.layout_wrap_input_time}>
-              <View style={styles.layout_wrap_choose_date}>
+              <View style={this.state.isEditData ? styles.layout_wrap_choose_date : styles.hide_view}>
               {/* layout hiển thị nút chọn áp dụng cho các thứ cùng với thứ hiện tại, 2 tháng */}
-                <View style={styles.layout_select_all_date}>
+                <View style={this.state.isEditData ? styles.layout_select_all_date : styles.hide_view }>
                   <View style={styles.layout_text_all_date}>
                     <Image
                       source={require("../../../../../assets/icon_all_date.png")}
@@ -414,8 +499,29 @@ export default class CreateScheduleModal extends Component {
                   {/* hiển thị checkbox chọn apply cho tất cả các ngày cùng thứ với ngày hiện tại hay không */}
                   <CheckBox
                     style={styles.check_all_date}
-                    checked={this.state.checked}
+                    checked={this.state.isCheckAllDay}
                     onPress={() => this.onPressCheckAllDate()}
+                    color="green"
+                  />
+                </View>
+
+                {/* layout hiển thị nút chọn hiển thị lịch khám hoặc bỏ ngày khám trong ngày */}
+                <View style={this.state.isEditData ? styles.layout_select_all_date : styles.hide_view }>
+                  <View style={styles.layout_text_all_date}>
+                    <Image
+                      source={require("../../../../../assets/icon_all_date.png")}
+                      style={styles.image_select_all_date}
+                    />
+                    <Text style={styles.text_select_all_date}>
+                      {Translate(DefineKey.Create_schedule_hide_work_shedule)}
+                    </Text>
+                  </View>
+
+                  {/* hiển thị checkbox chọn apply cho tất cả các ngày cùng thứ với ngày hiện tại hay không */}
+                  <CheckBox
+                    style={styles.check_all_date}
+                    checked={this.state.isCheckHideDate}
+                    onPress={() => this.onPressCheckHideDate()}
                     color="green"
                   />
                 </View>
@@ -566,6 +672,7 @@ export default class CreateScheduleModal extends Component {
                     <ItemTimeSchedule
                       item={item}
                       index={index}
+                      isHideCheckDate = {this.state.isHideCheckDate}
                       onclickItem={this.onUpdateStatusTime.bind(this)}
                     />
                   );
@@ -639,7 +746,7 @@ export default class CreateScheduleModal extends Component {
             </View>
           </View>
         </ScrollView>
-        <DialogLoading loading={this.props.isLoadingDialog}/>
+        <DialogLoading loading={this.props.isLoading}/>
         <WarningDialog
           titleDialog={this.state.errTitle}
           contentDialog={this.state.errContent}

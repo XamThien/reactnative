@@ -8,5 +8,7 @@ export default {
  URL_Update_TimeSettingNotification: "http://35.238.126.42:443/api/v2/setting/settingNotify",
  URL_Reset_Password:"http://35.238.126.42:443/doctor/resetPassword",
  URL_Change_Password:"http://35.238.126.42:443/api/v2/doctor/changePassword",
+ URL_CreateSchedule_Gen_Times: "http://35.238.126.42:443/schedule/generateTimeAvailableScheduleByTime",
+ URL_CreateNew_Weekly_Schedule: "http://35.238.126.42:443/api/v2/schedule/createScheduleAuto",
 
 };

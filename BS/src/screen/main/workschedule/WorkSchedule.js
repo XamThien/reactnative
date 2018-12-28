@@ -25,7 +25,7 @@ import DialogLoading from "../../../components/DialogLoading";
 import CreateScheduleContainer from "../../../containers/CreateScheduleContainer";
 import ScreenName from "../../../commons/ScreenName";
 import Constants from "../../../commons/Constants";
-import {convertMillisecondToDate, isEmptyObject } from "../../../utils/Utils";
+import {convertMillisecondToDate, isEmptyObject, getTimeMillisecond, convertDateToMillisecond } from "../../../utils/Utils";
 
 export default class WorkSchedule extends Component {
   constructor(props) {
@@ -33,6 +33,7 @@ export default class WorkSchedule extends Component {
     this.state = {
       isShowTime: false,
       isVisibleHeader: false,
+      isVisibleButtonCreate: false,
       isShowDetailsSchedule: false,
       selectDate: "",
       detailsSchedule: {},
@@ -53,13 +54,34 @@ export default class WorkSchedule extends Component {
     } else if (props.dataWorkSchedule != null && !isEmptyObject(props.dataWorkSchedule)) {
       this.updateDetailToView(props.dataWorkSchedule);
     } else {
-      this.setState({ isShowTime: false, isVisibleHeader: false });
+      this.handleShowHeader();
+    }
+    //xử lí tạo lịch làm việc thành công, đóng màn hình tạo lịch làm việc và reload data
+    if(props.isReloadSchedule) {
+      this.dissmissCreateScheduleModal();
+      this.props.loadDataWorkSchedule(this.state.selectDate);
+    }
+  }
+
+  //xử lí ẩn hiện view
+  handleShowHeader() {
+    var curTime = parseInt(getTimeMillisecond())
+    var selectDateInt = parseInt(convertDateToMillisecond(this.state.selectDate));
+    //nếu ngày chọn nhỏ hơn ngày hiện tại, thì hiển thị header để chọn ngày khác và ẩn nút tạo lịch đi vì là quá khứ
+    //nếu = ngày hiện tại thì hiện nút tạo lịch và ẩn header đi
+    //nếu > ngày hiện tại thì hiển thị header để chọn ngày khác, và hiện nút tạo lịch làm việc
+    if(selectDateInt < curTime) {
+      this.setState({ isShowTime: false, isVisibleHeader: true, isVisibleButtonCreate: false });
+    } else if(selectDateInt == curTime) {
+      this.setState({ isShowTime: false, isVisibleHeader: false, isVisibleButtonCreate: true });
+    } else {
+      this.setState({ isShowTime: false, isVisibleHeader: true, isVisibleButtonCreate: true });
     }
   }
 
   //hiển thị dữ liệu lên view
   updateDetailToView(dataWorkSchedule) {
-    this.setState({ isVisibleHeader: true, isShowTime: true, detailsSchedule:  dataWorkSchedule});
+    this.setState({ isVisibleHeader: true, isShowTime: true, isVisibleButtonCreate: false, detailsSchedule:  dataWorkSchedule});
   }
 
   //Hiển thị màn hình tạo lịch khám bệnh
@@ -71,10 +93,15 @@ export default class WorkSchedule extends Component {
   onPressEditSchedule() {
     this.showCreateScheduleModal(Constants.TYPE_SCHEDULE_EDIT, this.state.selectDate, this.state.detailsSchedule);
   }
+
   //Xử lí hiển thị dialog tạo lịch khám theo type, create, edit
   showCreateScheduleModal(actionType, selectDate, detailsSchedule) {
     this.refs.createScheduleModal.getWrappedInstance()
     .showCreateScheduleModal(actionType, this.state.selectDate,  detailsSchedule);
+  }
+
+  dissmissCreateScheduleModal() {
+    this.refs.createScheduleModal.getWrappedInstance().dismissCreateSchedule();
   }
 
   componentWillAnimateOut() {
@@ -164,9 +191,9 @@ export default class WorkSchedule extends Component {
               </ScrollView>
             </View>
            
-            <View style={this.state.isShowTime ? styles.hideLayout : styles.layout_create_schedule}>
+            <View style={this.state.isVisibleButtonCreate ? styles.layout_create_schedule : styles.hideLayout}>
               <TouchableOpacity
-                style={styles.layout_button_create}
+                style={this.state.isVisibleButtonCreate ? styles.layout_button_create : styles.hideLayout}
                 onPress={() => {
                   this.onPressShowCreateScheduleModal();
                 }}

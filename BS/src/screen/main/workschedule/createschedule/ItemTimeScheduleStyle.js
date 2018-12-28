@@ -8,6 +8,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: normalize(2)
   },
   layout_text_head: {
@@ -26,30 +28,37 @@ const styles = StyleSheet.create({
   },
   wrap_content_white: {
     flexDirection: "row",
-    backgroundColor: "#dae3f2",
+    backgroundColor: "#86c2d1",
     height: normalize(40),
+    width: normalize(250),
     alignItems: "center",
     paddingLeft: normalize(10),
     paddingRight: normalize(10)
   },
   wrap_content_blue: {
     flexDirection: "row",
-    backgroundColor: Colors.gray_02,
-    height: normalize(40),
     alignItems: "center",
+    backgroundColor: "#dae3f2",
+    height: normalize(40),
+    width: normalize(250),
     paddingLeft: normalize(10),
     paddingRight: normalize(10)
   },
   text_time_schedule: {
+    flex: 3,
     color: Colors.black,
-    fontSize: Dimens.size_15
+    fontSize: Dimens.size_15,
+    alignSelf: 'center',
+    fontFamily: Fonts.RobotoCondensedBold,
+  },
+  layout_wrap_checkbox:{
+    flex:1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: 'center',
   },
   layout_select_status: {
-    width: normalize(120),
-    height: normalize(30),
-    backgroundColor: Colors.defaultHeader,
-    position: "absolute",
-    right: 0
+    marginRight: normalize(5),
   }
 });
 

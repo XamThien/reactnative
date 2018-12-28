@@ -30,6 +30,7 @@ export default {
  Profile_text_exit: "Thoát",
  Profile_head_title: "Tài khoản",
  Profile_change_password: "Đổi mật khẩu",
+ 
 
  //key string màn hình điều khoản dịch vụ
  TermOfService_textTitle: "Điều khoản sử dụng ứng dụng \nDeepCare",
@@ -78,6 +79,7 @@ export default {
  Create_schedule_content_time_error_4:"Mời bạn nhập vào số phút khám",
  Create_schedule_placeholder_title:"Nhập Tiêu Đề",
  Create_schedule_select_all_current_date:"Chọn cho tất cả cho thứ 3",
+ Create_schedule_hide_work_shedule: "Huỷ lịch khám cả ngày",
  Create_schedule_start_time:"Từ: ",
  Create_schedule_end_time:"Đến: ",
  Create_schedule_afternoon_working_time:"Lịch ca chiều",
@@ -145,10 +147,10 @@ export default {
   ERROR_CONNECT:"Lỗi kết nối.",
 
   // key man hinh change password
-  CHANGE_PASSWORD_HEADER_TITLE:"Dổi mật khẩu",
-  CHANGE_PASSWORD_SUCCSESS_TEXT:"Dổi mật khẩu thành công.",
-  CHANGE_PASSWORD_FALSE_TEXT:"Dổi mật khẩu không thành công.",
-  CHANGE_PASSWORD_FORM_TITLE: "Dổi mật khẩu",
+  CHANGE_PASSWORD_HEADER_TITLE:"Đổi mật khẩu",
+  CHANGE_PASSWORD_SUCCSESS_TEXT:"Đổi mật khẩu thành công.",
+  CHANGE_PASSWORD_FALSE_TEXT:"Đổi mật khẩu không thành công.",
+  CHANGE_PASSWORD_FORM_TITLE: "Đổi mật khẩu",
   CHANGE_PASSWORD_FORM_BUTTON: "Lưu mật khẩu",
   CHANGE_PASSWORD_FORM_TITLE_OLD_PASSWORD: "Mật khẩu cũ",
   CHANGE_PASSWORD_FORM_TITLE_NEW_PASSWORD: "Mật khẩu mới",
@@ -157,6 +159,4 @@ export default {
   CHANGE_PASSWORD_ERROR_NOT_MATCHES_CONFIRM_PASSWORD:"Nhập mật khẩu mới không khớp",
   CHANGE_PASSWORD_FORM_ERROR_ENTRY_ALL:"Yêu cầu nhập đủ các trường",
   CHANGE_PASSWORD_ERROR_PASSWORD:"Sai mật khẩu",
-
-
 };

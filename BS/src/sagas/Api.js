@@ -40,8 +40,8 @@ function* doGetWorkScheduleApi(date) {
   return yield handleGetRequest(url, headers);
 }
 
-//service tạo mới lịch làm việc của bác sĩ
-function* doCreateNewScheduleApi(input) {
+//service tạo mới lịch làm việc của bác sĩ theo tuần
+function* doCreateWeeklyScheduleApi(input) {
   let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
   let doctorId = yield getDataStorage(Constants.KEY_DOCTOR_ID);
  
@@ -54,8 +54,21 @@ function* doCreateNewScheduleApi(input) {
   };
   let dataBody = {...input, doctor_id: doctorId};
   let parseBody = JSON.stringify(dataBody);
+  return yield handlePostRequest(ApiString.URL_CreateNew_Weekly_Schedule, headers, parseBody);
+}
 
-  return yield handlePostRequest(url, headers, dataBody);
+//service lấy các mốc thời gian khám bệnh của bác sĩ, được gen từ server
+function* doGenerateTimeScheduleApi(dataSchedule) {
+  let token = yield getDataStorage(Constants.KEY_STORE_TOKEN);
+  let xKey = "";  
+  let headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "x-access-token" : token,
+      "x-key" : xKey
+  };
+  let dataBody = JSON.stringify(dataSchedule);
+  return yield handlePostRequest(ApiString.URL_CreateSchedule_Gen_Times, headers, dataBody);
 }
 
 
@@ -178,16 +191,18 @@ function* doChangePasswordApi(newPassword, old_password) {
   return yield handlePostRequest(ApiString.URL_Change_Password, headers, dataBody);
 }
 
+
 export const Api = {
   doLoginApi,
   doGetWorkScheduleApi,
-  doCreateNewScheduleApi,
+  doCreateWeeklyScheduleApi,
   doGetDoctorInfoApi,
   doUpdateDoctorInfoApi,
   doGetTimeSettingNotificationApi,
   doUpdateTimeSettingNotificationApi,
   doChangePasswordApi,
   doResetPasswordApi,
+  doGenerateTimeScheduleApi,
   
 
 };
